@@ -1,7 +1,12 @@
 import "./assets/css/global.css";
+import Signup from "./modules/auth/Signup";
 
 const App = () => {
-  return <div className="text-xl">App</div>;
+  return (
+    <>
+      <Signup />
+    </>
+  );
 };
 
 export default App;
