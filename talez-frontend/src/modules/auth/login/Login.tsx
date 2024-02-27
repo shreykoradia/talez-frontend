@@ -54,7 +54,9 @@ const Login = () => {
                   <p>{errors.password}</p>
                 </div>
               ) : null}
-              <Button disabled={false}>Sign in with Email</Button>
+              <Button type="submit" disabled={false}>
+                Sign in with Email
+              </Button>
             </div>
           </form>
         </div>

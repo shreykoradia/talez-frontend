@@ -54,7 +54,9 @@ const Signup = () => {
                   <p>{errors.password}</p>
                 </div>
               ) : null}
-              <Button disabled={false}>Sign up with Email</Button>
+              <Button type="submit" disabled={false}>
+                Sign up with Email
+              </Button>
             </div>
           </form>
         </div>
