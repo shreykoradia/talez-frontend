@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./assets/css/global.css";
-import Login from "./modules/auth/Login";
-import Signup from "./modules/auth/Signup";
+import Login from "./modules/auth/login/Login";
+import Signup from "./modules/auth/signup/Signup";
 
 const App = () => {
   return (

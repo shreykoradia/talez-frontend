@@ -1,23 +1,23 @@
 import { Button } from "@/shared/ui/ui/button";
-import styles from "../../assets/css/auth.module.css";
 import { Input } from "@/shared/ui/ui/input";
-import { Label } from "@radix-ui/react-label";
+import styles from "@/assets/css/auth.module.css";
+import { Label } from "@/shared/ui/ui/label";
 
-const Login = () => {
+const Signup = () => {
   return (
     <>
-      <div className={styles.login_parent_container}>
+      <div className={styles.signup_parent_container}>
         <div className="grid w-[500px] gap-4">
-          <div className={styles.login_title_container}>
+          <div className={styles.signup_title_container}>
             <p className="text-2xl font-semibold">
-              Join and streamline Workflows on <em>Talez</em>
+              Create an account on <em>Talez</em> for awesomeness.
             </p>
             <p className="text-[1rem] font-light">
-              Why worry when you can write<em>Talez</em>?.
+              Streamline Workflows, Unleash Creativity
             </p>
           </div>
           <form>
-            <div className={styles.login_form_container}>
+            <div className={styles.signup_form_container}>
               <Label className="sr-only" htmlFor="email">
                 Email
               </Label>
@@ -37,7 +37,7 @@ const Login = () => {
                 autoCorrect="off"
                 disabled={false}
               />
-              <Button disabled={false}>Sign in with Email</Button>
+              <Button disabled={false}>Sign up with Email</Button>
             </div>
           </form>
         </div>
@@ -46,4 +46,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
