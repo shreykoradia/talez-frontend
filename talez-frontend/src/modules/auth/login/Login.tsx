@@ -3,10 +3,23 @@ import { Input } from "@/shared/ui/ui/input";
 import styles from "@/assets/css/auth.module.css";
 import { Label } from "@/shared/ui/ui/label";
 import { useLoginForm } from "../hooks/useLoginForm";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "../api/login";
+
+interface loginFormProps {
+  email: string;
+  password: string;
+}
 
 const Login = () => {
-  const { values, handleChange, handleSubmit, errors, touched } =
-    useLoginForm();
+  const { mutate: loginMutateFn } = useMutation({
+    mutationFn: (values: loginFormProps) => login(values),
+    onSuccess: (res) => console.log(res),
+    onError: (err) => console.log(err),
+  });
+
+  const { values, handleChange, errors, touched } = useLoginForm();
+
   return (
     <>
       <div className={styles.login_parent_container}>
@@ -19,7 +32,7 @@ const Login = () => {
               Why worry when you can write <em>Talez</em>?.
             </p>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className={styles.login_form_container}>
               <Label className="sr-only" htmlFor="email">
                 Email
@@ -33,7 +46,6 @@ const Login = () => {
                 autoCorrect="off"
                 value={values?.email}
                 onChange={handleChange}
-                disabled={false}
               />
               {errors.email && touched.email ? (
                 <div className={"error_control"}>
@@ -47,14 +59,13 @@ const Login = () => {
                 autoCorrect="off"
                 value={values?.password}
                 onChange={handleChange}
-                disabled={false}
               />
               {errors.password && touched.password ? (
                 <div className={"error_control"}>
                   <p>{errors.password}</p>
                 </div>
               ) : null}
-              <Button type="submit" disabled={false}>
+              <Button type="button" onClick={() => loginMutateFn(values)}>
                 Sign in with Email
               </Button>
             </div>
