@@ -5,6 +5,7 @@ import { Label } from "@/shared/ui/ui/label";
 import { useLoginForm } from "../hooks/useLoginForm";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/login";
+import { toast } from "@/shared/ui/ui/use-toast";
 
 interface loginFormProps {
   email: string;
@@ -15,10 +16,19 @@ const Login = () => {
   const { mutate: loginMutateFn } = useMutation({
     mutationFn: (values: loginFormProps) => login(values),
     onSuccess: (res) => console.log(res),
-    onError: (err) => console.log(err),
+    onError: (err) => {
+      toast({
+        title: "Invalid Credentials",
+        description:
+          "Oops! The email or password provided does not match our records. Please check your credentials and try again.",
+      });
+      return err;
+    },
   });
 
-  const { values, handleChange, errors, touched } = useLoginForm();
+  const { values, handleChange, handleSubmit, errors, touched } = useLoginForm(
+    (values: loginFormProps) => loginMutateFn(values)
+  );
 
   return (
     <>
@@ -32,7 +42,7 @@ const Login = () => {
               Why worry when you can write <em>Talez</em>?.
             </p>
           </div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className={styles.login_form_container}>
               <Label className="sr-only" htmlFor="email">
                 Email
@@ -65,9 +75,7 @@ const Login = () => {
                   <p>{errors.password}</p>
                 </div>
               ) : null}
-              <Button type="button" onClick={() => loginMutateFn(values)}>
-                Sign in with Email
-              </Button>
+              <Button type="submit">Sign in with Email</Button>
             </div>
           </form>
         </div>

@@ -1,5 +1,10 @@
 import api from "@/shared/api/api";
 
-export const signup = () => {
-  return api.post(`auth/signup`);
+interface signUpProps {
+  email: string;
+  password: string;
+}
+
+export const signup = (data: signUpProps) => {
+  return api.post(`auth/signup`, data);
 };
