@@ -6,6 +6,8 @@ import { useLoginForm } from "../hooks/useLoginForm";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/login";
 import { toast } from "@/shared/ui/ui/use-toast";
+import { setCookie } from "typescript-cookie";
+import { useNavigate } from "react-router";
 
 interface loginFormProps {
   email: string;
@@ -13,9 +15,15 @@ interface loginFormProps {
 }
 
 const Login = () => {
+  const navigate = useNavigate();
   const { mutate: loginMutateFn } = useMutation({
     mutationFn: (values: loginFormProps) => login(values),
-    onSuccess: (res) => console.log(res),
+    onSuccess: (res) => {
+      if (res?.data) {
+        setCookie("accessToken", res?.data?.access_token);
+      }
+      navigate("/workflows");
+    },
     onError: (err) => {
       toast({
         title: "Invalid Credentials",
