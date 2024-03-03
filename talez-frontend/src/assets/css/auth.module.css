@@ -1,0 +1,7 @@
+.signup_parent_container, .login_parent_container {
+    @apply grid place-items-center h-[100vh];   
+}
+
+.signup_form_container, .login_form_container{
+    @apply grid gap-4 w-[500px];
+}
