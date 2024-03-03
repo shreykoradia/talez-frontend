@@ -6,8 +6,12 @@ const Home = () => {
     <>
       <Routes>
         <Route path="/workflows" index element={<Workflows />} />;
-        {/* <Route path="/talez" element={<Workflows />} />;
-      <Route path="/talez/:id" element={<Workflows />} />; */}
+        {/* 
+            /**** 
+             *  Todo Path Planning
+             * <Route path="/talez" element={<Workflows />} />;
+             * <Route path="/talez/:id" element={<Workflows />} />;
+        */}
       </Routes>
     </>
   );
