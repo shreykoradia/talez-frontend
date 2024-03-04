@@ -1,4 +1,6 @@
+import { generateAvatarInitials } from "@/shared/helpers/helpers";
 import { cn } from "@/shared/lib/utils";
+import { Avatar, AvatarFallback } from "@/shared/ui/ui/avatar";
 import {
   Select,
   SelectContent,
@@ -14,7 +16,6 @@ interface AccountSwitcherProps {
   accounts: {
     label: string;
     email: string;
-    icon: React.ReactNode;
   }[];
 }
 
@@ -28,40 +29,60 @@ export function AccountSwitcher({
 
   return (
     <>
-      <Select defaultValue={selectedAccount} onValueChange={setSelectedAccount}>
-        <SelectTrigger
-          className={cn(
-            "flex items-center gap-2 border-0 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
-            isCollapsed &&
-              "flex h-9 w-9 shrink-0 items-center justify-center p-0 [&>span]:w-auto [&>svg]:hidden"
-          )}
-          aria-label="Select account"
+      <div className="flex justify-between items-center w-full m-2">
+        <Select
+          defaultValue={selectedAccount}
+          onValueChange={setSelectedAccount}
         >
-          <SelectValue placeholder="Select an account">
-            {
-              accounts.find((account) => account.email === selectedAccount)
-                ?.icon
-            }
-            <span className={cn("ml-2", isCollapsed && "hidden")}>
-              {
-                accounts.find((account) => account.email === selectedAccount)
-                  ?.label
-              }
-            </span>
-          </SelectValue>
-        </SelectTrigger>
-        <SelectContent>
-          {accounts.map((account) => (
-            <SelectItem key={account.email} value={account.email}>
-              <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
-                {account.icon}
-                {account.email}
+          <SelectTrigger
+            className={cn(
+              "flex items-center gap-2 border-0 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0",
+              isCollapsed &&
+                "flex h-9 w-9 shrink-0 items-center justify-center p-0 [&>span]:w-auto [&>svg]:hidden"
+            )}
+            aria-label="Select account"
+          >
+            <SelectValue placeholder="Select an account">
+              <div className="flex items-center gap-2">
+                <Avatar>
+                  <AvatarFallback>
+                    {generateAvatarInitials(accounts[0]?.email)}
+                  </AvatarFallback>
+                </Avatar>
+                <div className={cn(isCollapsed && "hidden")}>
+                  <p className="!mr-[100%] text-sm font-medium">
+                    {
+                      accounts.find(
+                        (account) => account.email === selectedAccount
+                      )?.label
+                    }
+                  </p>
+                  <p className="text-xs text-primary">
+                    {
+                      accounts.find(
+                        (account) => account.email === selectedAccount
+                      )?.email
+                    }
+                  </p>
+                </div>
               </div>
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      <div className="">
+            </SelectValue>
+          </SelectTrigger>
+          <SelectContent>
+            {accounts.map((account) => (
+              <SelectItem key={account.email} value={account.email}>
+                <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
+                  <Avatar>
+                    <AvatarFallback>
+                      {generateAvatarInitials(account?.email)}
+                    </AvatarFallback>
+                  </Avatar>
+                  {account.email}
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
         <ListCollapse className="h-4 w-4 opacity-50" />
       </div>
     </>
