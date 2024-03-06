@@ -29,7 +29,7 @@ export function AccountSwitcher({
 
   return (
     <>
-      <div className="flex justify-between items-center w-full m-2">
+      <div className="flex justify-between items-center w-full pt-2">
         <Select
           defaultValue={selectedAccount}
           onValueChange={setSelectedAccount}
@@ -72,7 +72,7 @@ export function AccountSwitcher({
             {accounts.map((account) => (
               <SelectItem key={account.email} value={account.email}>
                 <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
-                  <Avatar>
+                  <Avatar className="">
                     <AvatarFallback>
                       {generateAvatarInitials(account?.email)}
                     </AvatarFallback>
