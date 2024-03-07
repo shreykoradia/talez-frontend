@@ -1,8 +1,9 @@
 import {
-  Handshake,
+  BellIcon,
+  CircleDotDashed,
   Megaphone,
+  MessageSquareCode,
   Package,
-  Rss,
   Settings,
   Workflow,
 } from "lucide-react";
@@ -22,7 +23,7 @@ const SidebarModuleContent = () => {
         </Link>
         <Link to="/updates" className={styles.sidebar_content_container}>
           <span>
-            <Rss />
+            <BellIcon />
           </span>
           Updates
         </Link>
@@ -37,9 +38,9 @@ const SidebarModuleContent = () => {
       <div className="w-full">
         <Link to={"/forums"} className={styles.sidebar_content_container}>
           <span>
-            <Handshake />
+            <MessageSquareCode />
           </span>
-          Forums
+          Discussion
         </Link>
         <Link to={"/new-features"} className={styles.sidebar_content_container}>
           <span>
@@ -53,6 +54,45 @@ const SidebarModuleContent = () => {
           </span>
           Promotions
         </Link>
+        <div className="recent_activity_container grid place-content-start w-full gap-4 p-4">
+          <p className="font-medium">Recent Activities</p>
+          <div className="flex items-center gap-2">
+            <CircleDotDashed />
+            <div>
+              <p className="text-xs font-normal">shreykoradia/InsideAI</p>
+              Added Login Talez
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <CircleDotDashed />
+            <div>
+              <p className="text-xs font-normal">shreykoradia/InsideAI</p>
+              Added Login Talez
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <CircleDotDashed />
+            <div>
+              <p className="text-xs font-normal">shreykoradia/InsideAI</p>
+              Added Login Talez
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <CircleDotDashed />
+            <div>
+              <p className="text-xs font-normal">shreykoradia/InsideAI</p>
+              Added Login Talez
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <CircleDotDashed />
+            <div>
+              <p className="text-xs font-normal">shreykoradia/InsideAI</p>
+              Added Login Talez
+            </div>
+          </div>
+          <p className="text-xs">show more...</p>
+        </div>
       </div>
     </>
   );

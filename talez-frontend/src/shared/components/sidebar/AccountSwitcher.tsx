@@ -83,7 +83,7 @@ export function AccountSwitcher({
             ))}
           </SelectContent>
         </Select>
-        <ListCollapse className="h-4 w-4 opacity-50" />
+        <ListCollapse className="mr-2 opacity-50" />
       </div>
     </>
   );
