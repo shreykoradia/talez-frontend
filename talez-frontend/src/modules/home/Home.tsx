@@ -14,7 +14,7 @@ const Home = () => {
         direction="horizontal"
         className="!h-[100vh] max-w-full rounded-lg border"
       >
-        <ResizablePanel defaultSize={25} minSize={15} maxSize={25}>
+        <ResizablePanel defaultSize={20} minSize={15} maxSize={25}>
           <Sidebar />
         </ResizablePanel>
         <ResizableHandle withHandle />

@@ -54,41 +54,64 @@ const SidebarModuleContent = () => {
           </span>
           Promotions
         </Link>
-        <div className="recent_activity_container grid place-content-start w-full gap-4 p-4">
+        <div className="recent_activity_container flex flex-col w-full gap-4 px-4 pt-4">
           <p className="font-medium">Recent Activities</p>
-          <div className="flex items-center gap-2">
-            <CircleDotDashed />
-            <div>
-              <p className="text-xs font-normal">shreykoradia/InsideAI</p>
-              Added Login Talez
+          <div className="h-[300px] rounded-lg grid gap-2 overflow-y-auto no-scrollbar">
+            <div className="flex items-center gap-2 w-full">
+              <CircleDotDashed />
+              <div>
+                <p className="text-xs font-normal">shreykoradia/InsideAI</p>
+                Added Login Talez
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <CircleDotDashed />
-            <div>
-              <p className="text-xs font-normal">shreykoradia/InsideAI</p>
-              Added Login Talez
+            <div className="flex items-center gap-2">
+              <CircleDotDashed />
+              <div>
+                <p className="text-xs font-normal">shreykoradia/InsideAI</p>
+                Added Login Talez
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <CircleDotDashed />
-            <div>
-              <p className="text-xs font-normal">shreykoradia/InsideAI</p>
-              Added Login Talez
+            <div className="flex items-center gap-2">
+              <CircleDotDashed />
+              <div>
+                <p className="text-xs font-normal">shreykoradia/InsideAI</p>
+                Added Login Talez
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <CircleDotDashed />
-            <div>
-              <p className="text-xs font-normal">shreykoradia/InsideAI</p>
-              Added Login Talez
+            <div className="flex items-center gap-2">
+              <CircleDotDashed />
+              <div>
+                <p className="text-xs font-normal">shreykoradia/InsideAI</p>
+                Added Login Talez
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <CircleDotDashed />
-            <div>
-              <p className="text-xs font-normal">shreykoradia/InsideAI</p>
-              Added Login Talez
+            <div className="flex items-center gap-2">
+              <CircleDotDashed />
+              <div>
+                <p className="text-xs font-normal">shreykoradia/InsideAI</p>
+                Added Login Talez
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <CircleDotDashed />
+              <div>
+                <p className="text-xs font-normal">shreykoradia/InsideAI</p>
+                Added Login Talez
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <CircleDotDashed />
+              <div>
+                <p className="text-xs font-normal">shreykoradia/InsideAI</p>
+                Added Login Talez
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <CircleDotDashed />
+              <div>
+                <p className="text-xs font-normal">shreykoradia/InsideAI</p>
+                Added Login Talez
+              </div>
             </div>
           </div>
           <p className="text-xs">show more...</p>
