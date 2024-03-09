@@ -10,6 +10,7 @@ import {
 import styles from "@/assets/css/sidebar.module.css";
 import { Link } from "react-router-dom";
 import { Separator } from "@/shared/ui/ui/separator";
+import clsx from "clsx";
 
 const SidebarModuleContent = () => {
   return (
@@ -54,9 +55,9 @@ const SidebarModuleContent = () => {
           </span>
           Promotions
         </Link>
-        <div className="recent_activity_container flex flex-col w-full gap-4 px-4 pt-4">
+        <div className={styles.recent_activity_container}>
           <p className="font-medium">Recent Activities</p>
-          <div className="h-[300px] rounded-lg grid gap-2 overflow-y-auto no-scrollbar">
+          <div className={clsx(styles.recent_activity_content, "no-scrollbar")}>
             <div className="flex items-center gap-2 w-full">
               <CircleDotDashed />
               <div>

@@ -6,6 +6,7 @@ import {
   ResizablePanelGroup,
 } from "@/shared/ui/ui/resizable";
 import Sidebar from "@/shared/components/sidebar/Sidebar";
+import Header from "@/shared/components/header/Header";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={80}>
+          <Header />
           <Routes>
             <Route path="/workflows" index element={<Workflows />} />;
             {/* 
