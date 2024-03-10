@@ -1,3 +1,4 @@
+import { Button } from "@/shared/ui/ui/button";
 import { History, Plus, Star } from "lucide-react";
 
 interface HeaderProps {
@@ -30,10 +31,13 @@ const Header = ({
         ) : null}
         {displayCreate ? (
           <div className="new_workflow_container">
-            <button className="flex gap-2 items-center hover:bg-accent px-2 py-1 rounded-md text-sm text-secondary-foreground">
+            <Button
+              variant={"ghost"}
+              className="flex gap-2 items-center hover:bg-accent text-sm"
+            >
               <Plus size={14} />
               Create Workflow
-            </button>
+            </Button>
           </div>
         ) : null}
       </div>
