@@ -1,5 +1,5 @@
 .workflow_parent_container{
-    @apply flex justify-start p-4;
+    @apply flex flex-wrap gap-4 justify-start p-4;
 }
 
 .workflow_button_container{
