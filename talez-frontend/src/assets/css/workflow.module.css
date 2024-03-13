@@ -1,5 +1,5 @@
 .workflow_parent_container{
-    @apply flex flex-wrap gap-4 justify-start p-4 overflow-y-auto max-h-full no-scrollbar;
+    @apply flex flex-wrap gap-4 justify-start p-4 overflow-y-auto h-[calc(100%-88px)] no-scrollbar;
 }
 
 .workflow_button_container{
