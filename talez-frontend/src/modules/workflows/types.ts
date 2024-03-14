@@ -8,3 +8,8 @@ export type workflowResponse = {
   members: [] | null;
   workFlowTitle: string;
 } & TimeStampedModelMixin;
+
+export type workflowRequest = {
+  workFlowTitle: string;
+  description: string;
+};

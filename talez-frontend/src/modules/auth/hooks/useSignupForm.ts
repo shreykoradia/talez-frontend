@@ -1,4 +1,4 @@
-import { signupValidationSchema } from "@/shared/helpers/validationSchema";
+import { signupValidationSchema } from "@/shared/helpers/validationSchema/authValidationSchema";
 import { useFormik } from "formik";
 
 interface signupForms {

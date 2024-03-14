@@ -1,4 +1,4 @@
-import { loginValidationSchema } from "@/shared/helpers/validationSchema";
+import { loginValidationSchema } from "@/shared/helpers/validationSchema/authValidationSchema";
 import { useFormik } from "formik";
 
 interface loginFormProps {

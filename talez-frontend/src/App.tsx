@@ -8,7 +8,14 @@ import Home from "./modules/home/Home";
 import withoutAuthentication from "./shared/helpers/withoutAuthentication";
 
 const App = () => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        retry: 1,
+      },
+    },
+  });
 
   const unAuthenticated = () => <Outlet />;
 
