@@ -1,9 +1,11 @@
-import { Button } from "@/shared/ui/ui/button";
-import { History, Plus, Star } from "lucide-react";
+import CreateWorkflowModal from "@/modules/workflows/components/CreateWorkflowModal";
+import { History, Star } from "lucide-react";
 
 interface HeaderProps {
   displayMore: boolean;
   displayCreate: boolean;
+  onCreateWorkflow?: (state: boolean) => void;
+  createWorkflow?: boolean;
 }
 
 const defaultProps = {
@@ -18,7 +20,7 @@ const Header = ({
   return (
     <>
       <div className="flex justify-between items-center p-4">
-        <p className="text-sm px-2 py-1 hover:bg-accent rounded-md">
+        <p className="text-sm px-2 py-1 font-medium hover:bg-accent rounded-md">
           Workflows
         </p>
         {displayMore ? (
@@ -31,13 +33,7 @@ const Header = ({
         ) : null}
         {displayCreate ? (
           <div className="new_workflow_container">
-            <Button
-              variant={"ghost"}
-              className="flex gap-2 items-center hover:bg-accent text-sm"
-            >
-              <Plus size={14} />
-              Create Workflow
-            </Button>
+            <CreateWorkflowModal />
           </div>
         ) : null}
       </div>
