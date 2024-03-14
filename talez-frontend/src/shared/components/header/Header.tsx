@@ -20,7 +20,7 @@ const Header = ({
   return (
     <>
       <div className="flex justify-between items-center p-4">
-        <p className="text-sm px-2 py-1 hover:bg-accent rounded-md">
+        <p className="text-sm px-2 py-1 font-medium hover:bg-accent rounded-md">
           Workflows
         </p>
         {displayMore ? (
