@@ -18,9 +18,13 @@ const Workflows = () => {
     setWorkflowOffset(workflowOffset + LIMIT);
   };
 
+  const onFetchPrevious = () => {
+    if (workflowOffset - LIMIT < 0) return;
+    setWorkflowOffset((prevOffset) => prevOffset - LIMIT);
+  };
+
   useEffect(() => {
-    console.log(workflowOffset);
-    if (workflowOffset) {
+    if (workflowOffset >= 0) {
       refetchWorkflowsFn();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,9 +43,28 @@ const Workflows = () => {
               )
             : null}
         </div>
-        <Button variant={"link"} onClick={onFetchMore}>
-          Show More
-        </Button>
+        <div className="flex gap-4 items-center">
+          {workflowOffset > 0 ? (
+            <Button
+              variant={"link"}
+              onClick={onFetchPrevious}
+              disabled={workflowOffset <= 0}
+            >
+              Go to Previous
+            </Button>
+          ) : null}
+          <Button
+            variant={"link"}
+            onClick={onFetchMore}
+            disabled={
+              workflowOffset + LIMIT >= workflowsData?.totalPages * LIMIT ||
+              !workflowsData ||
+              workflowsData.workflows.length < LIMIT
+            }
+          >
+            Show More
+          </Button>
+        </div>
       </div>
     </>
   );
