@@ -10,10 +10,19 @@ import { Archive } from "lucide-react";
 import styles from "@/assets/css/workflow.module.css";
 import { Button } from "@/shared/ui/ui/button";
 import { workflowResponse } from "../types";
+import { useNavigate } from "react-router-dom";
 
 const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
+  const navigate = useNavigate();
+  const onWorkflowCardClick = (id: string) => {
+    navigate(`/${id}/talez`);
+  };
+
   return (
-    <Card className="w-[350px]">
+    <Card
+      className="w-[350px] cursor-pointer"
+      onClick={() => onWorkflowCardClick(workflow?._id)}
+    >
       <CardHeader>
         <CardTitle>{workflow?.workFlowTitle}</CardTitle>
         <CardDescription>{`Authored by ${workflow?.authorName}`}</CardDescription>

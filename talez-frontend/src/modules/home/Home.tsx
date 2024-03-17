@@ -6,6 +6,7 @@ import {
   ResizablePanelGroup,
 } from "@/shared/ui/ui/resizable";
 import Sidebar from "@/shared/components/sidebar/Sidebar";
+import Talez from "../talez/Talez";
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
         <ResizablePanel defaultSize={80}>
           <Routes>
             <Route path="/workflows" index element={<Workflows />} />;
+            <Route path="/:workflowId/talez" index element={<Talez />} />
             {/* 
             /**** 
              *  Todo Path Planning

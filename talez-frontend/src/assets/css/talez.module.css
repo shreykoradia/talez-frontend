@@ -1,0 +1,4 @@
+.talez_parent_container{
+    @apply flex flex-col gap-2 justify-start p-4 w-full h-full;
+}
+

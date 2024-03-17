@@ -1,7 +1,7 @@
 import { TimeStampedModelMixin } from "@/shared/types";
 
 export type workflowResponse = {
-  id: string;
+  _id: string;
   authorId: string;
   authorName: string;
   description: string;
