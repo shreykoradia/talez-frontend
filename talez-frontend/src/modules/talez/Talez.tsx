@@ -43,7 +43,8 @@ const Talez = () => {
     <>
       <Header
         displayCreate={false}
-        displayMore={true}
+        displayMore={false}
+        displayCreateTalez={true}
         headerTitle={`${params.workflowId}/Talez`}
       />
       <div className="grid place-items-center gap-2 overflow-y-auto h-[calc(100%-88px)] no-scrollbar">

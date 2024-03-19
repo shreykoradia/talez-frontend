@@ -25,9 +25,9 @@ const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
     >
       <CardHeader>
         <CardTitle className="font-medium">{workflow?.workFlowTitle}</CardTitle>
-        <CardDescription className="font-medium">{`Authored by ${workflow?.authorName}`}</CardDescription>
+        <CardDescription>{`Authored by ${workflow?.authorName}`}</CardDescription>
       </CardHeader>
-      <CardContent className="text_description_primary h-[150px] break-words rounded-lg overflow-y-auto no-scrollbar">
+      <CardContent className="h-[150px] rounded-lg overflow-y-auto no-scrollbar">
         {workflow?.description}
       </CardContent>
       <CardFooter>

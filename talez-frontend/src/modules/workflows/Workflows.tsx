@@ -36,6 +36,7 @@ const Workflows = () => {
         displayMore={false}
         displayCreate={true}
         headerTitle="Workflows"
+        displayCreateTalez={false}
       />
       <div className="grid place-items-center gap-2 overflow-y-auto h-[calc(100%-88px)] no-scrollbar">
         <div className={clsx(styles.workflow_parent_container, "no-scrollbar")}>

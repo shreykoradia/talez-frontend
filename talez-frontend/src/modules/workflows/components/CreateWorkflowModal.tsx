@@ -42,7 +42,7 @@ const CreateWorkflowModal = () => {
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleSubmit}>
-            <div className="grid gap-2">
+            <div className="grid gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="workFlowTitle">Workflow Title*</Label>
                 <Input

@@ -49,11 +49,11 @@ const CreateTalesModal = () => {
           <DialogHeader>
             <DialogTitle>Create Talez</DialogTitle>
             <DialogDescription>
-              Efficiency Starts Here: Create, Describe, Optimize
+              Every product has a Tale, Write your's!
             </DialogDescription>
           </DialogHeader>
           <form>
-            <div className="grid gap-2">
+            <div className="grid gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="title">Talez Title*</Label>
                 <Input

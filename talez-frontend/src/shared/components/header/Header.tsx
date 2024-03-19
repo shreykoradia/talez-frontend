@@ -1,20 +1,25 @@
 import CreateTalesModal from "@/modules/talez/components/CreateTalesModal";
 import CreateWorkflowModal from "@/modules/workflows/components/CreateWorkflowModal";
+import { Button } from "@/shared/ui/ui/button";
+import { GanttChart, MessageCircleCode } from "lucide-react";
 
 interface HeaderProps {
   displayMore: boolean;
   displayCreate: boolean;
+  displayCreateTalez: boolean;
   headerTitle: string;
 }
 
 const defaultProps = {
   displayMore: true,
   displayCreate: false,
+  displayCreateTalez: false,
 };
 
 const Header = ({
   displayCreate = defaultProps.displayCreate,
   displayMore = defaultProps.displayMore,
+  displayCreateTalez = defaultProps.displayCreateTalez,
   headerTitle,
 }: HeaderProps) => {
   return (
@@ -24,15 +29,24 @@ const Header = ({
           {headerTitle}
         </p>
         {displayMore ? (
-          <div className="display_more_container flex items-center justify-evenly gap-4">
+          <div className=" flex items-center gap-2">
             {/* todo for design iterations */}
-            {/* <p className="text-sm text-secondary-foreground">Edited 1hr ago</p> */}
-            <CreateTalesModal />
-            {/* <p className="text-sm text-secondary-foreground">Share</p> */}
-            {/* <History /> */}
-            {/* <Star /> */}
+            <Button variant={"link"}>Share</Button>
+            <button>
+              <MessageCircleCode />
+            </button>
+            <button>
+              <GanttChart />
+            </button>
           </div>
         ) : null}
+
+        {displayCreateTalez ? (
+          <div className="new_talez_container">
+            <CreateTalesModal />
+          </div>
+        ) : null}
+
         {displayCreate ? (
           <div className="new_workflow_container">
             <CreateWorkflowModal />

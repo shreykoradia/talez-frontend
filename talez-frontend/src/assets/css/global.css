@@ -2,6 +2,3 @@
     @apply text-xs text-crimsonred;    
 }
 
-.text_description_primary{
-    @apply text-sm font-medium text-secondary-foreground;
-}
