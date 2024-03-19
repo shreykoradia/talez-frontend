@@ -20,17 +20,19 @@ const TalezCard = ({ tale }: talezCardProps) => {
     <>
       <Card>
         <CardHeader>
-          <CardTitle>{tale?.title}</CardTitle>
-          <CardDescription>Authored by {tale?.author_name}</CardDescription>
+          <CardTitle className="font-medium">{tale?.title}</CardTitle>
+          <CardDescription className="font-medium">
+            Authored by {tale?.author_name}
+          </CardDescription>
         </CardHeader>
-        <CardContent className="text-sm text-secondary-foreground h-[100px] mb-2 break-words rounded-lg overflow-y-auto no-scrollbar">
+        <CardContent className="text_description_primary h-[50px] mb-2 break-words rounded-lg overflow-y-auto no-scrollbar">
           <p className={styles.talez_description_section}>
             {tale?.description}
           </p>
         </CardContent>
         <CardFooter>
           <div className="flex gap-2 justify-end items-center w-full">
-            <BookMarked />
+            <BookMarked size={16} />
           </div>
         </CardFooter>
       </Card>

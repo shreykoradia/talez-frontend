@@ -24,10 +24,10 @@ const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
       onClick={() => onWorkflowCardClick(workflow?._id)}
     >
       <CardHeader>
-        <CardTitle>{workflow?.workFlowTitle}</CardTitle>
-        <CardDescription>{`Authored by ${workflow?.authorName}`}</CardDescription>
+        <CardTitle className="font-medium">{workflow?.workFlowTitle}</CardTitle>
+        <CardDescription className="font-medium">{`Authored by ${workflow?.authorName}`}</CardDescription>
       </CardHeader>
-      <CardContent className="text-sm text-secondary-foreground h-[150px] break-words rounded-lg overflow-y-auto no-scrollbar">
+      <CardContent className="text_description_primary h-[150px] break-words rounded-lg overflow-y-auto no-scrollbar">
         {workflow?.description}
       </CardContent>
       <CardFooter>
