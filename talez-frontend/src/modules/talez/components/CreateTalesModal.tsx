@@ -11,16 +11,27 @@ import {
 import { Input } from "@/shared/ui/ui/input";
 import { Label } from "@/shared/ui/ui/label";
 import { Plus } from "lucide-react";
-import { workflowRequest } from "../types";
-import useCreateWorkflowForm from "../hooks/useCreateWorkflowForm";
-import useCreateWorkflows from "../hooks/useCreateWorkflows";
+import useCreateTalesForm from "../hooks/useCreateTalesForm";
+import useCreateTales from "../hooks/useCreateTales";
+import { useParams } from "react-router-dom";
+import { Textarea } from "@/shared/ui/ui/textarea";
 
-const CreateWorkflowModal = () => {
-  const { createWorkfLowMutateFn, isCreatingWorkflow } = useCreateWorkflows();
-  const { values, errors, touched, handleChange, handleSubmit } =
-    useCreateWorkflowForm((values: workflowRequest) =>
-      createWorkfLowMutateFn(values)
-    );
+const CreateTalesModal = () => {
+  const queryParams = useParams();
+
+  const params = {
+    workflowId: queryParams?.workflowId || 0,
+  };
+
+  const { createTalesFn, isCreatingTales } = useCreateTales();
+
+  const { values, errors, touched, handleChange, resetForm } =
+    useCreateTalesForm();
+
+  const onSubmitButtonClick = () => {
+    createTalesFn({ values, params });
+    resetForm();
+  };
 
   return (
     <>
@@ -31,36 +42,35 @@ const CreateWorkflowModal = () => {
             className="flex gap-2 items-center hover:bg-accent text-sm"
           >
             <Plus size={14} />
-            Create Workflow
+            Create Talez
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Create Workflow</DialogTitle>
+            <DialogTitle>Create Talez</DialogTitle>
             <DialogDescription>
-              Efficiency Starts Here: Create, Describe, Optimize
+              Every product has a Tale, Write your's!
             </DialogDescription>
           </DialogHeader>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="grid gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="workFlowTitle">Workflow Title*</Label>
+                <Label htmlFor="title">Talez Title*</Label>
                 <Input
                   type="text"
-                  id="workFlowTitle"
-                  value={values?.workFlowTitle}
+                  id="title"
+                  value={values?.title}
                   onChange={handleChange}
                 />
-                {errors.workFlowTitle && touched.workFlowTitle ? (
+                {errors.title && touched.title ? (
                   <div className={"error_control"}>
-                    <p>{errors.workFlowTitle}</p>
+                    <p>{errors.title}</p>
                   </div>
                 ) : null}
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="description">Description*</Label>
-                <Input
-                  type="text"
+                <Textarea
                   id="description"
                   value={values?.description}
                   onChange={handleChange}
@@ -72,8 +82,11 @@ const CreateWorkflowModal = () => {
                 ) : null}
               </div>
               <DialogFooter>
-                <Button type="submit" disabled={isCreatingWorkflow}>
-                  Create Workflow
+                <Button
+                  disabled={isCreatingTales}
+                  onClick={onSubmitButtonClick}
+                >
+                  Create Talez
                 </Button>
               </DialogFooter>
             </div>
@@ -84,4 +97,4 @@ const CreateWorkflowModal = () => {
   );
 };
 
-export default CreateWorkflowModal;
+export default CreateTalesModal;

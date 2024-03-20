@@ -1,36 +1,54 @@
+import CreateTalesModal from "@/modules/talez/components/CreateTalesModal";
 import CreateWorkflowModal from "@/modules/workflows/components/CreateWorkflowModal";
-import { History, Star } from "lucide-react";
+import { Button } from "@/shared/ui/ui/button";
+import { GanttChart, MessageCircleCode } from "lucide-react";
 
 interface HeaderProps {
   displayMore: boolean;
   displayCreate: boolean;
-  onCreateWorkflow?: (state: boolean) => void;
-  createWorkflow?: boolean;
+  displayCreateTalez: boolean;
+  headerTitle: string;
 }
 
 const defaultProps = {
   displayMore: true,
   displayCreate: false,
+  displayCreateTalez: false,
 };
 
 const Header = ({
   displayCreate = defaultProps.displayCreate,
   displayMore = defaultProps.displayMore,
+  displayCreateTalez = defaultProps.displayCreateTalez,
+  headerTitle,
 }: HeaderProps) => {
   return (
     <>
       <div className="flex justify-between items-center p-4">
         <p className="text-sm px-2 py-1 font-medium hover:bg-accent rounded-md">
-          Workflows
+          {headerTitle}
         </p>
         {displayMore ? (
-          <div className="display_more_container flex justify-evenly gap-2">
-            <p className="text-sm text-secondary-foreground">Edited 1hr ago</p>
-            <p className="text-sm text-secondary-foreground">Share</p>
-            <History />
-            <Star />
+          <div className=" flex items-center gap-2">
+            {/* todo for design iterations */}
+            <Button variant={"link"}>Share</Button>
+            {/* Visit Feedbacks on development Flow  */}
+            <button>
+              <MessageCircleCode />
+            </button>
+            {/* Used for Notification Timeline  */}
+            <button>
+              <GanttChart />
+            </button>
           </div>
         ) : null}
+
+        {displayCreateTalez ? (
+          <div className="new_talez_container">
+            <CreateTalesModal />
+          </div>
+        ) : null}
+
         {displayCreate ? (
           <div className="new_workflow_container">
             <CreateWorkflowModal />
