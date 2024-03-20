@@ -32,9 +32,11 @@ const Header = ({
           <div className=" flex items-center gap-2">
             {/* todo for design iterations */}
             <Button variant={"link"}>Share</Button>
+            {/* Visit Feedbacks on development Flow  */}
             <button>
               <MessageCircleCode />
             </button>
+            {/* Used for Notification Timeline  */}
             <button>
               <GanttChart />
             </button>
