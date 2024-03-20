@@ -20,7 +20,7 @@ const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
 
   return (
     <Card
-      className="w-[350px] cursor-pointer"
+      className="w-[350px] cursor-pointer card_hover_primary"
       onClick={() => onWorkflowCardClick(workflow?._id)}
     >
       <CardHeader>

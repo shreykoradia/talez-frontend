@@ -31,7 +31,7 @@ const Header = ({
         {displayMore ? (
           <div className=" flex items-center gap-2">
             {/* todo for design iterations */}
-            <Button variant={"link"}>Share</Button>
+            <Button variant={"ghost"}>Share</Button>
             {/* Visit Feedbacks on development Flow  */}
             <button>
               <MessageCircleCode />
