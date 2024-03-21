@@ -5,3 +5,4 @@
 .card_hover_primary{
     @apply hover:bg-primary-foreground;
 }
+
