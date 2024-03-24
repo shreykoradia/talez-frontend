@@ -159,7 +159,7 @@ const TalezView = () => {
               rows={1}
             />
             <div className={styles.action_button_container}>
-              <Button variant={"ghost"}>Send Feedback</Button>
+              <Button variant={"default"}>Send Feedback</Button>
             </div>
           </div>
         </div>

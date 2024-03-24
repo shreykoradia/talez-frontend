@@ -38,8 +38,8 @@ const CreateTalesModal = () => {
       <Dialog>
         <DialogTrigger asChild>
           <Button
-            variant={"ghost"}
-            className="flex gap-2 items-center hover:bg-accent text-sm"
+            variant={"default"}
+            className="flex gap-2 items-center text-sm"
           >
             <Plus size={14} />
             Create Talez

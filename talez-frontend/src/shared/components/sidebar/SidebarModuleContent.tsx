@@ -18,19 +18,19 @@ const SidebarModuleContent = () => {
       <div className="w-full">
         <Link to="/workflows" className={styles.sidebar_content_container}>
           <span>
-            <Workflow />
+            <Workflow strokeWidth={1.5} />
           </span>
           Workflows
         </Link>
         <Link to="/updates" className={styles.sidebar_content_container}>
           <span>
-            <BellIcon />
+            <BellIcon strokeWidth={1.5} />
           </span>
           Updates
         </Link>
         <Link to="/settings" className={styles.sidebar_content_container}>
           <span>
-            <Settings />
+            <Settings strokeWidth={1.5} />
           </span>
           Settings
         </Link>
@@ -39,19 +39,19 @@ const SidebarModuleContent = () => {
       <div className="w-full">
         <Link to={"/forums"} className={styles.sidebar_content_container}>
           <span>
-            <MessageSquareCode />
+            <MessageSquareCode strokeWidth={1.5} />
           </span>
           Discussion
         </Link>
         <Link to={"/new-features"} className={styles.sidebar_content_container}>
           <span>
-            <Package />
+            <Package strokeWidth={1.5} />
           </span>
           New Features
         </Link>
         <Link to={"/promotions"} className={styles.sidebar_content_container}>
           <span>
-            <Megaphone />
+            <Megaphone strokeWidth={1.5} />
           </span>
           Promotions
         </Link>
@@ -59,7 +59,7 @@ const SidebarModuleContent = () => {
           <p className="font-medium">Recent Activities</p>
           <div className={clsx(styles.recent_activity_content, "no-scrollbar")}>
             <div className="flex items-center gap-2 w-full">
-              <CircleDotDashed />
+              <CircleDotDashed strokeWidth={1.5} />
               <div>
                 <p className="text-xs text-secondary-foreground">
                   shreykoradia/InsideAI
@@ -68,7 +68,7 @@ const SidebarModuleContent = () => {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <CircleDotDashed />
+              <CircleDotDashed strokeWidth={1.5} />
               <div>
                 <p className="text-xs text-secondary-foreground">
                   shreykoradia/InsideAI
@@ -77,7 +77,7 @@ const SidebarModuleContent = () => {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <CircleDotDashed />
+              <CircleDotDashed strokeWidth={1.5} />
               <div>
                 <p className="text-xs text-secondary-foreground">
                   shreykoradia/InsideAI
@@ -86,7 +86,7 @@ const SidebarModuleContent = () => {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <CircleDotDashed />
+              <CircleDotDashed strokeWidth={1.5} />
               <div>
                 <p className="text-xs text-secondary-foreground">
                   shreykoradia/InsideAI
@@ -95,7 +95,7 @@ const SidebarModuleContent = () => {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <CircleDotDashed />
+              <CircleDotDashed strokeWidth={1.5} />
               <div>
                 <p className="text-xs text-secondary-foreground">
                   shreykoradia/InsideAI
@@ -104,7 +104,7 @@ const SidebarModuleContent = () => {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <CircleDotDashed />
+              <CircleDotDashed strokeWidth={1.5} />
               <div>
                 <p className="text-xs text-secondary-foreground">
                   shreykoradia/InsideAI
@@ -113,7 +113,7 @@ const SidebarModuleContent = () => {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <CircleDotDashed />
+              <CircleDotDashed strokeWidth={1.5} />
               <div>
                 <p className="text-xs text-secondary-foreground">
                   shreykoradia/InsideAI
@@ -122,7 +122,7 @@ const SidebarModuleContent = () => {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <CircleDotDashed />
+              <CircleDotDashed strokeWidth={1.5} />
               <div>
                 <p className="text-xs text-secondary-foreground">
                   shreykoradia/InsideAI

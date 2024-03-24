@@ -1,5 +1,5 @@
 .sidebar_content_container{
-   @apply flex gap-4 px-4 py-1 items-center font-medium text-sm hover:bg-accent;
+   @apply flex gap-4 px-4 py-1 items-center font-normal text-sm hover:text-primary hover:font-medium hover:bg-primary-foreground;
 }
 
 .recent_activity_container {

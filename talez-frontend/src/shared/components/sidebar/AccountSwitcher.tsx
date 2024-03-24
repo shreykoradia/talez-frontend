@@ -57,7 +57,7 @@ export function AccountSwitcher({
                       )?.label
                     }
                   </p>
-                  <p className="text-xs text-secondary-foreground">
+                  <p className="text-xs">
                     {
                       accounts.find(
                         (account) => account.email === selectedAccount
