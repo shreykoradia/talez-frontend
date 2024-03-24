@@ -156,7 +156,8 @@ const TalezView = () => {
           <div className="relative">
             <Textarea
               placeholder="Send your valuable feedback to make user's happy"
-              rows={1}
+              rows={2}
+              className="h-[150px] resize-none"
             />
             <div className={styles.action_button_container}>
               <Button variant={"default"}>Send Feedback</Button>

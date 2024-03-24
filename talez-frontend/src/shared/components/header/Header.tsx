@@ -1,7 +1,8 @@
+import FeedbackOverview from "@/modules/feedbacks/FeedbackOverview";
 import CreateTalesModal from "@/modules/talez/components/CreateTalesModal";
 import CreateWorkflowModal from "@/modules/workflows/components/CreateWorkflowModal";
 import { Button } from "@/shared/ui/ui/button";
-import { GanttChart, MessageCircleCode } from "lucide-react";
+import { GanttChart } from "lucide-react";
 
 interface HeaderProps {
   displayMore: boolean;
@@ -24,23 +25,20 @@ const Header = ({
 }: HeaderProps) => {
   return (
     <>
-      <div className="flex justify-between items-center p-4">
+      <div className="flex justify-between items-center p-2">
         <p className="text-sm px-2 py-1 font-medium hover:bg-accent rounded-md">
           {headerTitle}
         </p>
         {displayMore ? (
           <div className=" flex items-center gap-2">
-            {/* todo for design iterations */}
             <Button variant={"ghost"} className="hover:!text-primary">
               Share
             </Button>
             {/* Visit Feedbacks on development Flow  */}
-            <button>
-              <MessageCircleCode />
-            </button>
+            <FeedbackOverview />
             {/* Used for Notification Timeline  */}
             <button>
-              <GanttChart />
+              <GanttChart strokeWidth={1.5} />
             </button>
           </div>
         ) : null}
