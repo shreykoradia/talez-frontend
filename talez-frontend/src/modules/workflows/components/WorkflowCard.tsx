@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
   const navigate = useNavigate();
   const onWorkflowCardClick = (id: string) => {
-    navigate(`/${id}/talez`);
+    navigate(`/${id}/tale`);
   };
 
   return (
