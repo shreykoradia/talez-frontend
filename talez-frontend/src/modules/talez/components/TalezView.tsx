@@ -11,6 +11,10 @@ import { Textarea } from "@/shared/ui/ui/textarea";
 import styles from "@/assets/css/talez.module.css";
 import { useParams } from "react-router-dom";
 import { useGetTaleById } from "../hooks/useGetTaleById";
+import { useFeedbackForm } from "@/modules/feedbacks/hooks/useFeedbackForm";
+import { useMutation } from "@tanstack/react-query";
+import { createFeedback } from "@/modules/feedbacks/api/createFeedback";
+import { createFeedbackProps } from "@/modules/feedbacks/types";
 
 const TalezView = () => {
   const paramsKey = useParams();
@@ -21,6 +25,22 @@ const TalezView = () => {
   };
 
   const { data: taleData } = useGetTaleById(params);
+  const { values, handleChange, errors } = useFeedbackForm();
+
+  const { isPending: isCreatingFeedback, mutate: createFeedbackFn } =
+    useMutation({
+      mutationFn: ({
+        values,
+        params,
+      }: {
+        values: createFeedbackProps;
+        params: { taleId: string | number };
+      }) => createFeedback(values, params),
+    });
+
+  const handleFeedbackButton = () => {
+    createFeedbackFn({ values, params });
+  };
 
   return (
     <>
@@ -45,12 +65,25 @@ const TalezView = () => {
         <div className={styles.feedback_container}>
           <div className="relative">
             <Textarea
+              id="feedback"
               placeholder="Send your valuable feedback to make user's happy"
               rows={2}
               className="h-[150px] resize-none"
+              onChange={handleChange}
+              value={values.feedback}
             />
             <div className={styles.action_button_container}>
-              <Button variant={"default"}>Send Feedback</Button>
+              <Button
+                disabled={
+                  (errors?.feedback?.length && errors?.feedback?.length > 0) ||
+                  isCreatingFeedback ||
+                  false
+                }
+                variant={"default"}
+                onClick={handleFeedbackButton}
+              >
+                Send Feedback
+              </Button>
             </div>
           </div>
         </div>

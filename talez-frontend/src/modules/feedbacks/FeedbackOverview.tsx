@@ -1,48 +1,43 @@
 import { Button } from "@/shared/ui/ui/button";
+
+import { MessageCircleCode } from "lucide-react";
+
 import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/shared/ui/ui/drawer";
-import { MessageCircleCode, MoveLeft, MoveRight } from "lucide-react";
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/shared/ui/ui/sheet";
+
 import FeedbackCard from "./FeedbackCard";
 
 const FeedbackOverview = () => {
   return (
-    <Drawer>
-      <DrawerTrigger asChild>
+    <Sheet>
+      <SheetTrigger asChild>
         <Button variant={"link"} className="text-black hover:text-primary">
           <MessageCircleCode strokeWidth={1.5} />
         </Button>
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Feedbacks</DrawerTitle>
-          <DrawerDescription>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Feedbacks</SheetTitle>
+          <SheetDescription className="!mt-0">
             Every feedback is valuable as our users are to us
-          </DrawerDescription>
-        </DrawerHeader>
-        <div className="flex items-center gap-2 px-4 w-full">
-          <button>
-            <MoveLeft />
-          </button>
-          <div className="p-4 flex justify-start items-center gap-2 overflow-x-scroll no-scrollbar w-full">
-            <FeedbackCard />
-            <FeedbackCard />
-            <FeedbackCard />
-            <FeedbackCard />
-            <FeedbackCard />
-            <FeedbackCard />
-          </div>
-          <button>
-            <MoveRight />
-          </button>
+          </SheetDescription>
+        </SheetHeader>
+        <div className="p-4 flex flex-col justify-start items-center gap-2 max-h-[calc(100vh-96px)] overflow-y-scroll no-scrollbar w-full">
+          <FeedbackCard />
+          <FeedbackCard />
+          <FeedbackCard />
+          <FeedbackCard />
+          <FeedbackCard />
+          <FeedbackCard />
         </div>
-      </DrawerContent>
-    </Drawer>
+      </SheetContent>
+    </Sheet>
   );
 };
 
