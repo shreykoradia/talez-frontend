@@ -25,7 +25,7 @@ const TalezView = () => {
   };
 
   const { data: taleData } = useGetTaleById(params);
-  const { values, handleChange, errors } = useFeedbackForm();
+  const { values, handleChange, errors, resetForm } = useFeedbackForm();
 
   const { isPending: isCreatingFeedback, mutate: createFeedbackFn } =
     useMutation({
@@ -40,6 +40,7 @@ const TalezView = () => {
 
   const handleFeedbackButton = () => {
     createFeedbackFn({ values, params });
+    resetForm();
   };
 
   return (
