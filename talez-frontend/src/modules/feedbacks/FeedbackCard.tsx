@@ -8,22 +8,25 @@ import {
   CardTitle,
 } from "@/shared/ui/ui/card";
 import clsx from "clsx";
+import { feedbackData } from "./types";
 
-const FeedbackCard = () => {
+const FeedbackCard = ({ feedbackData }: { feedbackData: feedbackData }) => {
   return (
     <>
       <Card
         className={clsx(styles.feedback_card_container, "card_hover_primary")}
       >
         <CardHeader className={styles.feedback_card_header}>
-          <CardTitle className="text-md">Feedback on Talez</CardTitle>
+          <CardTitle className="text-md">
+            Feedback by {feedbackData?.feedback_author_name}
+          </CardTitle>
         </CardHeader>
         <CardContent className={styles.feedback_card_content}>
-          hfdkhjkhgjfhgjkghjfghjfghjkfdghfjdgfdjkghfjdsjvhcxhvjkchvjd
+          {feedbackData?.feedback}
         </CardContent>
         <CardFooter className={styles.feedback_card_footer}>
           <CardDescription className="text-sm">
-            Authored by Shrey
+            {feedbackData.created_at}
           </CardDescription>
         </CardFooter>
       </Card>
