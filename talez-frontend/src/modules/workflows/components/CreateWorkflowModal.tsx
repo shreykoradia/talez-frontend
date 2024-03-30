@@ -28,9 +28,9 @@ const CreateWorkflowModal = () => {
         <DialogTrigger asChild>
           <Button
             variant={"default"}
-            className="flex gap-2 items-center text-sm"
+            className="flex gap-1 items-center text-sm"
           >
-            <Plus size={14} />
+            <Plus size={14} className="mt-[0.125rem]" />
             Create Workflow
           </Button>
         </DialogTrigger>
