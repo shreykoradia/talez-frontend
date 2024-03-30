@@ -12,8 +12,15 @@ import { feedbackData } from "./types";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
-const FeedbackCard = ({ feedbackData }: { feedbackData: feedbackData }) => {
+const FeedbackCard = ({
+  feedbackData,
+  onOpenViewMode,
+}: {
+  feedbackData: feedbackData;
+  onOpenViewMode: CallableFunction;
+}) => {
   dayjs.extend(relativeTime);
+
   return (
     <>
       <Card
@@ -21,7 +28,15 @@ const FeedbackCard = ({ feedbackData }: { feedbackData: feedbackData }) => {
       >
         <CardHeader className={styles.feedback_card_header}>
           <CardTitle className="text-md">
-            Feedback by {feedbackData?.feedback_author_name}
+            <div className="flex justify-between items-center">
+              <p>Feedback by {feedbackData?.feedback_author_name}</p>
+              <button
+                className={clsx(styles.open_feedback_button, "hidden")}
+                onClick={() => onOpenViewMode(feedbackData?._id)}
+              >
+                open
+              </button>
+            </div>
           </CardTitle>
         </CardHeader>
         <CardContent className={styles.feedback_card_content}>

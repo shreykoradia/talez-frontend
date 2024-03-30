@@ -53,6 +53,9 @@ module.exports = {
         },
         crimsonred: "#DC143C",
         pattensBlue: "#E1F1FF",
+        lilyScentGreen: "#e8e8bf",
+        cardamom: "#aaaa74",
+        maze: "#5a5a35",
       },
       borderRadius: {
         lg: "var(--radius)",

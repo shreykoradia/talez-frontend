@@ -2,6 +2,10 @@
     @apply w-[22.5rem] max-w-full;
 }
 
+.feedback_card_container:hover .open_feedback_button {
+    @apply !block bg-lilyScentGreen text-maze py-1 px-2 text-xs rounded-lg;
+}
+
 .feedback_card_content{
     @apply w-full overflow-hidden break-words text-justify text-sm;
 }
@@ -9,3 +13,4 @@
 .feedback_card_footer{
     @apply flex justify-end items-center;
 }
+
