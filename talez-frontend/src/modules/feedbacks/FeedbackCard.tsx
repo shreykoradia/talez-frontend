@@ -9,8 +9,11 @@ import {
 } from "@/shared/ui/ui/card";
 import clsx from "clsx";
 import { feedbackData } from "./types";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 const FeedbackCard = ({ feedbackData }: { feedbackData: feedbackData }) => {
+  dayjs.extend(relativeTime);
   return (
     <>
       <Card
@@ -26,7 +29,7 @@ const FeedbackCard = ({ feedbackData }: { feedbackData: feedbackData }) => {
         </CardContent>
         <CardFooter className={styles.feedback_card_footer}>
           <CardDescription className="text-sm">
-            {feedbackData.created_at}
+            🗨️ {dayjs(feedbackData?.created_at).fromNow()}
           </CardDescription>
         </CardFooter>
       </Card>
