@@ -15,6 +15,7 @@ import { useFeedbackForm } from "@/modules/feedbacks/hooks/useFeedbackForm";
 import { useMutation } from "@tanstack/react-query";
 import { createFeedback } from "@/modules/feedbacks/api/createFeedback";
 import { createFeedbackProps } from "@/modules/feedbacks/types";
+import useGetFeedbacks from "@/modules/feedbacks/hooks/useGetFeedbacks";
 
 const TalezView = () => {
   const paramsKey = useParams();
@@ -26,6 +27,7 @@ const TalezView = () => {
 
   const { data: taleData } = useGetTaleById(params);
   const { values, handleChange, errors, resetForm } = useFeedbackForm();
+  const { refetch: refetchFeedbacksFn } = useGetFeedbacks(params);
 
   const { isPending: isCreatingFeedback, mutate: createFeedbackFn } =
     useMutation({
@@ -40,6 +42,7 @@ const TalezView = () => {
 
   const handleFeedbackButton = () => {
     createFeedbackFn({ values, params });
+    refetchFeedbacksFn();
     resetForm();
   };
 

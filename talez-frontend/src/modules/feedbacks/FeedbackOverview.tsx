@@ -52,13 +52,17 @@ const FeedbackOverview = () => {
               ))}
             </React.Fragment>
           ))}
-          <Button
-            disabled={!hasNextPage || isFetchingNextPage}
-            variant={"link"}
-            onClick={() => fetchNextPage()}
-          >
-            {hasNextPage ? " Show More" : " Nothing more to Load"}
-          </Button>
+          {!hasNextPage ? (
+            <p>You are all caught up</p>
+          ) : (
+            <Button
+              disabled={!hasNextPage || isFetchingNextPage}
+              variant={"link"}
+              onClick={() => fetchNextPage()}
+            >
+              Show More
+            </Button>
+          )}
         </div>
       </SheetContent>
     </Sheet>

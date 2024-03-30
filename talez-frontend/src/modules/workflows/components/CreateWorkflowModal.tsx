@@ -14,17 +14,20 @@ import { Plus } from "lucide-react";
 import { workflowRequest } from "../types";
 import useCreateWorkflowForm from "../hooks/useCreateWorkflowForm";
 import useCreateWorkflows from "../hooks/useCreateWorkflows";
+import { useState } from "react";
 
 const CreateWorkflowModal = () => {
+  const [openModal, setOpenModal] = useState(false);
   const { createWorkfLowMutateFn, isCreatingWorkflow } = useCreateWorkflows();
   const { values, errors, touched, handleChange, handleSubmit } =
-    useCreateWorkflowForm((values: workflowRequest) =>
-      createWorkfLowMutateFn(values)
-    );
+    useCreateWorkflowForm((values: workflowRequest) => {
+      createWorkfLowMutateFn(values);
+      setOpenModal(!openModal);
+    });
 
   return (
     <>
-      <Dialog>
+      <Dialog open={openModal} onOpenChange={setOpenModal}>
         <DialogTrigger asChild>
           <Button
             variant={"default"}
@@ -72,7 +75,14 @@ const CreateWorkflowModal = () => {
                 ) : null}
               </div>
               <DialogFooter>
-                <Button type="submit" disabled={isCreatingWorkflow}>
+                <Button
+                  type="submit"
+                  disabled={
+                    isCreatingWorkflow ||
+                    !values.description ||
+                    !values.workFlowTitle
+                  }
+                >
                   Create Workflow
                 </Button>
               </DialogFooter>
