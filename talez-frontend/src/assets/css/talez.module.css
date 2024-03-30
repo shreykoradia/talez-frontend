@@ -7,7 +7,7 @@
 }
 
 .talez_card_view{
-    @apply border-none outline-none border-transparent !shadow-transparent;
+    @apply border-none outline-none border-transparent !shadow-transparent w-full;
 }
 .feedback_container{
     @apply w-full

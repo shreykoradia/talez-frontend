@@ -15,6 +15,7 @@ import useCreateTalesForm from "../hooks/useCreateTalesForm";
 import useCreateTales from "../hooks/useCreateTales";
 import { useParams } from "react-router-dom";
 import { Textarea } from "@/shared/ui/ui/textarea";
+import { useState } from "react";
 
 const CreateTalesModal = () => {
   const queryParams = useParams();
@@ -28,20 +29,23 @@ const CreateTalesModal = () => {
   const { values, errors, touched, handleChange, resetForm } =
     useCreateTalesForm();
 
+  const [openModal, setOpenModal] = useState(false);
+
   const onSubmitButtonClick = () => {
     createTalesFn({ values, params });
     resetForm();
+    setOpenModal(!open);
   };
 
   return (
     <>
-      <Dialog>
+      <Dialog open={openModal} onOpenChange={setOpenModal}>
         <DialogTrigger asChild>
           <Button
             variant={"default"}
-            className="flex gap-2 items-center text-sm"
+            className="flex gap-1 items-center text-sm"
           >
-            <Plus size={14} />
+            <Plus size={14} className="mt-[0.125rem]" />
             Create Talez
           </Button>
         </DialogTrigger>
@@ -83,7 +87,9 @@ const CreateTalesModal = () => {
               </div>
               <DialogFooter>
                 <Button
-                  disabled={isCreatingTales}
+                  disabled={
+                    isCreatingTales || !values.title || !values.description
+                  }
                   onClick={onSubmitButtonClick}
                 >
                   Create Talez

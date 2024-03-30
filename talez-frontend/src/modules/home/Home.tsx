@@ -23,8 +23,8 @@ const Home = () => {
         <ResizablePanel defaultSize={80}>
           <Routes>
             <Route path="/workflows" index element={<Workflows />} />;
-            <Route path="/:workflowId/talez" index element={<Talez />} />
-            <Route path="/talez/:talezId" element={<TalezView />} />
+            <Route path="/:workflowId/tale" index element={<Talez />} />
+            <Route path="/tale/:taleId" element={<TalezView />} />
             {/* 
             /**** 
              *  Todo Path Planning

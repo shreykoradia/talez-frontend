@@ -38,7 +38,7 @@ const Workflows = () => {
         headerTitle="Workflows"
         displayCreateTalez={false}
       />
-      <div className="grid place-items-center gap-2 overflow-y-auto h-[calc(100%-88px)] no-scrollbar">
+      <div className="overflow-y-auto h-[calc(100%-120px)] no-scrollbar">
         <div className={clsx(styles.workflow_parent_container, "no-scrollbar")}>
           {workflowsData
             ? workflowsData?.workflows?.map(
@@ -48,28 +48,28 @@ const Workflows = () => {
               )
             : null}
         </div>
-        <div className="flex gap-4 items-center">
-          {workflowOffset > 0 ? (
-            <Button
-              variant={"link"}
-              onClick={onFetchPrevious}
-              disabled={workflowOffset <= 0}
-            >
-              Go to Previous
-            </Button>
-          ) : null}
+      </div>
+      <div className="flex gap-4 justify-center items-center">
+        {workflowOffset > 0 ? (
           <Button
             variant={"link"}
-            onClick={onFetchMore}
-            disabled={
-              workflowOffset + LIMIT >= workflowsData?.totalPages * LIMIT ||
-              !workflowsData ||
-              workflowsData.workflows.length < LIMIT
-            }
+            onClick={onFetchPrevious}
+            disabled={workflowOffset <= 0}
           >
-            Show More
+            Go to Previous
           </Button>
-        </div>
+        ) : null}
+        <Button
+          variant={"link"}
+          onClick={onFetchMore}
+          disabled={
+            workflowOffset + LIMIT >= workflowsData?.totalPages * LIMIT ||
+            !workflowsData ||
+            workflowsData.workflows.length < LIMIT
+          }
+        >
+          Show More
+        </Button>
       </div>
     </>
   );

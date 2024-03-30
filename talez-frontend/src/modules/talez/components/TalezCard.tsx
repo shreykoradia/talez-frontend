@@ -19,7 +19,7 @@ const TalezCard = ({ tale }: talezCardProps) => {
   const navigate = useNavigate();
 
   const onTalezCardClick = (id: string) => {
-    navigate(`/talez/${id}`);
+    navigate(`/tale/${id}`);
   };
 
   return (
@@ -32,7 +32,7 @@ const TalezCard = ({ tale }: talezCardProps) => {
           <CardTitle className="font-medium">{tale?.title}</CardTitle>
           <CardDescription>Authored by {tale?.author_name}</CardDescription>
         </CardHeader>
-        <CardContent className="h-[50px] text-justify break-words mb-2 rounded-lg overflow-y-auto no-scrollbar">
+        <CardContent className="h-[50px] break-words mb-2 rounded-lg overflow-hidden">
           <p>{tale?.description}</p>
         </CardContent>
         <CardFooter>

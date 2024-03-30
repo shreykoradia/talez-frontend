@@ -47,35 +47,35 @@ const Talez = () => {
         displayCreateTalez={true}
         headerTitle={`${params.workflowId}/Talez`}
       />
-      <div className="grid place-items-center gap-2 overflow-y-auto h-[calc(100%-88px)] no-scrollbar">
+      <div className="flex flex-col gap-2 overflow-y-auto h-[calc(100%-120px)] no-scrollbar">
         <div className={styles.talez_parent_container}>
           {data?.tales.map((tale: talesResponseProps, index: number) => (
             <TalezCard tale={tale} key={index} />
           ))}
         </div>
-        <div className="flex gap-4 items-center">
-          {talesOffset > 0 ? (
-            <Button
-              variant={"link"}
-              onClick={onFetchPrevious}
-              disabled={talesOffset <= 0}
-            >
-              Go to Previous
-            </Button>
-          ) : null}
-
+      </div>
+      <div className="flex justify-center gap-4 items-center">
+        {talesOffset > 0 ? (
           <Button
             variant={"link"}
-            onClick={onFetchMore}
-            disabled={
-              talesOffset + LIMIT >= data?.totalPages * LIMIT ||
-              !data ||
-              data.length < LIMIT
-            }
+            onClick={onFetchPrevious}
+            disabled={talesOffset <= 0}
           >
-            Show More
+            Go to Previous
           </Button>
-        </div>
+        ) : null}
+
+        <Button
+          variant={"link"}
+          onClick={onFetchMore}
+          disabled={
+            talesOffset + LIMIT >= data?.totalPages * LIMIT ||
+            !data ||
+            data.length < LIMIT
+          }
+        >
+          Show More
+        </Button>
       </div>
     </>
   );
