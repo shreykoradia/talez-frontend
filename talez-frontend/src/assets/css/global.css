@@ -6,3 +6,10 @@
     @apply hover:bg-primary-foreground;
 }
 
+.upvoted{
+    @apply stroke-primary fill-primary;
+}
+
+.downvoted{
+    @apply stroke-primary fill-primary;
+}
