@@ -20,3 +20,8 @@ export type feedbackResponseData = {
   totalPages: number;
   feedbacks: feedbackData[];
 };
+
+export type reactionRequestProps = {
+  feedbackId: string | undefined;
+  vote_type: string;
+};
