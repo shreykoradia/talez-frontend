@@ -1,8 +1,8 @@
 import FeedbackOverview from "@/modules/feedbacks/FeedbackOverview";
 import CreateTalesModal from "@/modules/talez/components/CreateTalesModal";
 import CreateWorkflowModal from "@/modules/workflows/components/CreateWorkflowModal";
-import { Button } from "@/shared/ui/ui/button";
 import { GanttChart } from "lucide-react";
+import SharePopOver from "./SharePopOver";
 
 interface HeaderProps {
   displayMore: boolean;
@@ -31,9 +31,7 @@ const Header = ({
         </p>
         {displayMore ? (
           <div className=" flex items-center gap-2">
-            <Button variant={"ghost"} className="hover:!text-primary">
-              Share
-            </Button>
+            <SharePopOver />
             {/* Visit Feedbacks on development Flow  */}
             <FeedbackOverview />
             {/* Used for Notification Timeline  */}
