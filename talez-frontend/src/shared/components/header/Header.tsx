@@ -31,7 +31,6 @@ const Header = ({
         </p>
         {displayMore ? (
           <div className=" flex items-center gap-2">
-            <SharePopOver />
             {/* Visit Feedbacks on development Flow  */}
             <FeedbackOverview />
             {/* Used for Notification Timeline  */}
@@ -42,8 +41,11 @@ const Header = ({
         ) : null}
 
         {displayCreateTalez ? (
-          <div className="new_talez_container">
-            <CreateTalesModal />
+          <div className="flex items-center gap-2">
+            <SharePopOver />
+            <div className="new_talez_container">
+              <CreateTalesModal />
+            </div>
           </div>
         ) : null}
 
