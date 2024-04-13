@@ -3,7 +3,7 @@
 }
 
 .feedback_card_container:hover .open_feedback_button {
-    @apply !block bg-lilyScentGreen text-maze py-1 px-2 text-xs rounded-lg;
+    @apply !block bg-lilyScentGreen text-maze py-1 px-2 text-xs rounded-md;
 }
 
 .feedback_card_content{
