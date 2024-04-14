@@ -40,6 +40,8 @@ const SharePopOver = () => {
     null
   );
 
+  const [open, setOpen] = useState<boolean>(false);
+
   const { updateAccessFn } = useUpdateAccess(workflowId);
   const { inviteUserFn } = useInviteUser(workflowId);
   const { removeAccessFn } = useRemoveAccess(workflowId);
@@ -63,7 +65,7 @@ const SharePopOver = () => {
 
   return (
     <>
-      <Popover>
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button variant={"ghost"}>Share</Button>
         </PopoverTrigger>
@@ -73,7 +75,9 @@ const SharePopOver = () => {
               <div className="text-md font-medium hover:text-primary">
                 Share this workflow
               </div>
-              <CloseIcon strokeWidth={1.5} className="hover:text-primary" />
+              <button onClick={() => setOpen(!open)}>
+                <CloseIcon strokeWidth={1.5} className="hover:text-primary" />
+              </button>
             </div>
             <div className="text-muted-foreground text-xs font-normal">
               Anyone with the link can view this document.
