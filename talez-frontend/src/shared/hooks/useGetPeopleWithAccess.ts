@@ -9,9 +9,9 @@ const useGetPeopleWithAccess = (workflowId: string | number) => {
     queryKey: ["get-user-with-access", workflowId],
     queryFn: () => peopleWithAccess(requestParams),
   });
-  const { isLoading, isError, refetch: refetchWorkflowsFn } = query;
+  const { isLoading, isError, refetch: refetchPeopleWithAccessFn } = query;
   const data = query?.data?.data;
-  return { data, isLoading, isError, refetchWorkflowsFn };
+  return { data, isLoading, isError, refetchPeopleWithAccessFn };
 };
 
 export default useGetPeopleWithAccess;

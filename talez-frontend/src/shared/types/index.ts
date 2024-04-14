@@ -32,3 +32,26 @@ export interface SharedTo {
   username: string;
   email: string;
 }
+
+export enum AccessLevel {
+  FULL_ACCESS = "full_access",
+  CAN_EDIT = "can_edit",
+  CAN_VIEW = "can_view",
+  REMOVE_ACCESS = "remove_access",
+}
+
+export type accessOptionProps = {
+  value: AccessLevel;
+  label: string;
+};
+
+export interface peopleWithAccessProps {
+  workflowId: string | number;
+}
+
+export interface updateAccessRequestprops {
+  email: string;
+  role: string;
+}
+
+export type inviteUserRequestProps = updateAccessRequestprops;

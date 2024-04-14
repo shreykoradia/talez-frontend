@@ -56,7 +56,7 @@ const FeedbackOverview = () => {
               Every feedback matters', Like you are to us!
             </SheetDescription>
           </SheetHeader>
-          <div className="py-4 px-2 flex flex-col justify-start items-center gap-2 max-h-[calc(100vh-96px)] overflow-y-scroll no-scrollbar w-full">
+          <div className="py-4 px-2 flex flex-col justify-start items-center gap-2 max-h-[calc(100vh-6rem)] overflow-y-scroll no-scrollbar w-full">
             {feedbackData?.map((data, index) => (
               <React.Fragment key={index}>
                 {data?.data.feedbacks.feedbacks.map(
