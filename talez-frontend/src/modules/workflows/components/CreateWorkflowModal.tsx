@@ -15,14 +15,17 @@ import { workflowRequest } from "../types";
 import useCreateWorkflowForm from "../hooks/useCreateWorkflowForm";
 import useCreateWorkflows from "../hooks/useCreateWorkflows";
 import { useState } from "react";
+import useGetWorkflows from "../hooks/useGetWorkflows";
 
 const CreateWorkflowModal = () => {
   const [openModal, setOpenModal] = useState(false);
   const { createWorkfLowMutateFn, isCreatingWorkflow } = useCreateWorkflows();
+  const { refetchWorkflowsFn } = useGetWorkflows();
   const { values, errors, touched, handleChange, handleSubmit } =
     useCreateWorkflowForm((values: workflowRequest) => {
       createWorkfLowMutateFn(values);
       setOpenModal(!openModal);
+      refetchWorkflowsFn();
     });
 
   return (

@@ -8,11 +8,15 @@ import clsx from "clsx";
 import { Button } from "@/shared/ui/ui/button";
 import { useEffect, useState } from "react";
 import { LIMIT } from "@/shared/constant";
+import WorkflowLoaders from "@/shared/components/loaders/WorkflowLoaders";
 
 const Workflows = () => {
   const [workflowOffset, setWorkflowOffset] = useState(0);
-  const { data: workflowsData, refetchWorkflowsFn } =
-    useGetWorkflows(workflowOffset);
+  const {
+    data: workflowsData,
+    isLoading: isWorkflowsLoading,
+    refetchWorkflowsFn,
+  } = useGetWorkflows(workflowOffset);
 
   const onFetchMore = () => {
     setWorkflowOffset(workflowOffset + LIMIT);
@@ -40,7 +44,11 @@ const Workflows = () => {
       />
       <div className="overflow-y-auto h-[calc(100%-120px)] no-scrollbar">
         <div className={clsx(styles.workflow_parent_container, "no-scrollbar")}>
-          {workflowsData
+          {isWorkflowsLoading &&
+            Array.from({ length: LIMIT }).map((_, index) => (
+              <WorkflowLoaders key={index} />
+            ))}
+          {workflowsData && !isWorkflowsLoading
             ? workflowsData?.workflows?.map(
                 (workflow: workflowResponse, index: number) => (
                   <WorkflowCard workflow={workflow} key={index} />
