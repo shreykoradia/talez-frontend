@@ -7,5 +7,5 @@
 }
 
 .recent_activity_content{
-   @apply h-[300px] rounded-lg grid gap-2 overflow-y-auto;
+   @apply h-[18.75rem] rounded-lg grid gap-2 overflow-y-auto;
 }

@@ -110,7 +110,7 @@ const FeedbackViewModal = ({
             </div>
           </DialogHeader>
           <Card className="border-none outline-none shadow-none">
-            <CardContent className="px-0 max-h-[600px] h-full overflow-scroll no-scrollbar">
+            <CardContent className="px-0 max-h-[37.5rem] h-full overflow-scroll no-scrollbar">
               <p>{data?.feedback?.feedback}</p>
             </CardContent>
             <CardFooter className="!px-0">
