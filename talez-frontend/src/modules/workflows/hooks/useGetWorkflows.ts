@@ -8,9 +8,14 @@ const useGetWorkflows = (offset?: number) => {
     queryKey: ["get-workflows"],
     queryFn: () => getWorkflows({ limit: LIMIT, offset: offset || 0 }),
   });
-  const { isLoading, isError, refetch: refetchWorkflowsFn } = query;
+  const {
+    isLoading,
+    isError,
+    refetch: refetchWorkflowsFn,
+    isRefetching,
+  } = query;
   const data = query?.data?.data;
-  return { data, isLoading, isError, refetchWorkflowsFn };
+  return { data, isLoading, isRefetching, isError, refetchWorkflowsFn };
 };
 
 export default useGetWorkflows;

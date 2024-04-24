@@ -7,6 +7,7 @@ import { useGetTales } from "./hooks/useGetTales";
 import { useEffect, useState } from "react";
 import { LIMIT } from "@/shared/constant";
 import { talesResponseProps } from "./types";
+import TalezLoader from "@/shared/components/loaders/TalezLoader";
 
 const Talez = () => {
   const params = useParams();
@@ -16,7 +17,8 @@ const Talez = () => {
     offset: talesOffset,
     workflowId: params?.workflowId || 0,
   };
-  const { data } = useGetTales(requestParams);
+  const { data, isLoadingTales, isRefetchingTales } =
+    useGetTales(requestParams);
   const { refetchTalesFn } = useGetTales(requestParams);
 
   const onFetchMore = () => {
@@ -49,9 +51,16 @@ const Talez = () => {
       />
       <div className="flex flex-col gap-2 overflow-y-auto h-[calc(100%-120px)] no-scrollbar">
         <div className={styles.talez_parent_container}>
-          {data?.tales.map((tale: talesResponseProps, index: number) => (
-            <TalezCard tale={tale} key={index} />
-          ))}
+          {(isLoadingTales || isRefetchingTales) &&
+            Array.from({ length: LIMIT }).map((_, index) => (
+              <TalezLoader key={index} />
+            ))}
+          {data?.tales &&
+            !isLoadingTales &&
+            !isRefetchingTales &&
+            data?.tales.map((tale: talesResponseProps, index: number) => (
+              <TalezCard tale={tale} key={index} />
+            ))}
         </div>
       </div>
       <div className="flex justify-center gap-4 items-center">

@@ -15,6 +15,7 @@ const Workflows = () => {
   const {
     data: workflowsData,
     isLoading: isWorkflowsLoading,
+    isRefetching: isWorkflowRefetching,
     refetchWorkflowsFn,
   } = useGetWorkflows(workflowOffset);
 
@@ -44,17 +45,18 @@ const Workflows = () => {
       />
       <div className="overflow-y-auto h-[calc(100%-120px)] no-scrollbar">
         <div className={clsx(styles.workflow_parent_container, "no-scrollbar")}>
-          {isWorkflowsLoading &&
+          {(isWorkflowsLoading || isWorkflowRefetching) &&
             Array.from({ length: LIMIT }).map((_, index) => (
               <WorkflowLoaders key={index} />
             ))}
-          {workflowsData && !isWorkflowsLoading
-            ? workflowsData?.workflows?.map(
-                (workflow: workflowResponse, index: number) => (
-                  <WorkflowCard workflow={workflow} key={index} />
-                )
+          {workflowsData &&
+            !isWorkflowRefetching &&
+            !isWorkflowsLoading &&
+            workflowsData?.workflows?.map(
+              (workflow: workflowResponse, index: number) => (
+                <WorkflowCard workflow={workflow} key={index} />
               )
-            : null}
+            )}
         </div>
       </div>
       <div className="flex gap-4 justify-center items-center">
