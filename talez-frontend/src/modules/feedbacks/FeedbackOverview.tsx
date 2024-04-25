@@ -17,6 +17,8 @@ import useGetFeedbacks from "./hooks/useGetFeedbacks";
 import { useParams } from "react-router-dom";
 import { feedbackData } from "./types";
 import FeedbackViewModal from "./FeedbackViewModal";
+import FeedbackLoader from "@/shared/components/loaders/FeedbackLoader";
+import { LIMIT } from "@/shared/constant";
 
 const FeedbackOverview = () => {
   const paramsKey = useParams();
@@ -39,6 +41,7 @@ const FeedbackOverview = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
+    isLoading: isLoadingFeedback,
   } = useGetFeedbacks(params);
 
   return (
@@ -57,23 +60,29 @@ const FeedbackOverview = () => {
             </SheetDescription>
           </SheetHeader>
           <div className="py-4 px-2 flex flex-col justify-start items-center gap-2 max-h-[calc(100vh-6rem)] overflow-y-scroll no-scrollbar w-full">
-            {feedbackData?.map((data, index) => (
-              <React.Fragment key={index}>
-                {data?.data.feedbacks.feedbacks.map(
-                  (feedback: feedbackData) => (
-                    <FeedbackCard
-                      key={feedback?._id}
-                      feedbackData={feedback}
-                      onOpenViewMode={(feedbackId: string) =>
-                        handleViewModeChange(feedbackId)
-                      }
-                    />
-                  )
-                )}
-              </React.Fragment>
-            ))}
+            {(isFetchingNextPage || isLoadingFeedback) &&
+              Array.from({ length: LIMIT }).map((_, index) => (
+                <FeedbackLoader key={index} />
+              ))}
+            {!isFetchingNextPage &&
+              !isLoadingFeedback &&
+              feedbackData?.map((data, index) => (
+                <React.Fragment key={index}>
+                  {data?.data.feedbacks.feedbacks.map(
+                    (feedback: feedbackData) => (
+                      <FeedbackCard
+                        key={feedback?._id}
+                        feedbackData={feedback}
+                        onOpenViewMode={(feedbackId: string) =>
+                          handleViewModeChange(feedbackId)
+                        }
+                      />
+                    )
+                  )}
+                </React.Fragment>
+              ))}
             {!hasNextPage ? (
-              <p>You are all caught up</p>
+              <p className="text-primary">You are all caught up</p>
             ) : (
               <Button
                 disabled={!hasNextPage || isFetchingNextPage}
