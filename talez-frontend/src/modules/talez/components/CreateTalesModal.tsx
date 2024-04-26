@@ -16,7 +16,6 @@ import useCreateTales from "../hooks/useCreateTales";
 import { useParams } from "react-router-dom";
 import { Textarea } from "@/shared/ui/ui/textarea";
 import { useState } from "react";
-import { useGetTales } from "../hooks/useGetTales";
 
 const CreateTalesModal = () => {
   const queryParams = useParams();
@@ -26,10 +25,6 @@ const CreateTalesModal = () => {
   };
 
   const { createTalesFn, isCreatingTales } = useCreateTales();
-  const { refetchTalesFn } = useGetTales({
-    offset: 0,
-    workflowId: params?.workflowId,
-  });
 
   const { values, errors, touched, handleChange, resetForm } =
     useCreateTalesForm();
@@ -40,7 +35,6 @@ const CreateTalesModal = () => {
     createTalesFn({ values, params });
     resetForm();
     setOpenModal(!open);
-    refetchTalesFn();
   };
 
   return (

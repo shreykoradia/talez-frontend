@@ -16,6 +16,7 @@ import { useMutation } from "@tanstack/react-query";
 import { createFeedback } from "@/modules/feedbacks/api/createFeedback";
 import { createFeedbackProps } from "@/modules/feedbacks/types";
 import useGetFeedbacks from "@/modules/feedbacks/hooks/useGetFeedbacks";
+import { toast } from "@/shared/ui/ui/use-toast";
 
 const TalezView = () => {
   const paramsKey = useParams();
@@ -38,11 +39,25 @@ const TalezView = () => {
         values: createFeedbackProps;
         params: { taleId: string | number };
       }) => createFeedback(values, params),
+      onSuccess: () => {
+        toast({
+          title: "Feedback added successfully",
+          description:
+            "Check out feedbacks by other, upvote or downvote and make your product better",
+        });
+        refetchFeedbacksFn();
+      },
+      onError: () => {
+        toast({
+          title: "Something went wrong huh!",
+          description:
+            "Try adding feedback after a while, Talez is currently in development mode, Thanks!",
+        });
+      },
     });
 
   const handleFeedbackButton = () => {
     createFeedbackFn({ values, params });
-    refetchFeedbacksFn();
     resetForm();
   };
 

@@ -4,6 +4,7 @@ import useGetWorkflows from "./useGetWorkflows";
 
 import { workflowRequest } from "../types";
 import { createWorkflow } from "../api/createWorkflow";
+import { toast } from "@/shared/ui/ui/use-toast";
 
 const useCreateWorkflows = () => {
   const { refetchWorkflowsFn } = useGetWorkflows();
@@ -11,6 +12,13 @@ const useCreateWorkflows = () => {
     mutationFn: (values: workflowRequest) => createWorkflow(values),
     onSuccess: () => {
       refetchWorkflowsFn();
+    },
+    onError: () => {
+      toast({
+        title: "Something went wrong huh!",
+        description:
+          "Try adding workflow after a while, Talez is currently in development mode, Thanks!",
+      });
     },
   });
 
