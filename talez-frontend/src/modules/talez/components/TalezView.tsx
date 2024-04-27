@@ -17,8 +17,12 @@ import { createFeedback } from "@/modules/feedbacks/api/createFeedback";
 import { createFeedbackProps } from "@/modules/feedbacks/types";
 import useGetFeedbacks from "@/modules/feedbacks/hooks/useGetFeedbacks";
 import { toast } from "@/shared/ui/ui/use-toast";
+import { useState } from "react";
+import clsx from "clsx";
 
 const TalezView = () => {
+  const [counterFeedback, setCounterFeedback] = useState<number>(0);
+
   const paramsKey = useParams();
   const taleId = paramsKey?.taleId || 0;
 
@@ -56,6 +60,11 @@ const TalezView = () => {
       },
     });
 
+  const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    handleChange(e);
+    setCounterFeedback(e.target.value.length);
+  };
+
   const handleFeedbackButton = () => {
     createFeedbackFn({ values, params });
     resetForm();
@@ -82,28 +91,36 @@ const TalezView = () => {
           </CardContent>
         </Card>
         <div className={styles.feedback_container}>
-          <div className="relative">
+          <div className="relative w-full">
             <Textarea
               id="feedback"
-              placeholder="Send your valuable feedback to make user's happy"
-              rows={2}
-              className="h-[150px] resize-none"
-              onChange={handleChange}
+              placeholder="Send your valuable feedback to make user's happy, for example We could directly store the user email inside our database schema of users rather than looking alternative method to do more expensive querying inside the databse share schema it will be lot easier to migrate the databse later on... likewise all within 500 characters :)"
+              rows={4}
+              className="resize-y max-h-32 min-h-16 border-none focus-visible:ring-0 no-scrollbar"
+              onChange={handleTextAreaChange}
               value={values.feedback}
+              maxLength={500}
             />
-            <div className={styles.action_button_container}>
-              <Button
-                disabled={
-                  (errors?.feedback?.length && errors?.feedback?.length > 0) ||
-                  isCreatingFeedback ||
-                  false
-                }
-                variant={"default"}
-                onClick={handleFeedbackButton}
-              >
-                Send Feedback
-              </Button>
-            </div>
+            <p
+              className={clsx("absolute right-2 bottom-1 text-sm", {
+                "text-crimsonred opacity-80": counterFeedback === 500,
+              })}
+            >
+              {counterFeedback}
+            </p>
+          </div>
+          <div className={styles.action_button_container}>
+            <Button
+              disabled={
+                (errors?.feedback?.length && errors?.feedback?.length > 0) ||
+                isCreatingFeedback ||
+                false
+              }
+              variant={"default"}
+              onClick={handleFeedbackButton}
+            >
+              Send Feedback
+            </Button>
           </div>
         </div>
       </div>

@@ -10,9 +10,5 @@
     @apply border-none outline-none border-transparent !shadow-transparent w-full;
 }
 .feedback_container{
-    @apply w-full
-}
-
-.action_button_container{
-    @apply absolute right-0 bottom-0 m-4;
+    @apply w-full flex items-center gap-4 border-2 border-dashed border-secondary p-4 rounded-2xl;
 }

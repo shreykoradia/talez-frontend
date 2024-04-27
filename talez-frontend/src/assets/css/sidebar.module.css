@@ -3,7 +3,7 @@
 }
 
 .recent_activity_container {
-   @apply flex flex-col w-full gap-4 px-4 pt-4
+   @apply flex flex-col w-full gap-2 px-4 pt-4;
 }
 
 .recent_activity_content{

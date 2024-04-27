@@ -33,10 +33,10 @@ const Header = ({
           <div className=" flex items-center gap-2">
             {/* Visit Feedbacks on development Flow  */}
             <FeedbackOverview />
-            {/* Used for Notification Timeline  */}
+            {/* Used for Notification Timeline 
             <button>
               <GanttChart strokeWidth={1.5} />
-            </button>
+            </button> */}
           </div>
         ) : null}
 

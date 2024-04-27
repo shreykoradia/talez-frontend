@@ -18,9 +18,8 @@ export const useSignupForm = (action: CallableFunction) => {
     validateOnChange: true,
     enableReinitialize: true,
     validationSchema: signupValidationSchema,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values) => {
       action(values);
-      return resetForm();
     },
   });
 };

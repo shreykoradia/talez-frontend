@@ -22,6 +22,7 @@ const Login = () => {
       if (res?.data) {
         setCookie("accessToken", res?.data?.access_token);
       }
+      resetForm();
       navigate("/workflows");
     },
     onError: (err) => {
@@ -34,9 +35,8 @@ const Login = () => {
     },
   });
 
-  const { values, handleChange, handleSubmit, errors, touched } = useLoginForm(
-    (values: loginFormProps) => loginMutateFn(values)
-  );
+  const { values, handleChange, handleSubmit, errors, touched, resetForm } =
+    useLoginForm((values: loginFormProps) => loginMutateFn(values));
 
   return (
     <>
