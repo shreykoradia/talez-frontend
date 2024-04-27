@@ -13,18 +13,30 @@ interface signupFormProps {
   password: string;
 }
 
+interface AxiosErrorResponse {
+  response: {
+    data: {
+      message: string;
+    };
+  };
+}
+
 const Signup = () => {
   const navigate = useNavigate();
   const { mutate: singUpMutateFn } = useMutation({
     mutationFn: (values: signupFormProps) => signup(values),
     onSuccess: () => {
+      resetForm();
       navigate("/signin");
     },
-    onError: () => {
-      toast({ title: "Something Went Wrong!" });
+    onError: (err: AxiosErrorResponse) => {
+      toast({
+        title: "Something Went Wrong!",
+        description: err.response?.data?.message,
+      });
     },
   });
-  const { values, handleChange, handleSubmit, errors, touched } =
+  const { values, handleChange, handleSubmit, errors, touched, resetForm } =
     useSignupForm(singUpMutateFn);
   return (
     <>

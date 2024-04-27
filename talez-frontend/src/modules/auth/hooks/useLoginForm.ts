@@ -13,12 +13,11 @@ const initialValues: loginFormProps = {
 export const useLoginForm = (action: CallableFunction) => {
   return useFormik({
     initialValues: initialValues,
-    validateOnChange: true,
+    validateOnChange: false,
     enableReinitialize: true,
     validationSchema: loginValidationSchema,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values) => {
       action(values);
-      return resetForm();
     },
   });
 };

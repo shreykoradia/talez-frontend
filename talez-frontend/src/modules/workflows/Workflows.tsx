@@ -8,11 +8,18 @@ import clsx from "clsx";
 import { Button } from "@/shared/ui/ui/button";
 import { useEffect, useState } from "react";
 import { LIMIT } from "@/shared/constant";
+import WorkflowLoaders from "@/shared/components/loaders/WorkflowLoaders";
+import ResponseNotFound from "@/shared/components/not-found/ResponseNotFound";
+import { Workflow } from "lucide-react";
 
 const Workflows = () => {
   const [workflowOffset, setWorkflowOffset] = useState(0);
-  const { data: workflowsData, refetchWorkflowsFn } =
-    useGetWorkflows(workflowOffset);
+  const {
+    data: workflowsData,
+    isLoading: isWorkflowsLoading,
+    isRefetching: isWorkflowRefetching,
+    refetchWorkflowsFn,
+  } = useGetWorkflows(workflowOffset);
 
   const onFetchMore = () => {
     setWorkflowOffset(workflowOffset + LIMIT);
@@ -38,39 +45,59 @@ const Workflows = () => {
         headerTitle="Workflows"
         displayCreateTalez={false}
       />
-      <div className="overflow-y-auto h-[calc(100%-120px)] no-scrollbar">
-        <div className={clsx(styles.workflow_parent_container, "no-scrollbar")}>
-          {workflowsData
-            ? workflowsData?.workflows?.map(
-                (workflow: workflowResponse, index: number) => (
-                  <WorkflowCard workflow={workflow} key={index} />
-                )
+      <div className="overflow-y-auto h-[calc(100%-120px)] max-h-full no-scrollbar">
+        <div
+          className={clsx(styles.workflow_parent_container, "no-scrollbar", {
+            "h-full": workflowsData?.workflows?.length === 0,
+          })}
+        >
+          {(isWorkflowsLoading || isWorkflowRefetching) &&
+            Array.from({ length: LIMIT }).map((_, index) => (
+              <WorkflowLoaders key={index} />
+            ))}
+          {workflowsData &&
+            !isWorkflowRefetching &&
+            !isWorkflowsLoading &&
+            workflowsData?.workflows?.map(
+              (workflow: workflowResponse, index: number) => (
+                <WorkflowCard workflow={workflow} key={index} />
               )
-            : null}
+            )}
+          {workflowsData?.workflows?.length === 0 && (
+            <ResponseNotFound
+              icon={
+                <Workflow size={60} className="mx-auto hover:stroke-primary" />
+              }
+              title="No Workflows Found"
+              description="You have not added any workflows. Add one by clicking Create Workflow."
+            />
+          )}
         </div>
       </div>
-      <div className="flex gap-4 justify-center items-center">
-        {workflowOffset > 0 ? (
+      {workflowsData?.workflows?.length > 0 && (
+        <div className="flex gap-4 justify-center items-center">
+          {workflowOffset > 0 ? (
+            <Button
+              variant={"link"}
+              onClick={onFetchPrevious}
+              disabled={workflowOffset <= 0}
+            >
+              Go to Previous
+            </Button>
+          ) : null}
           <Button
             variant={"link"}
-            onClick={onFetchPrevious}
-            disabled={workflowOffset <= 0}
+            onClick={onFetchMore}
+            disabled={
+              workflowOffset + LIMIT >= workflowsData?.totalPages * LIMIT ||
+              !workflowsData ||
+              workflowsData.workflows.length < LIMIT
+            }
           >
-            Go to Previous
+            Show More
           </Button>
-        ) : null}
-        <Button
-          variant={"link"}
-          onClick={onFetchMore}
-          disabled={
-            workflowOffset + LIMIT >= workflowsData?.totalPages * LIMIT ||
-            !workflowsData ||
-            workflowsData.workflows.length < LIMIT
-          }
-        >
-          Show More
-        </Button>
-      </div>
+        </div>
+      )}
     </>
   );
 };

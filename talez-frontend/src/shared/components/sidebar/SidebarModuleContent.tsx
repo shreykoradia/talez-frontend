@@ -1,8 +1,6 @@
 import {
-  BellIcon,
   CircleDotDashed,
   Megaphone,
-  MessageSquareCode,
   Package,
   Settings,
   Workflow,
@@ -10,7 +8,6 @@ import {
 import styles from "@/assets/css/sidebar.module.css";
 import { Link } from "react-router-dom";
 import { Separator } from "@/shared/ui/ui/separator";
-import clsx from "clsx";
 
 const SidebarModuleContent = () => {
   return (
@@ -22,12 +19,12 @@ const SidebarModuleContent = () => {
           </span>
           Workflows
         </Link>
-        <Link to="/updates" className={styles.sidebar_content_container}>
+        {/* <Link to="/updates" className={styles.sidebar_content_container}>
           <span>
             <BellIcon strokeWidth={1.5} />
           </span>
           Updates
-        </Link>
+        </Link> */}
         <Link to="/settings" className={styles.sidebar_content_container}>
           <span>
             <Settings strokeWidth={1.5} />
@@ -37,17 +34,17 @@ const SidebarModuleContent = () => {
       </div>
       <Separator />
       <div className="w-full">
-        <Link to={"/forums"} className={styles.sidebar_content_container}>
+        {/* <Link to={"/forums"} className={styles.sidebar_content_container}>
           <span>
             <MessageSquareCode strokeWidth={1.5} />
           </span>
           Discussion
-        </Link>
+        </Link> */}
         <Link to={"/new-features"} className={styles.sidebar_content_container}>
           <span>
             <Package strokeWidth={1.5} />
           </span>
-          New Features
+          Changelogs
         </Link>
         <Link to={"/promotions"} className={styles.sidebar_content_container}>
           <span>
@@ -57,7 +54,14 @@ const SidebarModuleContent = () => {
         </Link>
         <div className={styles.recent_activity_container}>
           <p className="font-medium">Recent Activities</p>
-          <div className={clsx(styles.recent_activity_content, "no-scrollbar")}>
+          <div className="flex items-center gap-2 w-full hover:!text-primary hover:!font-medium hover:bg-primary-foreground py-2">
+            <CircleDotDashed strokeWidth={1.5} />
+            <div>
+              <p className="text-xs">shreykoradia/InsideAI</p>
+              Added Talez MVP
+            </div>
+          </div>
+          {/* <div className={clsx(styles.recent_activity_content, "no-scrollbar")}>
             <div className="flex items-center gap-2 w-full">
               <CircleDotDashed strokeWidth={1.5} />
               <div>
@@ -67,71 +71,8 @@ const SidebarModuleContent = () => {
                 Added Login Talez
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <CircleDotDashed strokeWidth={1.5} />
-              <div>
-                <p className="text-xs text-secondary-foreground">
-                  shreykoradia/InsideAI
-                </p>
-                Added Login Talez
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <CircleDotDashed strokeWidth={1.5} />
-              <div>
-                <p className="text-xs text-secondary-foreground">
-                  shreykoradia/InsideAI
-                </p>
-                Added Login Talez
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <CircleDotDashed strokeWidth={1.5} />
-              <div>
-                <p className="text-xs text-secondary-foreground">
-                  shreykoradia/InsideAI
-                </p>
-                Added Login Talez
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <CircleDotDashed strokeWidth={1.5} />
-              <div>
-                <p className="text-xs text-secondary-foreground">
-                  shreykoradia/InsideAI
-                </p>
-                Added Login Talez
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <CircleDotDashed strokeWidth={1.5} />
-              <div>
-                <p className="text-xs text-secondary-foreground">
-                  shreykoradia/InsideAI
-                </p>
-                Added Login Talez
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <CircleDotDashed strokeWidth={1.5} />
-              <div>
-                <p className="text-xs text-secondary-foreground">
-                  shreykoradia/InsideAI
-                </p>
-                Added Login Talez
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <CircleDotDashed strokeWidth={1.5} />
-              <div>
-                <p className="text-xs text-secondary-foreground">
-                  shreykoradia/InsideAI
-                </p>
-                Added Login Talez
-              </div>
-            </div>
           </div>
-          <p className="text-xs">show more...</p>
+          <p className="text-xs">show more...</p> */}
         </div>
       </div>
     </>
