@@ -1,0 +1,17 @@
+.typing_demo {
+    @apply text-muted-foreground text-sm font-mono border-r-2 overflow-hidden whitespace-nowrap w-full ml-8;
+    animation: typing 4s steps(40), blink .5s step-start infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}
