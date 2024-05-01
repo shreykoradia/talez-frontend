@@ -15,5 +15,5 @@
 }
 
 .talez_landing_container{
-    @apply h-[100vh] overflow-y-scroll;
+    @apply h-[100vh] overflow-hidden;
 }

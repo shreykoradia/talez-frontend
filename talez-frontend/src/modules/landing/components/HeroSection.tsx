@@ -1,11 +1,49 @@
 import { Button } from "@/shared/ui/ui/button";
-import { Wand } from "lucide-react";
+import { Video, Wand } from "lucide-react";
 import TalezIcon from "@/assets/icons/talez.svg?react";
+import ArrowIcon from "@/assets/icons/Arrow.svg?react";
+import TalezHero from "@/assets/icons/talez-hero.svg?react";
 
 const HeroSection = () => {
   return (
     <>
-      <div className="grid gap-4 my-16 p-4 place-items-center">
+      <div className="flex justify-between items-center gap-4 h-full w-full relative">
+        <div className="w-1/2 px-2">
+          <p className="mx-2 text-lg text-muted-foreground font-mono font-bold flex gap-4 items-center">
+            Introducing
+            <span>
+              <TalezIcon height={50} width={50} />
+            </span>
+          </p>
+          <p className="text-7xl text-primary font-bold font-mono">
+            Brainstorm Product's by writing Talez.
+          </p>
+          <p className="text-2xl text-muted-foreground font-mono">
+            Let's make scrum more meaningful by adding feedback's to talez and
+            scale product's faster than ever.
+          </p>
+          <div className="flex gap-4 my-8 relative">
+            <Button variant={"default"} className="p-8 text-lg">
+              Get Started
+              <Wand size={20} className="ml-4" />
+            </Button>
+            <Button variant={"outline"} className="p-8 text-lg">
+              <span>
+                <Video size={20} className="mr-4 mt-1" />
+              </span>
+              Request a Demo!
+            </Button>
+            <div className="absolute top-[70%] right-[15%]">
+              <ArrowIcon />
+              <p className="w-2/3 text-center font-semibold">
+                Watch Product demo here soon!
+              </p>
+            </div>
+          </div>
+        </div>
+        <TalezHero />
+      </div>
+      {/* <div className="grid gap-4 my-16 p-4 place-items-center">
         <TalezIcon />
         <p className="text-muted-foreground text-md text-center w-1/2 font-mono break-words hover:text-secondary-foreground">
           Talez is a SaaS platform designed for users and stakeholders to share
@@ -18,42 +56,7 @@ const HeroSection = () => {
           Get Started!
           <Wand size={20} className="ml-4" />
         </Button>
-      </div>
-      <div className="grid place-content-center place-items-center w-full gap-8">
-        <div className="grid place-items-center">
-          <p className="text-xl text-primary text-center font-mono font-bold">
-            Key Feature's
-          </p>
-          <p className="text-muted-foreground text-sm text-center w-1/2 font-mono break-words hover:text-secondary-foreground">
-            Idea Collaboration: Talez provides a space for users to brainstorm,
-            propose features, or discuss modules collaboratively. It goes beyond
-            the limitations of traditional scrum meetings, enabling a dynamic
-            exchange of insights.
-          </p>
-          <br />
-          <p className="text-muted-foreground text-sm text-center w-1/2 font-mono break-words hover:text-secondary-foreground">
-            Collective Feedback: Users can gather feedback from various
-            stakeholders in real-time, creating a more inclusive decision-making
-            process. Talez streamlines the feedback loop, making it efficient
-            and accessible to all team members.
-          </p>
-        </div>
-        <div className="grid place-items-center">
-          <p className="text-xl text-primary text-center font-mono font-bold">
-            Not an Alternative to Scrum Meetings, But...
-          </p>
-          <p className="text-muted-foreground text-sm text-center w-1/2 font-mono break-words hover:text-secondary-foreground">
-            Talez is not positioned as an alternative to scrum meetings, which
-            primarily serve to track task deadlines and sprint progress.
-            Instead, Talez complements the scrum methodology by offering a
-            dedicated platform for discussing blockers, exploring new ideas, and
-            gaining different perspectives on project-related matters. For
-            example, if you need to brainstorm a new feature or module, you can
-            open a new tale on Talez and initiate a collaborative discussion. To
-            learn more
-          </p>
-        </div>
-      </div>
+      </div> */}
     </>
   );
 };
