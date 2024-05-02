@@ -1,14 +1,14 @@
-import { Button } from "@/shared/ui/ui/button";
 import { Video, Wand } from "lucide-react";
 import TalezIcon from "@/assets/icons/talez.svg?react";
 import ArrowIcon from "@/assets/icons/Arrow.svg?react";
 import TalezHero from "@/assets/icons/talez-hero.svg?react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
     <>
-      <div className="flex justify-between items-center gap-4 h-full w-full relative">
-        <div className="w-1/2 px-2">
+      <div className="flex justify-between items-center mt-16 gap-4 h-full w-full relative">
+        <div className="w-1/2 px-2 h-full">
           <p className="mx-2 text-lg text-muted-foreground font-mono font-bold flex gap-4 items-center">
             Introducing
             <span>
@@ -22,41 +22,39 @@ const HeroSection = () => {
             Let's make scrum more meaningful by adding feedback's to talez and
             scale product's faster than ever.
           </p>
-          <div className="flex gap-4 my-8 relative">
-            <Button variant={"default"} className="p-8 text-lg">
+          <div className="flex gap-4 my-8">
+            <Link
+              to="/signup"
+              className="px-4 py-4 text-lg rounded-md flex items-center gap-1 bg-primary text-primary-foreground hover:bg-primary/90"
+            >
               Get Started
               <Wand size={20} className="ml-4" />
-            </Button>
-            <Button variant={"outline"} className="p-8 text-lg">
+            </Link>
+            <Link
+              to="#"
+              onClick={(e) => {
+                window.location.href = "mailto:hello.insideai@gmail.com";
+                e.preventDefault();
+              }}
+              className="px-4 py-4 flex items-center gap-1 rounded-lg text-lg border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+            >
               <span>
                 <Video size={20} className="mr-4 mt-1" />
               </span>
               Request a Demo!
-            </Button>
-            <div className="absolute top-[70%] right-[15%]">
-              <ArrowIcon />
-              <p className="w-2/3 text-center font-semibold">
-                Watch Product demo here soon!
-              </p>
-            </div>
+            </Link>
           </div>
         </div>
-        <TalezHero />
+        <div className="h-full">
+          <TalezHero />
+        </div>
+        <div className="absolute top-80 left-[25%]">
+          <ArrowIcon />
+          <p className="w-2/3 text-center  font-semibold">
+            Watch Product demo here soon!
+          </p>
+        </div>
       </div>
-      {/* <div className="grid gap-4 my-16 p-4 place-items-center">
-        <TalezIcon />
-        <p className="text-muted-foreground text-md text-center w-1/2 font-mono break-words hover:text-secondary-foreground">
-          Talez is a SaaS platform designed for users and stakeholders to share
-          ideas, gather collective feedback, and engage in thorough discussions
-          to reach conclusive decisions. Unlike traditional scrum meetings,
-          Talez fosters collaboration without the time constraints of formal
-          meetings, allowing for in-depth conversations to unfold organically.
-        </p>
-        <Button variant={"default"} className="p-8 text-lg rounded-full">
-          Get Started!
-          <Wand size={20} className="ml-4" />
-        </Button>
-      </div> */}
     </>
   );
 };
