@@ -34,7 +34,7 @@ const MobileNavigationMenu = ({
           </Link>
           <Link
             to={"/signin"}
-            className="py-2 px-4 rounded-md flex items-center gap-1 hover:bg-accent hover:text-accent-foreground"
+            className="py-2 px-4 rounded-md flex items-center gap-1 font-mono text-muted-foreground hover:bg-accent hover:text-primary"
           >
             <CornerDownRight height={15} />
             Log in
@@ -92,7 +92,7 @@ const HeaderSection = () => {
         <div className="flex justify-end items-center w-1/2 gap-4 max-lg:hidden">
           <Link
             to={"/signin"}
-            className="py-2 px-4 rounded-md flex items-center gap-1 hover:bg-accent hover:text-accent-foreground"
+            className="py-2 px-4 rounded-md flex items-center font-mono text-muted-foreground gap-1 hover:bg-accent hover:text-primary"
           >
             <CornerDownRight height={15} />
             Log in
