@@ -16,7 +16,7 @@ const MobileNavigationMenu = ({
     <>
       <div
         className={clsx(
-          "max-lg:fixed w-full h-full top-0 left-0 bg-black opacity-90 text-white transition-transform",
+          "maxLg:fixed w-full h-full top-0 left-0 bg-black opacity-90 text-white transition-transform",
           {
             hidden: !isMenuOpen,
           }
@@ -72,11 +72,11 @@ const HeaderSection = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center w-full p-4 font-mono border-b border-muted hover:border-pattensBlue max-lg:relative">
+      <div className="flex justify-between items-center w-full p-4 font-mono border-b border-muted hover:border-pattensBlue maxLg:relative">
         <div className="w-1/5">
           <TalezIcon height={20} width={100} />
         </div>
-        <div className="flex justify-between w-3/5 items-center max-lg:hidden">
+        <div className="flex justify-between w-3/5 items-center maxLg:hidden">
           <div className="flex w-full justify-start items-center gap-16">
             <Link
               to={"/"}
@@ -89,7 +89,7 @@ const HeaderSection = () => {
             </Link>
           </div>
         </div>
-        <div className="flex justify-end items-center w-1/2 gap-4 max-lg:hidden">
+        <div className="flex justify-end items-center w-1/2 gap-4 maxLg:hidden">
           <Link
             to={"/signin"}
             className="py-2 px-4 rounded-md flex items-center font-mono text-muted-foreground gap-1 hover:bg-accent hover:text-primary"
@@ -106,7 +106,7 @@ const HeaderSection = () => {
           </Link>
         </div>
         <div
-          className={clsx("hidden max-lg:block", { "z-10": isMenuOpen })}
+          className={clsx("hidden maxLg:block", { "z-10": isMenuOpen })}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {!isMenuOpen ? (

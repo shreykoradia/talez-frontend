@@ -12,6 +12,8 @@ module.exports = {
     container: {
       center: true,
       padding: "2rem",
+    },
+    extend: {
       screens: {
         sm: "640px",
         md: "768px",
@@ -31,8 +33,6 @@ module.exports = {
         minMaxMd: { min: "768px", max: "1023px" },
         minMaxSm: { min: "640px", max: "767px" },
       },
-    },
-    extend: {
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -1,13 +1,16 @@
+import { setCookie } from "typescript-cookie";
+import { useNavigate } from "react-router";
+
 import { Button } from "@/shared/ui/ui/button";
 import { Input } from "@/shared/ui/ui/input";
-import styles from "@/assets/css/auth.module.css";
+import { toast } from "@/shared/ui/ui/use-toast";
 import { Label } from "@/shared/ui/ui/label";
+import styles from "@/assets/css/auth.module.css";
+import Messy from "@/assets/icons/messy.svg?react";
+
 import { useLoginForm } from "../hooks/useLoginForm";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/login";
-import { toast } from "@/shared/ui/ui/use-toast";
-import { setCookie } from "typescript-cookie";
-import { useNavigate } from "react-router";
 
 interface loginFormProps {
   email: string;
@@ -16,6 +19,7 @@ interface loginFormProps {
 
 const Login = () => {
   const navigate = useNavigate();
+
   const { mutate: loginMutateFn } = useMutation({
     mutationFn: (values: loginFormProps) => login(values),
     onSuccess: (res) => {
@@ -41,12 +45,12 @@ const Login = () => {
   return (
     <>
       <div className={styles.login_parent_container}>
-        <div className="grid w-[500px] gap-4">
+        <div className="grid w-[500px] gap-4 maxLg:w-full maxLg:px-8">
           <div className={styles.login_title_container}>
-            <p className="text-2xl font-semibold">
+            <p className="text-4xl w-full font-bold text-primary">
               Join and streamline Workflows on <em>Talez</em>
             </p>
-            <p className="text-[1rem] font-light">
+            <p className="text-md text-muted-foreground font-normal hover:text-black">
               Why worry when you can write <em>Talez</em>?.
             </p>
           </div>
@@ -86,6 +90,9 @@ const Login = () => {
               <Button type="submit">Sign in with Email</Button>
             </div>
           </form>
+        </div>
+        <div className="maxLg:hidden">
+          <Messy height={500} width={500} />
         </div>
       </div>
     </>

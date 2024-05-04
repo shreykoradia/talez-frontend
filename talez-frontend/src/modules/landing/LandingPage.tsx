@@ -5,9 +5,9 @@ import HeroSection from "./components/HeroSection";
 const LandingPage = () => {
   return (
     <>
-      <div className="talez_landing_container h-full max-lg:fixed max-lg:top-0 max-lg:h-full max-lg:overflow-y-scroll no-scrollbar">
+      <div className="talez_landing_container h-full maxLg:fixed maxLg:top-0 maxLg:h-full maxLg:overflow-y-scroll no-scrollbar">
         <HeaderSection />
-        <div className="flex flex-col justify-between items-center h-[calc(100vh_-_100px)] max-lg:gap-8">
+        <div className="flex flex-col justify-between items-center h-[calc(100vh_-_100px)] maxLg:gap-8">
           <HeroSection />
           <FooterSection />
         </div>

@@ -1,7 +1,15 @@
-.signup_parent_container, .login_parent_container {
-    @apply grid place-items-center h-[100vh];   
+.signup_parent_container{
+    @apply grid grid-cols-2 place-items-center h-[100vh] overflow-hidden maxLg:grid-cols-1 maxLg:w-full;
 }
 
+
+.login_parent_container{
+    @apply grid grid-cols-2 place-items-center h-[100vh] overflow-hidden maxLg:grid-cols-1 maxLg:w-full;
+}
+
+.login_title_container .signup_title_container{
+    @apply px-2
+}
 .signup_form_container, .login_form_container{
-    @apply grid gap-4 w-[500px];
+    @apply grid gap-4 w-[500px] px-2 maxLg:w-full;
 }
