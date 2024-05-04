@@ -5,8 +5,9 @@ import { Label } from "@/shared/ui/ui/label";
 import { useSignupForm } from "../hooks/useSignupForm";
 import { useMutation } from "@tanstack/react-query";
 import { signup } from "../api/signup";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/shared/ui/ui/use-toast";
+import Sitting from "@/assets/icons/sitting.svg?react";
 
 interface signupFormProps {
   email: string;
@@ -41,12 +42,12 @@ const Signup = () => {
   return (
     <>
       <div className={styles.signup_parent_container}>
-        <div className="grid w-[500px] gap-4">
+        <div className="grid w-[500px] gap-4 maxLg:w-full maxLg:px-8">
           <div className={styles.signup_title_container}>
-            <p className="text-2xl font-semibold">
+            <p className="text-4xl w-full font-bold text-primary">
               Create an account on <em>Talez</em> for awesomeness.
             </p>
-            <p className="text-[1rem] font-light">
+            <p className="text-md text-muted-foreground font-normal hover:text-black">
               Streamline Workflows, Unleash Creativity
             </p>
           </div>
@@ -109,6 +110,15 @@ const Signup = () => {
               </Button>
             </div>
           </form>
+          <p className="text-muted-foreground">
+            Already brainstorming products?{" "}
+            <Link to="/signin" className="text-primary">
+              Login
+            </Link>
+          </p>
+        </div>
+        <div className="maxLg:hidden">
+          <Sitting height={500} width={500} />
         </div>
       </div>
     </>
