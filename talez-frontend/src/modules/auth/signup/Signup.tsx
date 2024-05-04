@@ -5,7 +5,7 @@ import { Label } from "@/shared/ui/ui/label";
 import { useSignupForm } from "../hooks/useSignupForm";
 import { useMutation } from "@tanstack/react-query";
 import { signup } from "../api/signup";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/shared/ui/ui/use-toast";
 import Sitting from "@/assets/icons/sitting.svg?react";
 
@@ -110,6 +110,12 @@ const Signup = () => {
               </Button>
             </div>
           </form>
+          <p className="text-muted-foreground">
+            Already brainstorming products?{" "}
+            <Link to="/signin" className="text-primary">
+              Login
+            </Link>
+          </p>
         </div>
         <div className="maxLg:hidden">
           <Sitting height={500} width={500} />

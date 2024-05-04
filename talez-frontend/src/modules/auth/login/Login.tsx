@@ -11,6 +11,7 @@ import Messy from "@/assets/icons/messy.svg?react";
 import { useLoginForm } from "../hooks/useLoginForm";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/login";
+import { Link } from "react-router-dom";
 
 interface loginFormProps {
   email: string;
@@ -90,6 +91,12 @@ const Login = () => {
               <Button type="submit">Sign in with Email</Button>
             </div>
           </form>
+          <p className="text-muted-foreground">
+            New to brainstorming products?{" "}
+            <Link to="/signup" className="text-primary">
+              Signup
+            </Link>
+          </p>
         </div>
         <div className="maxLg:hidden">
           <Messy height={500} width={500} />

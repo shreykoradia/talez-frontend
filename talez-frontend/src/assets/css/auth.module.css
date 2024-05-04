@@ -11,5 +11,5 @@
     @apply px-2
 }
 .signup_form_container, .login_form_container{
-    @apply grid gap-4 w-[500px] px-2 maxLg:w-full;
+    @apply grid gap-4 w-[500px] maxLg:w-full;
 }
