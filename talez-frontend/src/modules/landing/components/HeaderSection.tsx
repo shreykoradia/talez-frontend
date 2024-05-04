@@ -34,7 +34,7 @@ const MobileNavigationMenu = ({
           </Link>
           <Link
             to={"/signin"}
-            className="py-2 px-4 rounded-md flex items-center gap-1 font-mono text-muted-foreground hover:bg-accent hover:text-primary"
+            className="py-2 px-4 rounded-md flex items-center gap-1 font-mono hover:bg-accent hover:text-primary"
           >
             <CornerDownRight height={15} />
             Log in
