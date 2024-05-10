@@ -53,8 +53,8 @@ const HeroSection = () => {
           Is that All?
         </p>
         <p className="font-mono text-muted-foreground">
-          I mean not yet this is the part where you can brainstorm products
-          there is a lot more to be added in the upcoming iterations.
+          Not yet this is the part where you can brainstorm products, there is a
+          lot more to be added in the upcoming iterations.
         </p>
       </div>
     </>
