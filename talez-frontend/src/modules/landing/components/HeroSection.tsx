@@ -48,6 +48,15 @@ const HeroSection = () => {
           <TalezHero />
         </div>
       </div>
+      <div className="">
+        <p className="text-center text-4xl text-primary font-mono font-semibold">
+          Is that All?
+        </p>
+        <p className="font-mono text-muted-foreground">
+          I mean not yet this is the part where you can brainstorm products
+          there is a lot more to be added in the upcoming iterations.
+        </p>
+      </div>
     </>
   );
 };
