@@ -1,7 +1,7 @@
 import styles from "@/assets/css/settings.module.css";
 import { SidebarNav } from "./components/SidebarNav";
 import { Separator } from "@/shared/ui/ui/separator";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Profile from "./profile";
 import { Button } from "@/shared/ui/ui/button";
 import { logOut } from "@/shared/helpers/helpers";
