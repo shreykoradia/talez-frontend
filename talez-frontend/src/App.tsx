@@ -1,12 +1,14 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 import "./assets/css/global.css";
-import Login from "./modules/auth/login/Login";
-import Signup from "./modules/auth/signup/Signup";
+import Login from "./modules/auth/login";
+import Signup from "./modules/auth/signup";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import withAuthentication from "./shared/helpers/withAuthentication";
 import Home from "./modules/home/Home";
 import withoutAuthentication from "./shared/helpers/withoutAuthentication";
-import LandingPage from "./modules/landing/LandingPage";
+import LandingPage from "./modules/landing";
+import { useEffect } from "react";
+import { isTokenExpired } from "./shared/helpers/helpers";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -19,6 +21,10 @@ const App = () => {
   });
 
   const unAuthenticated = () => <Outlet />;
+
+  useEffect(() => {
+    console.log(isTokenExpired());
+  }, []);
 
   return (
     <>

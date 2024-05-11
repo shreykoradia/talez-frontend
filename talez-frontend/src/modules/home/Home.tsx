@@ -1,13 +1,14 @@
 import { Route, Routes } from "react-router";
-import Workflows from "../workflows/Workflows";
+import Workflows from "../workflows";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/shared/ui/ui/resizable";
 import Sidebar from "@/shared/components/sidebar/Sidebar";
-import Talez from "../talez/Talez";
+import Talez from "../talez";
 import TalezView from "../talez/components/TalezView";
+import Settings from "../settings";
 
 const Home = () => {
   return (
@@ -25,12 +26,7 @@ const Home = () => {
             <Route path="/workflows" index element={<Workflows />} />;
             <Route path="/:workflowId/tale" index element={<Talez />} />
             <Route path="/tale/:taleId" element={<TalezView />} />
-            {/* 
-            /**** 
-             *  Todo Path Planning
-             * <Route path="/talez" element={<Workflows />} />;
-             * <Route path="/talez/:id" element={<Workflows />} />;
-          */}
+            <Route path="/settings/*" element={<Settings />} />
           </Routes>
         </ResizablePanel>
       </ResizablePanelGroup>

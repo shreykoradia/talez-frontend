@@ -24,7 +24,9 @@ const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
       onClick={() => onWorkflowCardClick(workflow?._id)}
     >
       <CardHeader>
-        <CardTitle className="font-medium">{workflow?.workFlowTitle}</CardTitle>
+        <CardTitle className="font-medium hover:text-primary">
+          {workflow?.workFlowTitle}
+        </CardTitle>
         <CardDescription>{`Authored by ${workflow?.authorName}`}</CardDescription>
       </CardHeader>
       <CardContent className="h-[9.375rem] text-justify break-words rounded-lg overflow-y-auto no-scrollbar">

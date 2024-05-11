@@ -10,7 +10,7 @@ import {
 } from "@/shared/ui/ui/dialog";
 import { Input } from "@/shared/ui/ui/input";
 import { Label } from "@/shared/ui/ui/label";
-import { Plus } from "lucide-react";
+import { Loader, Plus } from "lucide-react";
 import { workflowRequest } from "../types";
 import useCreateWorkflowForm from "../hooks/useCreateWorkflowForm";
 import useCreateWorkflows from "../hooks/useCreateWorkflows";
@@ -124,7 +124,7 @@ const CreateWorkflowModal = () => {
                     !values.workFlowTitle
                   }
                 >
-                  Create Workflow
+                  {isCreatingWorkflow ? <Loader /> : " Create Workflow"}
                 </Button>
               </DialogFooter>
             </div>
