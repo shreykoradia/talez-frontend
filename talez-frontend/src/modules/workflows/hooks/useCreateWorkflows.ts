@@ -17,7 +17,7 @@ const useCreateWorkflows = () => {
       toast({
         title: "Something went wrong huh!",
         description:
-          "Try adding workflow after a while, Talez is currently in development mode, Thanks!",
+          "You can add only limited number of workflows as Talez is currently in development mode, Thanks!",
       });
     },
   });
