@@ -1,0 +1,8 @@
+.settings_parent_container{
+    @apply p-4 h-full;
+}
+
+.profile_form_container{
+    @apply grid gap-4 w-[500px] maxLg:w-full py-4;
+}
+        

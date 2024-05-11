@@ -1,4 +1,5 @@
-import { getCookie } from "typescript-cookie";
+import { getCookie, removeCookie } from "typescript-cookie";
+import { jwtDecode } from "jwt-decode";
 
 export const checkToken = () => {
   const token = getCookie("accessToken");
@@ -14,3 +15,20 @@ export function generateAvatarInitials(username: string) {
 
   return initials.slice(0, 2).join("").toUpperCase();
 }
+
+export const isTokenExpired = () => {
+  const token = checkToken();
+  if (!token) return;
+  const decodedToken = jwtDecode(token);
+  if (decodedToken.exp && decodedToken.exp < Date.now() / 1000) {
+    removeCookie("accessToken");
+  } else {
+    return;
+  }
+};
+
+export const logOut = () => {
+  const token = checkToken();
+  if (!token) return;
+  removeCookie("accessToken");
+};

@@ -55,3 +55,16 @@ export interface updateAccessRequestprops {
 }
 
 export type inviteUserRequestProps = updateAccessRequestprops;
+
+export interface User {
+  _id: string;
+  username: string;
+  email: string;
+  isVerified: boolean;
+  __v: number;
+  status: string;
+}
+
+export type UserResponse = {
+  user: User;
+};

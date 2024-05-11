@@ -19,6 +19,7 @@ import useGetFeedbacks from "@/modules/feedbacks/hooks/useGetFeedbacks";
 import { toast } from "@/shared/ui/ui/use-toast";
 import { useState } from "react";
 import clsx from "clsx";
+import { Loader } from "lucide-react";
 
 const TalezView = () => {
   const [counterFeedback, setCounterFeedback] = useState<number>(0);
@@ -119,7 +120,7 @@ const TalezView = () => {
               variant={"default"}
               onClick={handleFeedbackButton}
             >
-              Send Feedback
+              {isCreatingFeedback ? <Loader /> : "Send Feedback"}
             </Button>
           </div>
         </div>

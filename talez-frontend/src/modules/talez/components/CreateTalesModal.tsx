@@ -10,7 +10,7 @@ import {
 } from "@/shared/ui/ui/dialog";
 import { Input } from "@/shared/ui/ui/input";
 import { Label } from "@/shared/ui/ui/label";
-import { Plus } from "lucide-react";
+import { Loader, Plus } from "lucide-react";
 import useCreateTalesForm from "../hooks/useCreateTalesForm";
 import useCreateTales from "../hooks/useCreateTales";
 import { useParams } from "react-router-dom";
@@ -131,7 +131,7 @@ const CreateTalesModal = () => {
                   }
                   onClick={onSubmitButtonClick}
                 >
-                  Create Tale
+                  {isCreatingTales ? <Loader /> : "Create Tale"}
                 </Button>
               </DialogFooter>
             </div>

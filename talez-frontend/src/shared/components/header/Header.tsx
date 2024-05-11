@@ -1,7 +1,6 @@
-import FeedbackOverview from "@/modules/feedbacks/FeedbackOverview";
+import FeedbackOverview from "@/modules/feedbacks";
 import CreateTalesModal from "@/modules/talez/components/CreateTalesModal";
 import CreateWorkflowModal from "@/modules/workflows/components/CreateWorkflowModal";
-import { GanttChart } from "lucide-react";
 import SharePopOver from "./SharePopOver";
 
 interface HeaderProps {
@@ -26,7 +25,7 @@ const Header = ({
   return (
     <>
       <div className="flex justify-between items-center p-2">
-        <p className="text-sm px-2 py-1 font-medium hover:bg-accent rounded-md">
+        <p className="text-sm px-2 py-1 font-medium text-primary hover:bg-accent rounded-md">
           {headerTitle}
         </p>
         {displayMore ? (

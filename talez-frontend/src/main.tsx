@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
@@ -9,7 +9,9 @@ import { Toaster } from "./shared/ui/ui/toaster.tsx";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Suspense fallback={<p>Loading...</p>}>
+        <App />
+      </Suspense>
       <Toaster />
     </BrowserRouter>
   </React.StrictMode>

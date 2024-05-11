@@ -1,7 +1,7 @@
 import {
   CircleDotDashed,
-  Megaphone,
-  Package,
+  // Megaphone,
+  // Package,
   Settings,
   Workflow,
 } from "lucide-react";
@@ -40,7 +40,7 @@ const SidebarModuleContent = () => {
           </span>
           Discussion
         </Link> */}
-        <Link to={"/new-features"} className={styles.sidebar_content_container}>
+        {/* <Link to={"/new-features"} className={styles.sidebar_content_container}>
           <span>
             <Package strokeWidth={1.5} />
           </span>
@@ -51,7 +51,7 @@ const SidebarModuleContent = () => {
             <Megaphone strokeWidth={1.5} />
           </span>
           Promotions
-        </Link>
+        </Link> */}
         <div className={styles.recent_activity_container}>
           <p className="font-medium">Recent Activities</p>
           <div className="flex items-center gap-2 w-full hover:!text-primary hover:!font-medium hover:bg-primary-foreground py-2">
@@ -59,6 +59,13 @@ const SidebarModuleContent = () => {
             <div>
               <p className="text-xs">shreykoradia/InsideAI</p>
               Added Talez MVP
+            </div>
+          </div>
+          <div className="flex items-center gap-2 w-full hover:!text-primary hover:!font-medium hover:bg-primary-foreground py-2">
+            <CircleDotDashed strokeWidth={1.5} />
+            <div>
+              <p className="text-xs">shreykoradia/InsideAI</p>
+              Working on Interations!
             </div>
           </div>
           {/* <div className={clsx(styles.recent_activity_content, "no-scrollbar")}>
