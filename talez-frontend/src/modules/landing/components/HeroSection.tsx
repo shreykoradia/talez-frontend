@@ -17,9 +17,10 @@ const HeroSection = () => {
           <p className="text-7xl text-primary font-bold font-mono maxLg:text-4xl maxLg:text-center">
             Brainstorm Product's by writing Talez.
           </p>
-          <p className="text-2xl text-muted-foreground font-mono maxLg:text-center maxLg:mt-4 maxLg:text-xl maxLg:text-wrap">
-            Let's make scrum more meaningful by adding feedback's to talez and
-            scale product's faster than ever.
+          <p className="text-md mt-2 text-muted-foreground font-mono maxLg:text-center maxLg:mt-4 maxLg:text-md maxLg:text-wrap">
+            Talez is a SaaS platform designed for users and stakeholders to
+            share ideas, gather collective feedback to reach conclusive
+            decisions.
           </p>
           <div className="flex gap-4 my-8 maxLg:justify-evenly maxLg:gap-0">
             <Link
@@ -48,7 +49,7 @@ const HeroSection = () => {
           <TalezHero />
         </div>
       </div>
-      <div className="">
+      <div className="px-4">
         <p className="text-center text-4xl text-primary font-mono font-semibold">
           Is that All?
         </p>
