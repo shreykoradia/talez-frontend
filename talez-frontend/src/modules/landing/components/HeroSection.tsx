@@ -22,7 +22,7 @@ const HeroSection = () => {
             share ideas, gather collective feedback to reach conclusive
             decisions.
           </p>
-          <div className="flex gap-4 my-8 maxLg:justify-evenly maxLg:gap-0">
+          <div className="flex gap-4 my-8 maxLg:justify-center maxXs:flex maxXs:flex-col maxXs:!gap-4 maxXs:justify-center maxXs:items-center">
             <Link
               to="/signup"
               className="px-4 py-4 text-lg rounded-md flex items-center gap-1 bg-primary font-mono text-primary-foreground hover:bg-primary/90 maxLg:px-2 maxLg:py-2"
@@ -53,7 +53,7 @@ const HeroSection = () => {
         <p className="text-center text-4xl text-primary font-mono font-semibold">
           Is that All?
         </p>
-        <p className="font-mono text-muted-foreground">
+        <p className="font-mono text-muted-foreground maxXs:text-center">
           Not yet this is the part where you can brainstorm products, there is a
           lot more to be added in the upcoming iterations.
         </p>
