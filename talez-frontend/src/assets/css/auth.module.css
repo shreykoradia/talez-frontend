@@ -1,10 +1,10 @@
 .signup_parent_container{
-    @apply grid grid-cols-2 place-items-center h-[100vh] overflow-hidden maxLg:grid-cols-1 maxLg:w-full;
+    @apply max-w-[1800px] mx-auto grid grid-cols-2 place-items-center h-[100vh] overflow-hidden maxLg:grid-cols-1 maxLg:w-full;
 }
 
 
 .login_parent_container{
-    @apply grid grid-cols-2 place-items-center h-[100vh] overflow-hidden maxLg:grid-cols-1 maxLg:w-full;
+    @apply max-w-[1800px] mx-auto grid grid-cols-2 place-items-center h-[100vh] overflow-hidden maxLg:grid-cols-1 maxLg:w-full;
 }
 
 .login_title_container .signup_title_container{

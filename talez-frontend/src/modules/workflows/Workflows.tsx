@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { LIMIT } from "@/shared/constant";
 import WorkflowLoaders from "@/shared/components/loaders/WorkflowLoaders";
 import ResponseNotFound from "@/shared/components/not-found/ResponseNotFound";
-import { Workflow } from "lucide-react";
+import { Info, Workflow } from "lucide-react";
 
 const Workflows = () => {
   const [workflowOffset, setWorkflowOffset] = useState(0);
@@ -51,6 +51,16 @@ const Workflows = () => {
             "h-full": workflowsData?.workflows?.length === 0,
           })}
         >
+          <div className="bg-pattensBlue w-full font-medium text-sm flex gap-2 items-center rounded-sm p-2 sticky top-0">
+            <Info size={20} />
+            <p>
+              Currently you can create{" "}
+              <span className="text-primary">Three</span> workflows at max
+              during the MVP Phase Development, we are eager to on-board users
+              once we iterate the current version of application to the next
+              level, Thanks by Team Talez
+            </p>
+          </div>
           {(isWorkflowsLoading || isWorkflowRefetching) &&
             Array.from({ length: LIMIT }).map((_, index) => (
               <WorkflowLoaders key={index} />

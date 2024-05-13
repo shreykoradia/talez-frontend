@@ -19,12 +19,7 @@ const SidebarModuleContent = () => {
           </span>
           Workflows
         </Link>
-        {/* <Link to="/updates" className={styles.sidebar_content_container}>
-          <span>
-            <BellIcon strokeWidth={1.5} />
-          </span>
-          Updates
-        </Link> */}
+
         <Link to="/settings" className={styles.sidebar_content_container}>
           <span>
             <Settings strokeWidth={1.5} />
@@ -34,12 +29,6 @@ const SidebarModuleContent = () => {
       </div>
       <Separator />
       <div className="w-full">
-        {/* <Link to={"/forums"} className={styles.sidebar_content_container}>
-          <span>
-            <MessageSquareCode strokeWidth={1.5} />
-          </span>
-          Discussion
-        </Link> */}
         {/* <Link to={"/new-features"} className={styles.sidebar_content_container}>
           <span>
             <Package strokeWidth={1.5} />
@@ -57,15 +46,15 @@ const SidebarModuleContent = () => {
           <div className="flex items-center gap-2 w-full hover:!text-primary hover:!font-medium hover:bg-primary-foreground py-2">
             <CircleDotDashed strokeWidth={1.5} />
             <div>
-              <p className="text-xs">shreykoradia/InsideAI</p>
+              <p className="text-xs">team/talez</p>
               Added Talez MVP
             </div>
           </div>
           <div className="flex items-center gap-2 w-full hover:!text-primary hover:!font-medium hover:bg-primary-foreground py-2">
             <CircleDotDashed strokeWidth={1.5} />
             <div>
-              <p className="text-xs">shreykoradia/InsideAI</p>
-              Working on Interations!
+              <p className="text-xs">team/talez</p>
+              Working on Interactions!
             </div>
           </div>
           {/* <div className={clsx(styles.recent_activity_content, "no-scrollbar")}>
