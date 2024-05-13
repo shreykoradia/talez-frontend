@@ -23,7 +23,7 @@ const App = () => {
   const unAuthenticated = () => <Outlet />;
 
   useEffect(() => {
-    console.log(isTokenExpired());
+    isTokenExpired();
   }, []);
 
   return (

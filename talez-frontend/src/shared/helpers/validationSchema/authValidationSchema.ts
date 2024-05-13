@@ -16,5 +16,5 @@ export const loginValidationSchema = () =>
     email: Yup.string().email("Invalid Email").required("Email is required"),
     password: Yup.string()
       .required("Password is required")
-      .min(6, "Must be atleast six characters"),
+      .min(8, "Must be atleast Eight characters"),
   });

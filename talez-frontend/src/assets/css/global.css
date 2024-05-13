@@ -15,5 +15,5 @@
 }
 
 .talez_landing_container{
-    @apply overflow-hidden h-[100vh];
+    @apply mx-auto max-w-[1800px] w-full overflow-hidden h-[100vh];
 }
