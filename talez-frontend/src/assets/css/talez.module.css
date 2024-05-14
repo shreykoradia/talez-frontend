@@ -3,7 +3,7 @@
 }
 
 .talez_detail_parent_container {
-    @apply flex flex-col gap-4 justify-between items-center p-4 max-h-full w-full;
+    @apply flex flex-col gap-4 justify-between items-center p-4 max-h-full  h-[calc(100%_-_132px)] w-full;
 }
 
 .talez_card_view{

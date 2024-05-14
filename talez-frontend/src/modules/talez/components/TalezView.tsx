@@ -87,7 +87,7 @@ const TalezView = () => {
               Authored By {taleData?.author_name}
             </CardDescription>
           </CardHeader>
-          <CardContent className="h-[500px] break-words rounded-md overflow-y-auto no-scrollbar">
+          <CardContent className="break-words rounded-md overflow-y-auto no-scrollbar">
             <p>{taleData?.description}</p>
           </CardContent>
         </Card>
