@@ -1,4 +1,4 @@
-import { Button } from "@/shared/ui/ui/button";
+import { Button, buttonVariants } from "@/shared/ui/ui/button";
 import { Input } from "@/shared/ui/ui/input";
 import styles from "@/assets/css/auth.module.css";
 import { Label } from "@/shared/ui/ui/label";
@@ -8,6 +8,7 @@ import { signup } from "../api/signup";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/shared/ui/ui/use-toast";
 import Sitting from "@/assets/icons/sitting.svg?react";
+import { cn } from "@/shared/lib/utils";
 
 interface signupFormProps {
   email: string;
@@ -110,12 +111,15 @@ const Signup = () => {
               </Button>
             </div>
           </form>
-          <p className="text-muted-foreground">
-            Already brainstorming products?{" "}
-            <Link to="/signin" className="text-primary">
-              Login
-            </Link>
-          </p>
+          <Link className={cn(buttonVariants({ variant: "outline" }))} to={"/"}>
+            Missed something, want to go back?
+          </Link>
+          <Link
+            to={"/login"}
+            className={cn(buttonVariants({ variant: "link" }))}
+          >
+            Already brainstorming products? Login
+          </Link>
         </div>
         <div className="maxLg:hidden">
           <Sitting height={500} width={500} />
