@@ -2,12 +2,13 @@ import FeedbackOverview from "@/modules/feedbacks";
 import CreateTalesModal from "@/modules/talez/components/CreateTalesModal";
 import CreateWorkflowModal from "@/modules/workflows/components/CreateWorkflowModal";
 import SharePopOver from "./SharePopOver";
+import { Link } from "react-router-dom";
 
 interface HeaderProps {
   displayMore: boolean;
   displayCreate: boolean;
   displayCreateTalez: boolean;
-  headerTitle: string;
+  headerDetails: { headerTitle: string; headerAction: string };
 }
 
 const defaultProps = {
@@ -20,14 +21,17 @@ const Header = ({
   displayCreate = defaultProps.displayCreate,
   displayMore = defaultProps.displayMore,
   displayCreateTalez = defaultProps.displayCreateTalez,
-  headerTitle,
+  headerDetails,
 }: HeaderProps) => {
   return (
     <>
       <div className="flex justify-between items-center p-2">
-        <p className="text-sm px-2 py-1 font-medium text-primary hover:bg-accent rounded-md">
-          {headerTitle}
-        </p>
+        <Link
+          to={headerDetails?.headerAction}
+          className="text-sm px-2 py-1 font-medium text-primary hover:bg-accent rounded-md"
+        >
+          {headerDetails?.headerTitle}
+        </Link>
         {displayMore ? (
           <div className=" flex items-center gap-2">
             {/* Visit Feedbacks on development Flow  */}

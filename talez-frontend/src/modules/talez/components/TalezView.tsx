@@ -69,15 +69,19 @@ const TalezView = () => {
   const handleFeedbackButton = () => {
     createFeedbackFn({ values, params });
     resetForm();
+    setCounterFeedback(0);
   };
 
   return (
     <>
       <Header
         displayCreate={false}
-        headerTitle="Talez"
         displayMore={true}
         displayCreateTalez={false}
+        headerDetails={{
+          headerTitle: "Go to Tales",
+          headerAction: `/${taleData?.workflow_id}/tale`,
+        }}
       />
       <div className={styles.talez_detail_parent_container}>
         <Card className={styles.talez_card_view}>

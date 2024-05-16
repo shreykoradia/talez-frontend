@@ -38,6 +38,7 @@ const Profile = () => {
   const { values, handleChange, handleSubmit, touched, errors, dirty } =
     useProfileForm((values: updateProfileProps) => {
       updateProfileFn(values);
+      setStatusCounter(0);
     });
 
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

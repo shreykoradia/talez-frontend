@@ -42,7 +42,7 @@ const Workflows = () => {
       <Header
         displayMore={false}
         displayCreate={true}
-        headerTitle="Workflows"
+        headerDetails={{ headerTitle: "Workflows", headerAction: "" }}
         displayCreateTalez={false}
       />
       <div className="overflow-y-auto h-[calc(100%-120px)] max-h-full no-scrollbar">
