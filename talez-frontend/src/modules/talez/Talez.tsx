@@ -49,7 +49,10 @@ const Talez = () => {
         displayCreate={false}
         displayMore={false}
         displayCreateTalez={true}
-        headerTitle={`${params.workflowId}/Talez`}
+        headerDetails={{
+          headerTitle: "Go to Workflows",
+          headerAction: "/workflows",
+        }}
       />
       <div className="flex flex-col gap-2 overflow-y-auto h-[calc(100%-120px)] no-scrollbar">
         <div className={styles.talez_parent_container}>

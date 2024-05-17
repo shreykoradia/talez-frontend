@@ -47,6 +47,8 @@ const CreateTalesModal = () => {
   const onSubmitButtonClick = () => {
     createTalesFn({ values, params });
     resetForm();
+    setTaleTitleCounter(0);
+    setTaleDescCounter(0);
     setOpenModal(!open);
   };
 

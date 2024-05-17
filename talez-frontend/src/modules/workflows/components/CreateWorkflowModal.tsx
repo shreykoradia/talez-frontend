@@ -31,6 +31,8 @@ const CreateWorkflowModal = () => {
       createWorkfLowMutateFn(values);
       setOpenModal(!openModal);
       refetchWorkflowsFn();
+      setWorkflowCharCounter(0);
+      setWorkflowTitleCounter(0);
     });
 
   const handleInputCounter = (e: React.ChangeEvent<HTMLInputElement>) => {
