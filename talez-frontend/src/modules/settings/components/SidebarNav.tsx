@@ -25,7 +25,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
       {items.map((item) => (
         <Link
           key={item.href}
-          to={item.href}
+          to={item.isDisabled ? "" : item.href}
           className={cn(
             buttonVariants({ variant: "ghost" }),
             item?.isDisabled

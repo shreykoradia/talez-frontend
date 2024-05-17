@@ -1,7 +1,8 @@
 import { setCookie } from "typescript-cookie";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
-import { Button } from "@/shared/ui/ui/button";
+import { Button, buttonVariants } from "@/shared/ui/ui/button";
 import { Input } from "@/shared/ui/ui/input";
 import { toast } from "@/shared/ui/ui/use-toast";
 import { Label } from "@/shared/ui/ui/label";
@@ -11,7 +12,7 @@ import Messy from "@/assets/icons/messy.svg?react";
 import { useLoginForm } from "../hooks/useLoginForm";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/login";
-import { Link } from "react-router-dom";
+import { cn } from "@/shared/lib/utils";
 
 interface loginFormProps {
   email: string;
@@ -91,12 +92,15 @@ const Login = () => {
               <Button type="submit">Sign in with Email</Button>
             </div>
           </form>
-          <p className="text-muted-foreground">
-            New to brainstorming products?{" "}
-            <Link to="/signup" className="text-primary">
-              Signup
-            </Link>
-          </p>
+          <Link className={cn(buttonVariants({ variant: "outline" }))} to={"/"}>
+            Missed something, want to go back?
+          </Link>
+          <Link
+            to={"/signup"}
+            className={cn(buttonVariants({ variant: "link" }))}
+          >
+            New to brainstorming products? Signup
+          </Link>
         </div>
         <div className="maxLg:hidden">
           <Messy height={500} width={500} />
