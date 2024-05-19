@@ -9,8 +9,16 @@ import Sidebar from "@/shared/components/sidebar/Sidebar";
 import Talez from "../talez";
 import TalezView from "../talez/components/TalezView";
 import Settings from "../settings";
+import { useUser } from "@/shared/context/UserProvider";
+import VerifyModal from "@/shared/components/verify-modal/VerifyModal";
 
 const Home = () => {
+  const { user } = useUser();
+
+  if (!user?.isVerified) {
+    return <VerifyModal />;
+  }
+
   return (
     <>
       <ResizablePanelGroup
