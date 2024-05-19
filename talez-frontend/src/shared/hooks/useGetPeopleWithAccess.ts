@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { peopleWithAccess } from "../components/header/api/peopleWithAccess";
+import { sharedUserResponse } from "../types";
 
 const useGetPeopleWithAccess = (workflowId: string | number) => {
   const requestParams = {
@@ -10,7 +11,7 @@ const useGetPeopleWithAccess = (workflowId: string | number) => {
     queryFn: () => peopleWithAccess(requestParams),
   });
   const { isLoading, isError, refetch: refetchPeopleWithAccessFn } = query;
-  const data = query?.data?.data;
+  const data: sharedUserResponse = query?.data?.data;
   return { data, isLoading, isError, refetchPeopleWithAccessFn };
 };
 

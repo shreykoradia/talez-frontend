@@ -27,10 +27,14 @@ import {
   SelectValue,
 } from "@/shared/ui/ui/select";
 import { Separator } from "@/shared/ui/ui/separator";
+import { useUser } from "@/shared/context/UserProvider";
+import useGetWorkflow from "@/modules/workflows/hooks/useGetWorkflow";
 
 const SharePopOver = () => {
   const params = useParams();
+  const { user } = useUser();
   const workflowId = params.workflowId || "";
+  const { data: workflow } = useGetWorkflow(workflowId);
   const { data } = useGetPeopleWithAccess(workflowId);
   const [selectedAccessValue, setSelectedAccessValue] = useState<AccessLevel>(
     AccessLevel.CAN_VIEW
@@ -45,6 +49,22 @@ const SharePopOver = () => {
   const { updateAccessFn } = useUpdateAccess(workflowId);
   const { inviteUserFn } = useInviteUser(workflowId);
   const { removeAccessFn } = useRemoveAccess(workflowId);
+
+  const workflowDetails = workflow?.workflows;
+
+  const userRole = data?.shared_users?.filter(
+    (shared) => shared?.shared_to?._id === user?._id
+  );
+
+  const isUserAuthor =
+    workflowDetails?.filter((workflow) => workflow?._id === workflowId)[0]
+      ?.authorId === user?._id;
+
+  const isFullAccessRole = userRole
+    ? userRole[0]?.role === "full_access"
+    : false;
+
+  const checkRole = isFullAccessRole || isUserAuthor;
 
   const handleInviteClick = async () => {
     try {
@@ -92,11 +112,13 @@ const SharePopOver = () => {
                 setEmailValue(e.target.value);
                 setEmailError(null);
               }}
+              disabled={!checkRole}
             />
             <Button
               type="button"
               variant={"default"}
               onClick={handleInviteClick}
+              disabled={!checkRole}
             >
               Invite
             </Button>
@@ -106,58 +128,60 @@ const SharePopOver = () => {
             <h4 className="text-sm font-medium">People with access</h4>
 
             <div className="grid gap-6 max-h-[500px] overflow-y-scroll no-scrollbar">
-              {data?.shared_users.map((user: peopleWithAccessResponse) => (
-                <div
-                  className="flex items-center justify-between space-x-4"
-                  key={user?._id}
-                >
-                  <div className="flex items-center space-x-4">
-                    <Avatar>
-                      <AvatarImage src="/avatars/03.png" />
-                      <AvatarFallback>
-                        {generateAvatarInitials(user?.shared_to?.email)}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <p className="text-sm font-medium leading-none">
-                        {user?.shared_to?.username}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        {user?.shared_to?.email}
-                      </p>
+              {data?.shared_users &&
+                data?.shared_users.map((user: peopleWithAccessResponse) => (
+                  <div
+                    className="flex items-center justify-between space-x-4"
+                    key={user?._id}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <Avatar>
+                        <AvatarImage src="/avatars/03.png" />
+                        <AvatarFallback>
+                          {generateAvatarInitials(user?.shared_to?.email)}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="text-sm font-medium leading-none">
+                          {user?.shared_to?.username}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {user?.shared_to?.email}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <Select
-                    defaultValue={user?.role || selectedAccessValue}
-                    onValueChange={(value: AccessLevel) => {
-                      if (value === AccessLevel.REMOVE_ACCESS) {
+                    <Select
+                      disabled={!checkRole}
+                      defaultValue={user?.role || selectedAccessValue}
+                      onValueChange={(value: AccessLevel) => {
+                        if (value === AccessLevel.REMOVE_ACCESS) {
+                          const values = {
+                            email: user?.shared_to?.email,
+                          };
+                          removeAccessFn(values);
+                          return;
+                        }
+                        setSelectedAccessValue(value);
                         const values = {
                           email: user?.shared_to?.email,
+                          role: value,
                         };
-                        removeAccessFn(values);
-                        return;
-                      }
-                      setSelectedAccessValue(value);
-                      const values = {
-                        email: user?.shared_to?.email,
-                        role: value,
-                      };
-                      updateAccessFn(values);
-                    }}
-                  >
-                    <SelectTrigger className="ml-auto w-[110px]">
-                      <SelectValue placeholder="Select" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {accessOptions.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              ))}
+                        updateAccessFn(values);
+                      }}
+                    >
+                      <SelectTrigger className="ml-auto w-[110px]">
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {accessOptions.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ))}
             </div>
           </div>
         </PopoverContent>
