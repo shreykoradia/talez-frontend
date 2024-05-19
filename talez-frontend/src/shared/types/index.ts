@@ -68,3 +68,21 @@ export interface User {
 export type UserResponse = {
   user: User;
 };
+
+export interface sharedUserResponse {
+  shared_users?: SharedUsersEntity[] | null;
+}
+export interface SharedUsersEntity {
+  _id: string;
+  workflow: string;
+  shared_by: string;
+  role: string;
+  shared_at: string;
+  __v: number;
+  shared_to: SharedTo;
+}
+export interface SharedTo {
+  _id: string;
+  username: string;
+  email: string;
+}

@@ -13,3 +13,11 @@ export type workflowRequest = {
   workFlowTitle: string;
   description: string;
 };
+
+export interface workflowResponseProp {
+  workflowData: WorkflowData;
+}
+export interface WorkflowData {
+  totalPages: number;
+  workflows?: workflowResponse[];
+}
