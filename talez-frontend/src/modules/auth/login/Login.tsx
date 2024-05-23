@@ -29,7 +29,7 @@ const Login = () => {
         setCookie("accessToken", res?.data?.access_token);
       }
       resetForm();
-      navigate("/workflows");
+      navigate("/dashboard");
     },
     onError: (err) => {
       toast({

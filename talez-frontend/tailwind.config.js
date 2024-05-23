@@ -14,6 +14,14 @@ module.exports = {
       padding: "2rem",
     },
     extend: {
+      fontFamily: {
+        spaceGroteskLight: "spaceGroteskLight",
+        spaceGroteskRegular: "spaceGroteskRegular",
+        spaceGroteskMedium: "spaceGroteskMedium",
+        spaceGroteskSemiBold: "spaceGroteskSemiBold",
+        spaceGroteskBold: "spaceGroteskBold",
+      },
+
       screens: {
         sm: "640px",
         md: "768px",
@@ -67,6 +75,7 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        divamecha: "#EEEEF0",
         crimsonred: "#DC143C",
         pattensBlue: "#E1F1FF",
         lilyScentGreen: "#e8e8bf",
