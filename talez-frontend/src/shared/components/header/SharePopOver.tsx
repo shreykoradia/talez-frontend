@@ -87,7 +87,7 @@ const SharePopOver = () => {
     <>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <Button variant={"ghost"}>Share</Button>
+          <Button variant={"outline"}>Share</Button>
         </PopoverTrigger>
         <PopoverContent className="w-[500px] mx-2 my-1">
           <div>

@@ -18,13 +18,8 @@
   font-weight: 500;
 }
 @font-face {
-  font-family: "spaceGroteskSemiBold";
+  font-family: "spaceGroteskBold";
   src: url("/fonts/SpaceGrotesk/SpaceGrotesk-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-}
-@font-face {
-  font-family: "spaceGrotesk";
-  src: url("/fonts/SpaceGrotesk/SpaceGrotesk-Bold.ttf") format("truetype");
   font-weight: 700;
 }
 
@@ -32,21 +27,20 @@
   :root {
     --background: 60 4% 4.9%; /* #0D0D0C */
     --foreground: 56 0% 33%; /* #878787 */
-    --accent: 13 26% 26%; /* #714443 */
+    --accent: 330, 75%, 26.67%; /* #771144 */
     --card: var(--background);
     --card-foreground: var(--foreground);
     --popover: var(--background);
     --popover-foreground: var(--foreground);
-    --primary: 0 0% 100%; /* Use your desired color */
-    --primary-foreground: var(--foreground);
-    --secondary: var(--foreground); /* Use your desired color */
-    --secondary-foreground: var(--accent);
-    --muted: var(--foreground); /* Use your desired color */
-    --muted-foreground: var(--foreground); /* Use your desired color */
-    --destructive: var(--accent); /* Use your desired color */
-    --destructive-foreground: var(--primary-foreground);
-    --border: var(--foreground); /* Use your desired color */
-    --input: var(--foreground);
+    --primary: 331.22, 63.79%, 45.49%; /* #BE2A71*/
+    --primary-foreground: 331.33, 63.13%, 35.1%; /* #922157 */
+    --secondary: 334, 100%, 76.47%; /* #FF87BB */
+    --secondary-foreground: 336.25, 100%, 90.59%; /* #FFCFE2 */
+    --muted: var(--foreground);
+    --muted-foreground: var(--secondary);
+    --destructive: 348, 83.33%, 47.06%; /* #DC143C */
+    --destructive-foreground: 356.14, 83.47%, 52.55%; /* #EB212E  */
+    --input: var(--primary);
     --ring: var(--primary);
     --radius: 0.5rem;
   }

@@ -18,7 +18,6 @@ module.exports = {
         spaceGroteskLight: "spaceGroteskLight",
         spaceGroteskRegular: "spaceGroteskRegular",
         spaceGroteskMedium: "spaceGroteskMedium",
-        spaceGroteskSemiBold: "spaceGroteskSemiBold",
         spaceGroteskBold: "spaceGroteskBold",
       },
 
@@ -42,7 +41,6 @@ module.exports = {
         minMaxSm: { min: "640px", max: "767px" },
       },
       colors: {
-        border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
