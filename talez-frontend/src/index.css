@@ -34,8 +34,8 @@
     --popover-foreground: var(--foreground);
     --primary: 331.22, 63.79%, 45.49%; /* #BE2A71*/
     --primary-foreground: 331.33, 63.13%, 35.1%; /* #922157 */
-    --secondary: 334, 100%, 76.47%; /* #FF87BB */
-    --secondary-foreground: 336.25, 100%, 90.59%; /* #FFCFE2 */
+    --secondary: 333.19, 62.67%, 14.71%; /* #3D0E23 */
+    --secondary-foreground: 328.24, 100%, 16.67%; /* #55002D */
     --muted: var(--foreground);
     --muted-foreground: var(--secondary);
     --destructive: 348, 83.33%, 47.06%; /* #DC143C */
@@ -96,7 +96,7 @@
 
 @layer base {
   body {
-    @apply bg-background text-divamecha;
+    @apply bg-gradient-bg font-spaceGroteskRegular text-divamecha;
   }
 }
 

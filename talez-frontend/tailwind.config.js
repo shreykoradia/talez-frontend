@@ -14,6 +14,14 @@ module.exports = {
       padding: "2rem",
     },
     extend: {
+      transitionProperty: {
+        transform: "transform",
+        opacity: "opacity",
+      },
+      backgroundImage: {
+        "gradient-bg":
+          "linear-gradient( 215deg,hsl(60deg 4% 5%) 72%,hsl(335deg 51% 11%) 93%,hsl(333deg 61% 14%) 99%,hsl(332deg 66% 16%) 101%,hsl(331deg 69% 19%) 101%,hsl(331deg 71% 20%) 102%,hsl(330deg 72% 22%) 101%,hsl(330deg 73% 24%) 101%,hsl(330deg 74% 25%) 101%,hsl(330deg 75% 27%) 100%)",
+      },
       fontFamily: {
         spaceGroteskLight: "spaceGroteskLight",
         spaceGroteskRegular: "spaceGroteskRegular",

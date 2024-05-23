@@ -20,10 +20,12 @@ const Home = () => {
             <Route path="/tale/:taleId" element={<TalezView />} />
             <Route path="/settings/*" element={<Settings />} />
           </Routes> */}
-      <HeaderV2 />
-      <Routes>
-        <Route index path="/dashboard" element={<Dashboard />} />
-      </Routes>
+      <div className="talez_application_container">
+        <HeaderV2 />
+        <Routes>
+          <Route index path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </div>
     </>
   );
 };

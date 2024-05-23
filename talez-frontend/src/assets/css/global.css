@@ -1,19 +1,19 @@
-.error_control{
-    @apply text-xs text-crimsonred;    
+.error_control {
+  @apply text-xs text-crimsonred;
 }
 
-.card_hover_primary{
-    @apply hover:bg-primary-foreground;
+.card_hover_primary {
+  @apply hover:bg-primary-foreground;
 }
 
-.upvoted{
-    @apply stroke-primary fill-primary;
+.upvoted {
+  @apply stroke-primary fill-primary;
 }
 
-.downvoted{
-    @apply stroke-primary fill-primary;
+.downvoted {
+  @apply stroke-primary fill-primary;
 }
 
-.talez_landing_container{
-    @apply mx-auto max-w-[1800px] w-full overflow-hidden h-[100vh];
+.talez_application_container {
+  @apply mx-auto max-w-[1800px] w-full overflow-hidden h-[100vh];
 }
