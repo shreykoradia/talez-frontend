@@ -9,6 +9,7 @@ import clsx from "clsx";
 
 const HeaderV2 = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <>
       <header className={styles.header_container}>
@@ -51,11 +52,16 @@ const HeaderV2 = () => {
         })}
       >
         <ul className="grid gap-4 place-content-center items-center py-8">
-          {["Dashboard", "Help", "Account", "Logout"].flatMap((navLink) => (
-            <li className="text-4xl font-spaceGroteskBold text-divamecha hover:text-accent">
-              {navLink}
-            </li>
-          ))}
+          {["Dashboard", "Help", "Account", "Logout"].flatMap(
+            (navLink, key) => (
+              <li
+                key={key}
+                className="text-4xl font-spaceGroteskBold text-divamecha hover:text-accent"
+              >
+                {navLink}
+              </li>
+            )
+          )}
         </ul>
       </nav>
     </>

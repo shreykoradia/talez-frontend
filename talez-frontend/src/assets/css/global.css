@@ -17,3 +17,16 @@
 .talez_application_container {
   @apply mx-auto max-w-[1800px] w-full overflow-hidden h-[100vh];
 }
+
+/* React Flow Styles */
+
+.dashboard_workflow_container .react-flow__node-default {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0px !important;
+  text-align: inherit !important;
+}
+
+.dashboard_workflow_container .react-flow__handle {
+  display: none !important;
+}

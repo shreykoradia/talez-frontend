@@ -1,8 +1,10 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import "reactflow/dist/style.css";
 
 import App from "./App.tsx";
+
 import "./index.css";
 import { Toaster } from "./shared/ui/ui/toaster.tsx";
 

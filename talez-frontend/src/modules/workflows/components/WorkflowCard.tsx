@@ -27,20 +27,18 @@ const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
 
   return (
     <Card
-      className="w-[21.875rem] cursor-pointer card_hover_primary"
+      className="w-[21.875rem] cursor-pointer"
       onClick={() => onWorkflowCardClick(workflow?._id)}
     >
       <CardHeader>
-        <CardTitle className="font-medium hover:text-primary">
-          {workflow?.workFlowTitle}
-        </CardTitle>
+        <CardTitle className="font-medium">{workflow?.workFlowTitle}</CardTitle>
         <CardDescription>{`Authored by ${workflow?.authorName}`}</CardDescription>
       </CardHeader>
       <CardContent className="h-[9.375rem] text-justify break-words rounded-lg overflow-y-auto no-scrollbar">
         {workflow?.description}
       </CardContent>
       <CardFooter>
-        <div className="flex justify-end w-full pt-1">
+        <div className="flex justify-end w-full pt-1 px-2">
           <div className="flex justify-end items-center w-full">
             <TooltipProvider>
               <Tooltip>
@@ -60,7 +58,7 @@ const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
                     <Archive size={16} />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent className="text-muted-foreground">
+                <TooltipContent className="text-accent-foreground border border-accent">
                   <p>Archives</p>
                 </TooltipContent>
               </Tooltip>
@@ -84,7 +82,7 @@ const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
                     <Heart size={16} />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent className="text-muted-foreground">
+                <TooltipContent className="text-accent-foreground border border-accent">
                   <p>Favourites</p>
                 </TooltipContent>
               </Tooltip>
