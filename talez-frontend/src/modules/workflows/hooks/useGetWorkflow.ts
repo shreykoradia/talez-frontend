@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getWorkflow } from "../api/getWorkflow";
-import { WorkflowData } from "../types";
+import { workflowResponseProp } from "../types";
 
 const useGetWorkflow = (workflowId: string) => {
   const query = useQuery({
@@ -13,7 +13,7 @@ const useGetWorkflow = (workflowId: string) => {
     refetch: refetchWorkflowsFn,
     isRefetching,
   } = query;
-  const data: WorkflowData = query?.data?.data;
+  const data: workflowResponseProp = query?.data?.data;
 
   return { data, isLoading, isRefetching, isError, refetchWorkflowsFn };
 };

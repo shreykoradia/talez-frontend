@@ -2,6 +2,7 @@ import { LIMIT } from "@/shared/constant";
 import { useQuery } from "@tanstack/react-query";
 
 import { getWorkflows } from "../api/getWorkflows";
+import { WorkflowData } from "../types";
 
 const useGetWorkflows = (offset?: number) => {
   const query = useQuery({
@@ -14,7 +15,7 @@ const useGetWorkflows = (offset?: number) => {
     refetch: refetchWorkflowsFn,
     isRefetching,
   } = query;
-  const data = query?.data?.data;
+  const data: WorkflowData = query?.data?.data;
   return { data, isLoading, isRefetching, isError, refetchWorkflowsFn };
 };
 

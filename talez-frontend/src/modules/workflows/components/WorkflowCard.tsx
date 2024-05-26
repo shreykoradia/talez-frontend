@@ -27,18 +27,75 @@ const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
 
   return (
     <Card
-      className="w-[21.875rem] cursor-pointer"
+      className="maxMd:w-full maxMd:!border-x-transparent cursor-pointer w-[21.875rem]"
       onClick={() => onWorkflowCardClick(workflow?._id)}
     >
-      <CardHeader>
-        <CardTitle className="font-medium">{workflow?.workFlowTitle}</CardTitle>
-        <CardDescription>{`Authored by ${workflow?.authorName}`}</CardDescription>
+      <CardHeader className="maxMd:px-0">
+        <div className="flex justify-between  items-center">
+          <div className="maxMd:px-4 w-full">
+            <CardTitle className="font-medium">
+              {workflow?.workFlowTitle}
+            </CardTitle>
+            <CardDescription>{`Authored by ${workflow?.authorName}`}</CardDescription>
+          </div>
+          <div className="flex justify-end w-full py-1 px-2 md:hidden">
+            <div className="flex justify-end items-center w-full">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant={"link"}
+                      className={styles.workflow_button_container}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toast({
+                          title: "Can't wait anymore for this feature to ship!",
+                          description:
+                            "Ah you might need to wait for the next iteration to add this to archives",
+                        });
+                      }}
+                    >
+                      <Archive size={16} />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent className="text-accent-foreground border border-accent">
+                    <p>Archives</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant={"link"}
+                      className={styles.workflow_button_container}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toast({
+                          title: "Can't wait anymore for this feature to ship!",
+                          description:
+                            "Ah you might need to wait for the next iteration to add this to favourites",
+                        });
+                      }}
+                    >
+                      <Heart size={16} />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent className="text-accent-foreground border border-accent">
+                    <p>Favourites</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          </div>
+        </div>
       </CardHeader>
       <CardContent className="h-[9.375rem] text-justify break-words rounded-lg overflow-y-auto no-scrollbar">
         {workflow?.description}
       </CardContent>
-      <CardFooter>
-        <div className="flex justify-end w-full pt-1 px-2">
+      <CardFooter className="maxMd:hidden px-0">
+        <div className="flex justify-end w-full py-1 px-2">
           <div className="flex justify-end items-center w-full">
             <TooltipProvider>
               <Tooltip>

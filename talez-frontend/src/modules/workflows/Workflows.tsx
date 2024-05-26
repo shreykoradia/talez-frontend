@@ -84,31 +84,30 @@ const Workflows = () => {
           )}
         </div>
       </div>
-      {workflowsData?.workflows?.length > 0 &&
-        workflowsData?.totalPages > 1 && (
-          <div className="flex gap-4 justify-center items-center">
-            {workflowOffset > 0 ? (
-              <Button
-                variant={"link"}
-                onClick={onFetchPrevious}
-                disabled={workflowOffset <= 0}
-              >
-                Go to Previous
-              </Button>
-            ) : null}
+      {workflowsData.workflows && workflowsData?.totalPages > 1 && (
+        <div className="flex gap-4 justify-center items-center">
+          {workflowOffset > 0 ? (
             <Button
               variant={"link"}
-              onClick={onFetchMore}
-              disabled={
-                workflowOffset + LIMIT >= workflowsData?.totalPages * LIMIT ||
-                !workflowsData ||
-                workflowsData.workflows.length < LIMIT
-              }
+              onClick={onFetchPrevious}
+              disabled={workflowOffset <= 0}
             >
-              Show More
+              Go to Previous
             </Button>
-          </div>
-        )}
+          ) : null}
+          <Button
+            variant={"link"}
+            onClick={onFetchMore}
+            disabled={
+              workflowOffset + LIMIT >= workflowsData?.totalPages * LIMIT ||
+              !workflowsData ||
+              workflowsData.workflows.length < LIMIT
+            }
+          >
+            Show More
+          </Button>
+        </div>
+      )}
     </>
   );
 };
