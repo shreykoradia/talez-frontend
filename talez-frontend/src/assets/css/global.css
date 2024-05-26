@@ -30,3 +30,7 @@
 .dashboard_workflow_container .react-flow__handle {
   display: none !important;
 }
+
+.dashboard_workflow_container .react-flow__nodes {
+  @apply translate-x-[10%] translate-y-[10%] minMaxMdXl:translate-x-[2%] minMaxMdXl:translate-y-[15%];
+}
