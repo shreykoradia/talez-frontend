@@ -18,8 +18,15 @@ import {
   TooltipTrigger,
 } from "@/shared/ui/ui/tooltip";
 import { toast } from "@/shared/ui/ui/use-toast";
+import clsx from "clsx";
 
-const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
+const WorkflowCard = ({
+  workflow,
+  index,
+}: {
+  workflow: workflowResponse;
+  index: number;
+}) => {
   const navigate = useNavigate();
   const onWorkflowCardClick = (id: string) => {
     navigate(`/${id}/tale`);
@@ -27,11 +34,14 @@ const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
 
   return (
     <Card
-      className="maxMd:w-full maxMd:!border-x-transparent cursor-pointer w-[21.875rem]"
+      className={clsx(
+        "maxMd:w-full maxMd:rounded-none maxMd:border-0 maxMd:!border-t maxMd:border-t-foreground cursor-pointer w-[21.875rem]",
+        { "maxMd:!border-t-0": index === 0 }
+      )}
       onClick={() => onWorkflowCardClick(workflow?._id)}
     >
       <CardHeader className="maxMd:px-0">
-        <div className="flex justify-between  items-center">
+        <div className="flex justify-between items-center">
           <div className="maxMd:px-4 w-full">
             <CardTitle className="font-medium">
               {workflow?.workFlowTitle}
