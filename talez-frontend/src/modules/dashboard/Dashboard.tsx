@@ -22,7 +22,10 @@ const Dashboard = () => {
         type: "default",
         data: {
           label: (
-            <WorkflowCard workflow={workflowData?.workflows?.[workflow]} />
+            <WorkflowCard
+              index={workflow}
+              workflow={workflowData?.workflows?.[workflow]}
+            />
           ),
         },
         position: { x: x, y: y },
