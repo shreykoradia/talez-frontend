@@ -56,11 +56,8 @@ const CreateTalesModal = () => {
     <>
       <Dialog open={openModal} onOpenChange={setOpenModal}>
         <DialogTrigger asChild>
-          <Button
-            variant={"default"}
-            className="flex gap-1 items-center text-sm"
-          >
-            <Plus size={14} className="mt-[0.125rem]" />
+          <Button variant={"outline"}>
+            <Plus size={16} className="mr-2" />
             Create Talez
           </Button>
         </DialogTrigger>

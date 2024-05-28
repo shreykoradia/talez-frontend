@@ -17,7 +17,7 @@ const Talez = () => {
 
   const requestParams = {
     offset: talesOffset,
-    workflowId: params?.workflowId || 0,
+    workflowId: params?.workflowId || "",
   };
   const { data, isLoadingTales, isRefetchingTales } =
     useGetTales(requestParams);
@@ -102,7 +102,7 @@ const Talez = () => {
             disabled={
               talesOffset + LIMIT >= data?.totalPages * LIMIT ||
               !data ||
-              data.length < LIMIT
+              data?.length < LIMIT
             }
           >
             Show More

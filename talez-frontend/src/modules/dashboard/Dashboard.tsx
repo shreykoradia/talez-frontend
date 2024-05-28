@@ -49,7 +49,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="absolute flex justify-between items-center px-2 py-4 w-full md:hidden">
+      <section className="absolute flex justify-between items-center px-2 py-4 w-full md:hidden">
         <p className="text-2xl maxMd:hidden">Workflows</p>
         <div className="flex items-center gap-4 z-10 maxMd:justify-between maxMd:w-full">
           <CreateWorkflowModal />
@@ -57,7 +57,7 @@ const Dashboard = () => {
             <Settings />
           </button>
         </div>
-      </div>
+      </section>
       <div className={styles.dashboard_parent_container}>
         <div
           className="dashboard_workflow_container w-full mx-auto maxMd:hidden"

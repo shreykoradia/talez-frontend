@@ -33,7 +33,7 @@ const TalezCard = ({ tale }: talezCardProps) => {
   return (
     <>
       <Card
-        className="cursor-pointer card_hover_primary"
+        className="cursor-pointer border-foreground"
         onClick={() => onTalezCardClick(tale?._id)}
       >
         <CardHeader>

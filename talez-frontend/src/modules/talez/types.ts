@@ -17,5 +17,5 @@ export type talesResponseProps = {
 
 export interface talesProps {
   totalPages: number | string;
-  tales: talesResponseProps;
+  tales: talesResponseProps[];
 }
