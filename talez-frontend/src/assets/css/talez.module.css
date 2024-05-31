@@ -15,8 +15,11 @@
 
 /* Talez V2 StyleSheet */
 .talez_main_container {
-  @apply maxMd:h-[calc(100%-150px)] md:h-[calc(100%-170px)] w-full;
+  @apply maxMd:h-[calc(100vh-138px)]  md:h-[calc(100%-170px)] w-full;
+}
+.talez_parent_view_container {
+  @apply w-full grid grid-cols-2 gap-2 place-content-center h-full maxMd:grid-cols-1;
 }
 .talez_view_container {
-  @apply w-full h-full maxMd:mt-16 md:mt-20 overflow-y-scroll maxMd:px-4 px-16 flex flex-col gap-4;
+  @apply w-full h-full maxMd:mt-16 md:mt-20 overflow-y-scroll maxMd:px-0 px-16 flex flex-col gap-4 maxMd:gap-0;
 }

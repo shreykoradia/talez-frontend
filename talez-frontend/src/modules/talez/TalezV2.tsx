@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import TalezCard from "./components/TalezCard";
 import { talesResponseProps } from "./types";
+import clsx from "clsx";
 
 const TalezV2 = () => {
   const params = useParams();
@@ -25,10 +26,12 @@ const TalezV2 = () => {
         </div>
       </section>
       <div className={styles.talez_main_container}>
-        <div className={styles.talez_view_container}>
-          {talesData?.tales?.map((tale: talesResponseProps) => (
-            <TalezCard tale={tale} key={tale?._id} />
-          ))}
+        <div className={styles.talez_parent_view_container}>
+          <div className={clsx(styles.talez_view_container, "no-scrollbar")}>
+            {talesData?.tales?.map((tale: talesResponseProps) => (
+              <TalezCard tale={tale} key={tale?._id} />
+            ))}
+          </div>
         </div>
       </div>
     </>
