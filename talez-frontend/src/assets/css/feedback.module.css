@@ -1,16 +1,15 @@
-.feedback_card_container{
-    @apply w-[22.5rem] max-w-full;
+.feedback_card_container {
+  @apply w-full !border-0 border-muted !border-b !rounded-none;
 }
 
 .feedback_card_container:hover .open_feedback_button {
-    @apply !block bg-lilyScentGreen text-maze py-1 px-2 text-xs rounded-md;
+  @apply !block bg-background text-primary border border-input px-2 text-xs rounded-sm;
 }
 
-.feedback_card_content{
-    @apply w-full overflow-hidden break-words text-justify text-sm;
+.feedback_card_content {
+  @apply w-full overflow-hidden break-words text-justify text-sm;
 }
 
-.feedback_card_footer{
-    @apply flex justify-end items-center;
+.feedback_card_footer {
+  @apply flex justify-end items-center;
 }
-

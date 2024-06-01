@@ -23,9 +23,7 @@ const FeedbackCard = ({
 
   return (
     <>
-      <Card
-        className={clsx(styles.feedback_card_container, "card_hover_primary")}
-      >
+      <Card className={styles.feedback_card_container}>
         <CardHeader className={styles.feedback_card_header}>
           <CardTitle className="text-md">
             <div className="flex justify-between items-center">

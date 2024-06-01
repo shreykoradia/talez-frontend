@@ -8,7 +8,6 @@ import {
 } from "@/shared/ui/ui/card";
 
 import { talesResponseProps } from "../types";
-import { useNavigate } from "react-router-dom";
 import {
   Tooltip,
   TooltipContent,
@@ -21,13 +20,12 @@ import { BookmarkCheck } from "lucide-react";
 
 interface talezCardProps {
   tale: talesResponseProps;
+  handleCardClick: (taleId: string) => void;
 }
 
-const TalezCard = ({ tale }: talezCardProps) => {
-  const navigate = useNavigate();
-
+const TalezCard = ({ tale, handleCardClick }: talezCardProps) => {
   const onTalezCardClick = (id: string) => {
-    navigate(`/tale/${id}`);
+    handleCardClick(id);
   };
 
   return (
