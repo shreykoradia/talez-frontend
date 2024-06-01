@@ -50,7 +50,7 @@ const TalezV2 = () => {
 
   return (
     <>
-      <section className="absolute flex justify-between items-center px-2 py-4 w-full md:p-8">
+      <section className="flex justify-between items-center px-2 py-4 w-full md:p-8">
         <p className="text-2xl maxMd:hidden">Talez</p>
         <div className="flex items-center gap-4 z-10 maxMd:justify-between maxMd:w-full">
           <CreateTalesModal />
