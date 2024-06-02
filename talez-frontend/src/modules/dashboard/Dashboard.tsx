@@ -49,7 +49,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <section className="absolute flex justify-between items-center px-2 py-4 w-full md:hidden">
+      <section className="absolute flex justify-between items-center px-2 py-4 w-full md:p-8 md:max-w-[112.5rem]">
         <p className="text-2xl maxMd:hidden">Workflows</p>
         <div className="flex items-center gap-4 z-10 maxMd:justify-between maxMd:w-full">
           <CreateWorkflowModal />
@@ -66,15 +66,6 @@ const Dashboard = () => {
             width: "100%",
           }}
         >
-          <div className="absolute flex justify-between items-center p-8 w-full maxMd:hidden">
-            <p className="text-2xl maxMd:hidden">Workflows</p>
-            <div className="flex items-center gap-4 z-10 maxMd:justify-between maxMd:w-full">
-              <CreateWorkflowModal />
-              <button>
-                <Settings />
-              </button>
-            </div>
-          </div>
           <ReactFlow
             zoomOnScroll={false}
             zoomOnPinch={true}
