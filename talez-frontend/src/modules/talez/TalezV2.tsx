@@ -48,6 +48,19 @@ const TalezV2 = () => {
 
   dayjs.extend(relativeTime);
 
+  if (talesData?.tales.length === 0) {
+    return (
+      <>
+        <section className="flex flex-col gap-2 justify-center items-center h-[calc(100%-74px)] w-full">
+          <p className="text-balance text-center">
+            Oh boi, No talez to brainstorm or get feedbacks, create a tale to
+            brainstorm your product by clicking button below.
+          </p>
+          <CreateTalesModal />
+        </section>
+      </>
+    );
+  }
   return (
     <>
       <section className="flex justify-between items-center px-2 py-4 w-full md:p-8">
@@ -93,7 +106,20 @@ const TalezV2 = () => {
                       <TaleDetailView tale={taleDetail?.description} />
                     </TabsContent>
                     <TabsContent value="feedback">
-                      <div className="flex flex-col gap-4 w-full">
+                      <div className="flex flex-col gap-4 w-full h-full">
+                        {feedbackData?.feedbacks.length === 0 ? (
+                          <>
+                            <section className="flex flex-col gap-2 justify-center items-center h-full w-full">
+                              <p className="text-balance text-center">
+                                No No No, There are no feedbacks on your talez
+                                to brainstorm the solutions, get feedbacks by
+                                sharing it with your team add it by writing the
+                                emails in the share pop over above or create a
+                                feedback meanwhile they join by clicking below
+                              </p>
+                            </section>
+                          </>
+                        ) : null}
                         {feedbackData?.feedbacks.map(
                           (feedback: feedbackData) => (
                             <FeedbackCard

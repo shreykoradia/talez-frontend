@@ -3,7 +3,6 @@ import ReactFlow, { Background } from "reactflow";
 import { Settings } from "lucide-react";
 
 import styles from "@/assets/css/dashboard.module.css";
-import { LIMIT } from "@/shared/constant";
 
 import useGetWorkflows from "../workflows/hooks/useGetWorkflows";
 import WorkflowCard from "../workflows";
@@ -14,8 +13,13 @@ const Dashboard = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const generateInitialNode = () => {
+    if (!workflowData?.workflows) return;
     const element = [];
-    for (let workflow = 0; workflow < LIMIT; workflow++) {
+    for (
+      let workflow = 0;
+      workflow < workflowData?.workflows?.length;
+      workflow++
+    ) {
       const x = isMobile ? 0 : (workflow % 3) * 450;
       const y = isMobile ? workflow * 350 : Math.floor(workflow / 3) * 350;
       if (!workflowData?.workflows) return;
@@ -48,6 +52,18 @@ const Dashboard = () => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  if (workflowData?.workflows?.length === 0) {
+    return (
+      <section className="flex flex-col gap-2 justify-center items-center h-[calc(100%-74px)] w-full">
+        <p className="text-balance text-center">
+          Oopsie, No workflows to add tales, create a workflow to add tales for
+          your product by clicking button below.
+        </p>
+        <CreateWorkflowModal />
+      </section>
+    );
+  }
 
   return (
     <>
