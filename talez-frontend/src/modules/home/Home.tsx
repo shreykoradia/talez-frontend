@@ -5,6 +5,7 @@ import VerifyModal from "@/shared/components/verify-modal/VerifyModal";
 import Dashboard from "../dashboard";
 import HeaderV2 from "@/shared/components/header/HeaderV2";
 import TalezV2 from "../talez/TalezV2";
+import TalezView from "../talez/TalezView";
 
 const Home = () => {
   const { user } = useUser();
@@ -25,7 +26,8 @@ const Home = () => {
         <HeaderV2 />
         <Routes>
           <Route index path="/dashboard" element={<Dashboard />} />
-          <Route path="/:workflowId/tale" index element={<TalezV2 />} />
+          <Route path="/:workflowId/talez" index element={<TalezV2 />} />
+          <Route path="/:taleId/tale" element={<TalezView />   } />
         </Routes>
       </div>
     </>

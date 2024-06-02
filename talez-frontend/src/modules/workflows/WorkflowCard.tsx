@@ -29,13 +29,13 @@ const WorkflowCard = ({
 }) => {
   const navigate = useNavigate();
   const onWorkflowCardClick = (id: string) => {
-    navigate(`/${id}/tale`);
+    navigate(`/${id}/talez`);
   };
 
   return (
     <Card
       className={clsx(
-        "maxMd:w-full maxMd:rounded-none maxMd:border-0 maxMd:!border-t maxMd:border-t-foreground cursor-pointer w-[21.875rem]",
+        "maxMd:w-full maxMd:rounded-none maxMd:border-0 maxMd:!border-b maxMd:border-b-foreground cursor-pointer w-[21.875rem]",
         { "maxMd:!border-t-0": index === 0 }
       )}
       onClick={() => onWorkflowCardClick(workflow?._id)}
@@ -101,7 +101,7 @@ const WorkflowCard = ({
           </div>
         </div>
       </CardHeader>
-      <CardContent className="h-[9.375rem] text-justify break-words rounded-lg overflow-y-auto no-scrollbar">
+      <CardContent className="h-[9.375rem] maxMd:h-20 text-balance text-justify break-words rounded-lg overflow-y-auto no-scrollbar">
         {workflow?.description}
       </CardContent>
       <CardFooter className="maxMd:hidden px-0">

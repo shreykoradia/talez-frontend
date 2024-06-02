@@ -6,7 +6,7 @@ import styles from "@/assets/css/talez.module.css";
 import CreateTalesModal from "./components/CreateTalesModal";
 import { Settings } from "lucide-react";
 import { useGetTales } from "./hooks/useGetTales";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import TalezCard from "./components/TalezCard";
 import { talesResponseProps } from "./types";
@@ -26,12 +26,16 @@ import { feedbackData } from "../feedbacks/types";
 import FeedbackViewModal from "../feedbacks/FeedbackViewModal";
 
 const TalezV2 = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const workflowId = params.workflowId || "";
   const [offset] = useState<number>(0);
   const [selectedTale, setSelectedTale] = useState<string | null>(null);
   const { data: talesData } = useGetTales({ workflowId, offset });
   const handleTalezCardClick = (taleId: string) => {
+    if (window.innerWidth <= 768) {
+      navigate(`/${taleId}/tale`);
+    }
     setSelectedTale(taleId);
   };
   const { data: taleDetail } = useGetTaleById({ taleId: selectedTale || "" });

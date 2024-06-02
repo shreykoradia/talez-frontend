@@ -14,9 +14,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/shared/ui/ui/tooltip";
-import { Button } from "@/shared/ui/ui/button";
 import { toast } from "@/shared/ui/ui/use-toast";
 import { BookmarkCheck } from "lucide-react";
+import { Button } from "@/shared/ui/ui/button";
 
 interface talezCardProps {
   tale: talesResponseProps;
@@ -50,7 +50,6 @@ const TalezCard = ({ tale, handleCardClick }: talezCardProps) => {
                 <TooltipTrigger asChild>
                   <Button
                     variant={"link"}
-                    className="hover:!text-primary hover:!bg-pattensBlue"
                     onClick={(e) => {
                       e.stopPropagation();
                       toast({
@@ -63,7 +62,7 @@ const TalezCard = ({ tale, handleCardClick }: talezCardProps) => {
                     <BookmarkCheck size={16} />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent className="text-muted-foreground">
+                <TooltipContent>
                   <p>Bookmark</p>
                 </TooltipContent>
               </Tooltip>
