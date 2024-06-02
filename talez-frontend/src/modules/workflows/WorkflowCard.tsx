@@ -9,7 +9,7 @@ import {
 import { Archive, Heart } from "lucide-react";
 import styles from "@/assets/css/workflow.module.css";
 import { Button } from "@/shared/ui/ui/button";
-import { workflowResponse } from "../types";
+import { workflowResponse } from "./types";
 import { useNavigate } from "react-router-dom";
 import {
   Tooltip,

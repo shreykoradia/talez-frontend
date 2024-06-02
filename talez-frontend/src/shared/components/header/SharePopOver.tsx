@@ -50,7 +50,7 @@ const SharePopOver = () => {
   const { inviteUserFn } = useInviteUser(workflowId);
   const { removeAccessFn } = useRemoveAccess(workflowId);
 
-  const workflowDetails = workflow?.workflows;
+  const workflowDetails = workflow?.workflowData?.workflows;
 
   const userRole = data?.shared_users?.filter(
     (shared) => shared?.shared_to?._id === user?._id

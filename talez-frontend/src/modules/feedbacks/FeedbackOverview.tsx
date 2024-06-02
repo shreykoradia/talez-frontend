@@ -15,7 +15,6 @@ import {
 import FeedbackCard from "./FeedbackCard";
 import useGetFeedbacks from "./hooks/useGetFeedbacks";
 import { useParams } from "react-router-dom";
-import { feedbackData } from "./types";
 import FeedbackViewModal from "./FeedbackViewModal";
 import FeedbackLoader from "@/shared/components/loaders/FeedbackLoader";
 import { LIMIT } from "@/shared/constant";
@@ -66,19 +65,15 @@ const FeedbackOverview = () => {
               ))}
             {!isFetchingNextPage &&
               !isLoadingFeedback &&
-              feedbackData?.map((data, index) => (
+              feedbackData?.feedbacks.map((data, index) => (
                 <React.Fragment key={index}>
-                  {data?.data.feedbacks.feedbacks.map(
-                    (feedback: feedbackData) => (
-                      <FeedbackCard
-                        key={feedback?._id}
-                        feedbackData={feedback}
-                        onOpenViewMode={(feedbackId: string) =>
-                          handleViewModeChange(feedbackId)
-                        }
-                      />
-                    )
-                  )}
+                  <FeedbackCard
+                    key={data?._id}
+                    feedbackData={data}
+                    onOpenViewMode={(feedbackId: string) =>
+                      handleViewModeChange(feedbackId)
+                    }
+                  />
                 </React.Fragment>
               ))}
             {!hasNextPage ? (

@@ -10,7 +10,7 @@ const useCreateTales = () => {
   const queryParams = useParams();
 
   const params = {
-    workflowId: queryParams?.workflowId || 0,
+    workflowId: queryParams?.workflowId || "",
   };
 
   const { refetchTalesFn } = useGetTales({
