@@ -24,6 +24,7 @@ import useGetFeedbacks from "../feedbacks/hooks/useGetFeedbacks";
 import FeedbackCard from "../feedbacks/FeedbackCard";
 import { feedbackData } from "../feedbacks/types";
 import FeedbackViewModal from "../feedbacks/FeedbackViewModal";
+import CreateFeedbackModal from "../feedbacks/component/CreateFeedbackModal";
 
 const TalezV2 = () => {
   const navigate = useNavigate();
@@ -110,6 +111,9 @@ const TalezV2 = () => {
                       <TaleDetailView tale={taleDetail?.description} />
                     </TabsContent>
                     <TabsContent value="feedback">
+                      <div className="w-full flex justify-end pb-4">
+                        <CreateFeedbackModal taleId={selectedTale || ""} />
+                      </div>
                       <div className="flex flex-col gap-4 w-full h-full">
                         {feedbackData?.feedbacks.length === 0 ? (
                           <>
