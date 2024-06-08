@@ -1,5 +1,5 @@
 .feedback_card_container {
-  @apply w-full !border-0 border-muted !border-b !rounded-none;
+  @apply w-full !border-0 border-muted !border-b !rounded-none maxMd:!border maxMd:!rounded-lg maxMd:!border-muted;
 }
 
 .feedback_card_container:hover .open_feedback_button {

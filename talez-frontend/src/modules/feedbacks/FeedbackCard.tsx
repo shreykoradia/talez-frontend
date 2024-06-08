@@ -3,7 +3,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/shared/ui/ui/card";
@@ -36,15 +35,13 @@ const FeedbackCard = ({
               </button>
             </div>
           </CardTitle>
+          <CardDescription className="text-sm">
+            🗨️ {dayjs(feedbackData?.created_at).fromNow()}
+          </CardDescription>
         </CardHeader>
         <CardContent className={styles.feedback_card_content}>
           {feedbackData?.feedback}
         </CardContent>
-        <CardFooter className={styles.feedback_card_footer}>
-          <CardDescription className="text-sm">
-            🗨️ {dayjs(feedbackData?.created_at).fromNow()}
-          </CardDescription>
-        </CardFooter>
       </Card>
     </>
   );

@@ -6,6 +6,7 @@ export const useGetTaleById = (params: { taleId: string | number }) => {
   const query = useQuery({
     queryKey: ["get-tale-by-id", params?.taleId],
     queryFn: () => getTaleById(params),
+    enabled: !!params?.taleId,
   });
   const data: talesResponseProps = query?.data?.data?.tale;
   const {

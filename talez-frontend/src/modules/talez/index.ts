@@ -1,4 +1,4 @@
 import TalezV2 from "./TalezV2";
-import TalezView from "./TalezView";
+import TalezMobileView from "./TalezMobileView";
 
-export default { TalezV2, TalezView };
+export default { TalezV2, TalezMobileView };
