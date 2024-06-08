@@ -35,7 +35,7 @@ const TalezCard = ({ tale, handleCardClick }: talezCardProps) => {
         onClick={() => onTalezCardClick(tale?._id)}
       >
         <CardHeader>
-          <CardTitle className="font-medium hover:text-primary">
+          <CardTitle className="font-medium hover:text-primary break-words">
             {tale?.title}
           </CardTitle>
           <CardDescription>Authored by {tale?.author_name}</CardDescription>

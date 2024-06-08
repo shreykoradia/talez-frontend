@@ -12,16 +12,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/ui/ui/tabs";
 import CreateFeedbackModal from "@/modules/feedbacks/component/CreateFeedbackModal";
 import FeedbackCard from "@/modules/feedbacks/FeedbackCard";
 import styles from "@/assets/css/talez.module.css";
-import { feedbackData, feedbackResponseData } from "@/modules/feedbacks/types";
+import { feedbackData } from "@/modules/feedbacks/types";
 
 import TalezDetailView from "./TalezDetailView";
 import { talesResponseProps } from "../types";
 import clsx from "clsx";
 import FeedbackOverview from "@/modules/feedbacks";
+import { Button } from "@/shared/ui/ui/button";
+import useGetFeedbacks from "@/modules/feedbacks/hooks/useGetFeedbacks";
+import React from "react";
 
 interface talezDetailViewProp {
   taleDetail: talesResponseProps;
-  feedbackData?: feedbackResponseData;
   selectedTale: string | null;
   handleModeChange?: (feedback: string) => void;
 }
@@ -29,9 +31,17 @@ interface talezDetailViewProp {
 const TalezDetailCard = ({
   taleDetail,
   handleModeChange,
-  feedbackData,
   selectedTale,
 }: talezDetailViewProp) => {
+  const {
+    data: feedbackData,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading: isFeedbackLoading,
+    fetchNextPage,
+  } = useGetFeedbacks({
+    taleId: selectedTale || "",
+  });
   dayjs.extend(relativeTime);
 
   return (
@@ -62,31 +72,38 @@ const TalezDetailCard = ({
                   <CreateFeedbackModal taleId={selectedTale || ""} />
                 </div>
                 <div className="flex flex-col gap-4 w-full h-full">
-                  {feedbackData?.feedbacks.length === 0 ? (
-                    <>
-                      <section className="flex flex-col gap-2 justify-center items-center h-full w-full">
-                        <p className="text-balance text-center">
-                          No No No, There are no feedbacks on your talez to
-                          brainstorm the solutions, get feedbacks by sharing it
-                          with your team add it by writing the emails in the
-                          share pop over above or create a feedback meanwhile
-                          they join by clicking below
-                        </p>
-                      </section>
-                    </>
-                  ) : null}
-                  {feedbackData?.feedbacks.map((feedback: feedbackData) => (
-                    <FeedbackCard
-                      key={feedback?._id}
-                      feedbackData={feedback}
-                      onOpenViewMode={(feedbackId: string) => {
-                        if (handleModeChange) {
-                          handleModeChange(feedbackId);
-                        }
-                        return;
-                      }}
-                    />
-                  ))}
+                  {!isFetchingNextPage &&
+                    !isFeedbackLoading &&
+                    feedbackData?.map((data, index) => (
+                      <React.Fragment key={index}>
+                        {data?.data.feedbacks.feedbacks.map(
+                          (feedback: feedbackData) => (
+                            <FeedbackCard
+                              key={feedback?._id}
+                              feedbackData={feedback}
+                              onOpenViewMode={(feedbackId: string) => {
+                                if (handleModeChange) {
+                                  handleModeChange(feedbackId);
+                                }
+                              }}
+                            />
+                          )
+                        )}
+                      </React.Fragment>
+                    ))}
+                  {!hasNextPage ? (
+                    <p className="text-primary text-center">
+                      You are all caught up
+                    </p>
+                  ) : (
+                    <Button
+                      disabled={!hasNextPage || isFetchingNextPage}
+                      variant={"link"}
+                      onClick={() => fetchNextPage()}
+                    >
+                      Show More
+                    </Button>
+                  )}
                 </div>
               </TabsContent>
             </Tabs>

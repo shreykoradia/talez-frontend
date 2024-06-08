@@ -2,7 +2,7 @@ import clsx from "clsx";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Settings } from "lucide-react";
 
 import styles from "@/assets/css/talez.module.css";
@@ -14,16 +14,22 @@ import { talesResponseProps } from "./types";
 import { useGetTaleById } from "./hooks/useGetTaleById";
 import TalezDetailCard from "./components/TalezDetailCard";
 
-import useGetFeedbacks from "../feedbacks/hooks/useGetFeedbacks";
 import FeedbackViewModal from "../feedbacks/FeedbackViewModal";
+import { LIMIT } from "@/shared/constant";
+import { Button } from "@/shared/ui/ui/button";
 
 const TalezV2 = () => {
   const navigate = useNavigate();
   const params = useParams();
   const workflowId = params.workflowId || "";
-  const [offset] = useState<number>(0);
+  const [offset, setOffset] = useState<number>(0);
   const [selectedTale, setSelectedTale] = useState<string | null>(null);
-  const { data: talesData } = useGetTales({ workflowId, offset });
+
+  const { data: talesData, refetchTalesFn } = useGetTales({
+    workflowId,
+    offset,
+  });
+
   const handleTalezCardClick = (taleId: string) => {
     if (window.innerWidth <= 768) {
       navigate(`/${taleId}/tale`);
@@ -31,9 +37,7 @@ const TalezV2 = () => {
     setSelectedTale(taleId);
   };
   const { data: taleDetail } = useGetTaleById({ taleId: selectedTale || "" });
-  const { data: feedbackData } = useGetFeedbacks({
-    taleId: selectedTale || "",
-  });
+
   const [isFeedbackViewOpen, setIsFeedbackViewOpen] = useState<boolean>(false);
   const [feedbackId, setFeedbackId] = useState<string | undefined>();
 
@@ -42,7 +46,23 @@ const TalezV2 = () => {
     setFeedbackId(feedbackId);
   };
 
+  const onFetchMore = () => {
+    setOffset(offset + LIMIT);
+  };
+
+  const onFetchPrevious = () => {
+    if (offset - LIMIT < 0) return;
+    setOffset((prevOffset) => prevOffset - LIMIT);
+  };
+
   dayjs.extend(relativeTime);
+
+  useEffect(() => {
+    if (offset >= 0) {
+      refetchTalesFn();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [offset]);
 
   if (talesData?.tales.length === 0) {
     return (
@@ -78,6 +98,30 @@ const TalezV2 = () => {
                 handleCardClick={handleTalezCardClick}
               />
             ))}
+            <div className="flex gap-4 justify-evenly items-center">
+              {offset > 0 ? (
+                <Button
+                  variant={"link"}
+                  onClick={onFetchPrevious}
+                  disabled={offset <= 0}
+                >
+                  Go to Previous
+                </Button>
+              ) : null}
+              {talesData?.totalPages > 1 ? (
+                <Button
+                  variant={"link"}
+                  onClick={onFetchMore}
+                  disabled={
+                    offset + LIMIT >= talesData?.totalPages * LIMIT ||
+                    !talesData ||
+                    talesData?.tales.length < LIMIT
+                  }
+                >
+                  Show More
+                </Button>
+              ) : null}
+            </div>
           </div>
           <div
             className={clsx(styles.talez_detail_view_container, {
@@ -86,7 +130,6 @@ const TalezV2 = () => {
           >
             <TalezDetailCard
               taleDetail={taleDetail}
-              feedbackData={feedbackData}
               selectedTale={selectedTale}
               handleModeChange={handleViewModeChange}
             />

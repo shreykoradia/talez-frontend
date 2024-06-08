@@ -1,7 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getFeedbacks } from "../api/getFeedbacks";
 import { LIMIT } from "@/shared/constant";
-import { feedbackResponseData } from "../types";
 
 const useGetFeedbacks = (params: { taleId: number | string }) => {
   const fetchFeedbacks = ({ pageParam = 0 }) => {
@@ -21,7 +20,7 @@ const useGetFeedbacks = (params: { taleId: number | string }) => {
     enabled: !!params?.taleId,
   });
 
-  const data: feedbackResponseData = query.data?.pages[0]?.data?.feedbacks;
+  const data = query?.data?.pages;
 
   const {
     fetchNextPage,
