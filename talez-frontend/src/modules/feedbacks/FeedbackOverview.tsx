@@ -16,6 +16,7 @@ import FeedbackCard from "./FeedbackCard";
 import useGetFeedbacks from "./hooks/useGetFeedbacks";
 import { useParams } from "react-router-dom";
 import FeedbackViewModal from "./FeedbackViewModal";
+import { feedbackData } from "./types";
 
 const FeedbackOverview = () => {
   const paramsKey = useParams();
@@ -59,15 +60,19 @@ const FeedbackOverview = () => {
           <div className="flex flex-col justify-start items-center pt-2 gap-2 max-h-[calc(100vh-6rem)] overflow-y-scroll no-scrollbar w-full">
             {!isFetchingNextPage &&
               !isLoadingFeedback &&
-              feedbackData?.feedbacks.map((data, index) => (
+              feedbackData?.map((data, index) => (
                 <React.Fragment key={index}>
-                  <FeedbackCard
-                    key={data?._id}
-                    feedbackData={data}
-                    onOpenViewMode={(feedbackId: string) =>
-                      handleViewModeChange(feedbackId)
-                    }
-                  />
+                  {data?.data.feedbacks.feedbacks.map(
+                    (feedback: feedbackData) => (
+                      <FeedbackCard
+                        key={feedback?._id}
+                        feedbackData={feedback}
+                        onOpenViewMode={(feedbackId: string) =>
+                          handleViewModeChange(feedbackId)
+                        }
+                      />
+                    )
+                  )}
                 </React.Fragment>
               ))}
             {!hasNextPage ? (
