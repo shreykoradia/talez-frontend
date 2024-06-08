@@ -98,6 +98,7 @@ const TalezV2 = () => {
           open={isFeedbackViewOpen}
           setOpen={setIsFeedbackViewOpen}
           feedbackId={feedbackId}
+          taleId={selectedTale || ""}
         />
       ) : null}
     </>
