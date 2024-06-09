@@ -17,6 +17,7 @@ import TalezDetailCard from "./components/TalezDetailCard";
 import FeedbackViewModal from "../feedbacks/FeedbackViewModal";
 import { LIMIT } from "@/shared/constant";
 import { Button } from "@/shared/ui/ui/button";
+import SharePopOver from "@/shared/components/header/SharePopOver";
 
 const TalezV2 = () => {
   const navigate = useNavigate();
@@ -83,9 +84,12 @@ const TalezV2 = () => {
         <p className="text-2xl maxMd:hidden">Talez</p>
         <div className="flex items-center gap-4 z-10 maxMd:justify-between maxMd:w-full">
           <CreateTalesModal />
-          <button>
-            <Settings />
-          </button>
+          <div className="flex gap-2 items-center md:gap-4">
+            <SharePopOver />
+            <button>
+              <Settings />
+            </button>
+          </div>
         </div>
       </section>
       <div className={styles.talez_main_container}>

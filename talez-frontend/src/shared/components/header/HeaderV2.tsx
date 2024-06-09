@@ -2,7 +2,6 @@ import styles from "@/assets/css/header.module.css";
 import { Avatar, AvatarImage } from "@/shared/ui/ui/avatar";
 import { Link } from "react-router-dom";
 import TalezAvatar from "@/assets/icons/talez.jpg";
-import { Button } from "@/shared/ui/ui/button";
 import { GanttChart, X } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
@@ -27,7 +26,6 @@ const HeaderV2 = () => {
           <Link to={"/help"} className="font-spaceGroteskBold">
             Help
           </Link>
-          <Button variant={"outline"}>Share</Button>
           <Avatar>
             <AvatarImage src={TalezAvatar} className="rounded-full" />
           </Avatar>

@@ -50,7 +50,7 @@ const SharePopOver = () => {
   const { inviteUserFn } = useInviteUser(workflowId);
   const { removeAccessFn } = useRemoveAccess(workflowId);
 
-  const workflowDetails = workflow?.workflowData?.workflows;
+  const workflowDetails = workflow?.workflows;
 
   const userRole = data?.shared_users?.filter(
     (shared) => shared?.shared_to?._id === user?._id
@@ -92,18 +92,21 @@ const SharePopOver = () => {
         <PopoverContent className="w-[500px] mx-2 my-1">
           <div>
             <div className="flex justify-between items-center">
-              <div className="text-md font-medium hover:text-primary">
+              <div className="text-md font-medium text-divamecha">
                 Share this workflow
               </div>
               <button onClick={() => setOpen(!open)}>
-                <CloseIcon strokeWidth={1.5} className="hover:text-primary" />
+                <CloseIcon
+                  strokeWidth={1.5}
+                  className="text-divamecha hover:text-muted"
+                />
               </button>
             </div>
-            <div className="text-muted-foreground text-xs font-normal">
+            <div className="text-input text-xs font-normal">
               Anyone with the link can view this document.
             </div>
           </div>
-          <div className="share_container flex gap-2 mt-4">
+          <div className="share_container flex gap-2 mt-4 items-center">
             <Input
               type={"email"}
               value={emailValue || ""}
@@ -116,7 +119,7 @@ const SharePopOver = () => {
             />
             <Button
               type="button"
-              variant={"default"}
+              variant={"link"}
               onClick={handleInviteClick}
               disabled={!checkRole}
             >
@@ -125,7 +128,9 @@ const SharePopOver = () => {
           </div>
           <Separator className="my-4" />
           <div className="space-y-4">
-            <h4 className="text-sm font-medium">People with access</h4>
+            <h4 className="text-sm font-medium text-divamecha">
+              People with access
+            </h4>
 
             <div className="grid gap-6 max-h-[500px] overflow-y-scroll no-scrollbar">
               {data?.shared_users &&
