@@ -147,10 +147,10 @@ const SharePopOver = () => {
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="text-sm font-medium leading-none">
+                        <p className="text-sm font-medium leading-none text-divamecha">
                           {user?.shared_to?.username}
                         </p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted">
                           {user?.shared_to?.email}
                         </p>
                       </div>
