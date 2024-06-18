@@ -2,7 +2,7 @@ import clsx from "clsx";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Settings } from "lucide-react";
 
 import styles from "@/assets/css/talez.module.css";
@@ -25,6 +25,7 @@ const TalezV2 = () => {
   const workflowId = params.workflowId || "";
   const [offset, setOffset] = useState<number>(0);
   const [selectedTale, setSelectedTale] = useState<string | null>(null);
+  const taleRef = useRef<HTMLDivElement>(null);
 
   const { data: talesData, refetchTalesFn } = useGetTales({
     workflowId,
@@ -49,11 +50,19 @@ const TalezV2 = () => {
 
   const onFetchMore = () => {
     setOffset(offset + LIMIT);
+    scrollToTop();
   };
 
   const onFetchPrevious = () => {
     if (offset - LIMIT < 0) return;
     setOffset((prevOffset) => prevOffset - LIMIT);
+    scrollToTop();
+  };
+
+  const scrollToTop = () => {
+    if (taleRef.current) {
+      taleRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   dayjs.extend(relativeTime);
@@ -98,7 +107,10 @@ const TalezV2 = () => {
       </section>
       <div className={styles.talez_main_container}>
         <div className={styles.talez_parent_view_container}>
-          <div className={clsx(styles.talez_view_container, "no-scrollbar")}>
+          <div
+            className={clsx(styles.talez_view_container, "no-scrollbar")}
+            ref={taleRef}
+          >
             {talesData?.tales?.map((tale: talesResponseProps) => (
               <TalezCard
                 tale={tale}
