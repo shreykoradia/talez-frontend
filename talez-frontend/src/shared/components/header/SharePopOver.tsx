@@ -102,8 +102,8 @@ const SharePopOver = () => {
                 />
               </button>
             </div>
-            <div className="text-input text-xs font-normal">
-              Anyone with the link can view this document.
+            <div className="text-muted text-xs font-normal">
+              Anyone having access can view , edit or add feedback on Talez.
             </div>
           </div>
           <div className="share_container flex gap-2 mt-4 items-center">
@@ -119,7 +119,7 @@ const SharePopOver = () => {
             />
             <Button
               type="button"
-              variant={"link"}
+              variant={"ghost"}
               onClick={handleInviteClick}
               disabled={!checkRole}
             >
