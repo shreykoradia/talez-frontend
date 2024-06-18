@@ -8,36 +8,34 @@ import {
 } from "@/shared/ui/ui/card";
 
 import { talesResponseProps } from "../types";
-import { useNavigate } from "react-router-dom";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/shared/ui/ui/tooltip";
-import { Button } from "@/shared/ui/ui/button";
 import { toast } from "@/shared/ui/ui/use-toast";
 import { BookmarkCheck } from "lucide-react";
+import { Button } from "@/shared/ui/ui/button";
 
 interface talezCardProps {
   tale: talesResponseProps;
+  handleCardClick: (taleId: string) => void;
 }
 
-const TalezCard = ({ tale }: talezCardProps) => {
-  const navigate = useNavigate();
-
+const TalezCard = ({ tale, handleCardClick }: talezCardProps) => {
   const onTalezCardClick = (id: string) => {
-    navigate(`/tale/${id}`);
+    handleCardClick(id);
   };
 
   return (
     <>
       <Card
-        className="cursor-pointer card_hover_primary"
+        className="cursor-pointer border-foreground maxMd:border-0 maxMd:border-b maxMd:rounded-none"
         onClick={() => onTalezCardClick(tale?._id)}
       >
         <CardHeader>
-          <CardTitle className="font-medium hover:text-primary">
+          <CardTitle className="font-medium hover:text-primary break-words">
             {tale?.title}
           </CardTitle>
           <CardDescription>Authored by {tale?.author_name}</CardDescription>
@@ -52,7 +50,6 @@ const TalezCard = ({ tale }: talezCardProps) => {
                 <TooltipTrigger asChild>
                   <Button
                     variant={"link"}
-                    className="hover:!text-primary hover:!bg-pattensBlue"
                     onClick={(e) => {
                       e.stopPropagation();
                       toast({
@@ -65,7 +62,7 @@ const TalezCard = ({ tale }: talezCardProps) => {
                     <BookmarkCheck size={16} />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent className="text-muted-foreground">
+                <TooltipContent>
                   <p>Bookmark</p>
                 </TooltipContent>
               </Tooltip>

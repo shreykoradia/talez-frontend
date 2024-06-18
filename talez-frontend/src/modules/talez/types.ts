@@ -16,6 +16,6 @@ export type talesResponseProps = {
 } & TimeStampedModelMixin;
 
 export interface talesProps {
-  totalPages: number | string;
-  tales: talesResponseProps;
+  totalPages: number;
+  tales: talesResponseProps[];
 }

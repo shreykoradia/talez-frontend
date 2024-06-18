@@ -1,19 +1,36 @@
-.error_control{
-    @apply text-xs text-crimsonred;    
+.error_control {
+  @apply text-xs text-crimsonred;
 }
 
-.card_hover_primary{
-    @apply hover:bg-primary-foreground;
+.card_hover_primary {
+  @apply hover:bg-primary-foreground;
 }
 
-.upvoted{
-    @apply stroke-primary fill-primary;
+.upvoted {
+  @apply stroke-primary fill-primary;
 }
 
-.downvoted{
-    @apply stroke-primary fill-primary;
+.downvoted {
+  @apply stroke-primary fill-primary;
 }
 
-.talez_landing_container{
-    @apply mx-auto max-w-[1800px] w-full overflow-hidden h-[100vh];
+.talez_application_container {
+  @apply mx-auto max-w-[1800px] w-full overflow-hidden h-[100vh];
+}
+
+/* React Flow Styles */
+
+.dashboard_workflow_container .react-flow__node-default {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0px !important;
+  text-align: inherit !important;
+}
+
+.dashboard_workflow_container .react-flow__handle {
+  display: none !important;
+}
+
+.dashboard_workflow_container .react-flow__nodes {
+  @apply translate-x-[10%] translate-y-[10%] minMaxMdXl:translate-x-[2%] minMaxMdXl:translate-y-[15%];
 }

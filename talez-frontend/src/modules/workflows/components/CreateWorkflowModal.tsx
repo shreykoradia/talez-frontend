@@ -10,7 +10,7 @@ import {
 } from "@/shared/ui/ui/dialog";
 import { Input } from "@/shared/ui/ui/input";
 import { Label } from "@/shared/ui/ui/label";
-import { Loader, Plus } from "lucide-react";
+import { Loader, PlusIcon } from "lucide-react";
 import { workflowRequest } from "../types";
 import useCreateWorkflowForm from "../hooks/useCreateWorkflowForm";
 import useCreateWorkflows from "../hooks/useCreateWorkflows";
@@ -48,12 +48,9 @@ const CreateWorkflowModal = () => {
     <>
       <Dialog open={openModal} onOpenChange={setOpenModal}>
         <DialogTrigger asChild>
-          <Button
-            variant={"default"}
-            className="flex gap-1 items-center text-sm"
-          >
-            <Plus size={14} className="mt-[0.125rem]" />
-            Create Workflow
+          <Button variant={"outline"}>
+            <PlusIcon size={16} className="mr-2" />
+            New Workflow
           </Button>
         </DialogTrigger>
         <DialogContent>

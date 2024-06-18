@@ -22,18 +22,20 @@ interface feedbackViewModalProps {
   open: boolean;
   setOpen: React.Dispatch<SetStateAction<boolean>>;
   feedbackId: string | undefined;
+  taleId?: string;
 }
 
 const FeedbackViewModal = ({
   open,
   setOpen,
   feedbackId,
+  taleId,
 }: feedbackViewModalProps) => {
   const { data } = useGetFeedbackId({ feedbackId: feedbackId });
 
   const paramskey = useParams();
   const params = {
-    taleId: paramskey.taleId || 0,
+    taleId: paramskey.taleId || taleId || "",
   };
   const upvoteValues = {
     feedbackId: feedbackId,

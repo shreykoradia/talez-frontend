@@ -3,7 +3,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/shared/ui/ui/card";
@@ -23,9 +22,7 @@ const FeedbackCard = ({
 
   return (
     <>
-      <Card
-        className={clsx(styles.feedback_card_container, "card_hover_primary")}
-      >
+      <Card className={styles.feedback_card_container}>
         <CardHeader className={styles.feedback_card_header}>
           <CardTitle className="text-md">
             <div className="flex justify-between items-center">
@@ -38,15 +35,13 @@ const FeedbackCard = ({
               </button>
             </div>
           </CardTitle>
+          <CardDescription className="text-sm">
+            🗨️ {dayjs(feedbackData?.created_at).fromNow()}
+          </CardDescription>
         </CardHeader>
         <CardContent className={styles.feedback_card_content}>
           {feedbackData?.feedback}
         </CardContent>
-        <CardFooter className={styles.feedback_card_footer}>
-          <CardDescription className="text-sm">
-            🗨️ {dayjs(feedbackData?.created_at).fromNow()}
-          </CardDescription>
-        </CardFooter>
       </Card>
     </>
   );

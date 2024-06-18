@@ -17,9 +17,10 @@ const useGetFeedbacks = (params: { taleId: number | string }) => {
       }
       return lastPageParam.length * LIMIT;
     },
+    enabled: !!params?.taleId,
   });
 
-  const data = query.data?.pages;
+  const data = query?.data?.pages;
 
   const {
     fetchNextPage,

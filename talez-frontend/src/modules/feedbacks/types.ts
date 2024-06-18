@@ -1,3 +1,10 @@
+import { AxiosResponse } from "axios";
+
+export type infiniteFeedback = {
+  pageParams: Array<number>;
+  pages: Array<AxiosResponse<feedbackResponseData>>;
+};
+
 export type createFeedbackProps = {
   feedback: string;
 };
