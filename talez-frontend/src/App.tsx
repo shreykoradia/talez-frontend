@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import withAuthentication from "./shared/helpers/withAuthentication";
 import Home from "./modules/home/Home";
 import withoutAuthentication from "./shared/helpers/withoutAuthentication";
-import LandingPage from "./modules/landing";
 import { useEffect } from "react";
 import { isTokenExpired } from "./shared/helpers/helpers";
 
@@ -31,10 +30,9 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route index path="/*" element={withAuthentication(Home)} />
-          <Route path="/" element={withoutAuthentication(unAuthenticated)}>
-            <Route index element={<LandingPage />} />
+          <Route path="/*" element={withoutAuthentication(unAuthenticated)}>
             <Route index path="signin" element={<Login />} />
-            <Route index path="signup" element={<Signup />} />
+            <Route path="signup" element={<Signup />} />
           </Route>
         </Routes>
       </QueryClientProvider>

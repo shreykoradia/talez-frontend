@@ -45,10 +45,10 @@ const Signup = () => {
       <div className={styles.signup_parent_container}>
         <div className="grid w-[500px] gap-4 maxLg:w-full maxLg:px-8">
           <div className={styles.signup_title_container}>
-            <p className="text-4xl w-full font-bold text-primary">
+            <p className="text-4xl w-full font-bold">
               Create an account on <em>Talez</em> for awesomeness.
             </p>
-            <p className="text-md text-muted-foreground font-normal hover:text-black">
+            <p className="text-md text-muted">
               Streamline Workflows, Unleash Creativity
             </p>
           </div>
@@ -62,7 +62,7 @@ const Signup = () => {
                 placeholder="username"
                 type="username"
                 autoCapitalize="none"
-                autoComplete="username"
+                autoComplete="new-password"
                 autoCorrect="off"
                 value={values?.username}
                 onChange={handleChange}
@@ -81,7 +81,7 @@ const Signup = () => {
                 placeholder="name@example.com"
                 type="email"
                 autoCapitalize="none"
-                autoComplete="email"
+                autoComplete="new-password"
                 autoCorrect="off"
                 value={values?.email}
                 onChange={handleChange}
@@ -97,6 +97,7 @@ const Signup = () => {
                 placeholder="Enter Password"
                 type="password"
                 autoCorrect="off"
+                autoComplete="new-password"
                 value={values?.password}
                 onChange={handleChange}
                 disabled={false}
@@ -115,7 +116,7 @@ const Signup = () => {
             Missed something, want to go back?
           </Link>
           <Link
-            to={"/login"}
+            to={"/signin"}
             className={cn(buttonVariants({ variant: "link" }))}
           >
             Already brainstorming products? Login
