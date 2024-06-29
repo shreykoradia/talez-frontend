@@ -1,6 +1,9 @@
 import { removeAccess } from "./../components/header/api/removeAccess";
 import { useMutation } from "@tanstack/react-query";
 import useGetPeopleWithAccess from "./useGetPeopleWithAccess";
+import { ErrorResponse } from "../types";
+import { toast } from "../ui/ui/use-toast";
+import { getServerError } from "../helpers/helpers";
 
 const useRemoveAccess = (workflowId: string) => {
   const requestParams = {
@@ -12,6 +15,11 @@ const useRemoveAccess = (workflowId: string) => {
       removeAccess(values, requestParams),
     onSuccess: () => {
       refetchPeopleWithAccessFn();
+    },
+    onError: (err: ErrorResponse) => {
+      toast({
+        title: getServerError(err)?.message,
+      });
     },
   });
 

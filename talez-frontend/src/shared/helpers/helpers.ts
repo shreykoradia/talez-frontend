@@ -1,5 +1,6 @@
 import { getCookie, removeCookie } from "typescript-cookie";
 import { jwtDecode } from "jwt-decode";
+import { ErrorResponse } from "../types";
 
 export const checkToken = () => {
   const token = getCookie("accessToken");
@@ -25,6 +26,11 @@ export const isTokenExpired = () => {
   } else {
     return;
   }
+};
+
+export const getServerError = (err: ErrorResponse) => {
+  if (!err) return;
+  return err?.response?.data;
 };
 
 export const logOut = () => {

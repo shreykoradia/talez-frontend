@@ -13,6 +13,8 @@ import { useLoginForm } from "../hooks/useLoginForm";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/login";
 import { cn } from "@/shared/lib/utils";
+import { ErrorResponse } from "@/shared/types";
+import { getServerError } from "@/shared/helpers/helpers";
 
 interface loginFormProps {
   email: string;
@@ -31,11 +33,9 @@ const Login = () => {
       resetForm();
       navigate("/dashboard");
     },
-    onError: (err) => {
+    onError: (err: ErrorResponse) => {
       toast({
-        title: "Invalid Credentials",
-        description:
-          "Oops! The email or password provided does not match our records. Please check your credentials and try again.",
+        title: getServerError(err)?.message,
       });
       return err;
     },
