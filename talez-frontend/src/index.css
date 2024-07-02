@@ -96,7 +96,7 @@
 
 @layer base {
   body {
-    @apply bg-gradient-bg font-spaceGroteskRegular text-divamecha overflow-hidden;
+    @apply bg-gradient-bg font-spaceGroteskRegular text-divamecha;
   }
 }
 

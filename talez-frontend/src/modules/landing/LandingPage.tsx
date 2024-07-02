@@ -1,8 +1,10 @@
 import styles from "@/assets/css/landingpage.module.css";
 import { Button } from "@/shared/ui/ui/button";
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   const blobRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <div className="h-screen bg-background relative">
+      <div className="h-screen bg-background relative overflow-hidden">
         <div className={styles.blob} ref={blobRef}></div>
         <div className={styles.blur}></div>
         <div className="z-10 w-full absolute">
@@ -52,7 +54,9 @@ const LandingPage = () => {
           </div>
           <div className="text-xl text-center p-4">
             First time around and don't know what talez is all about?
-            <Button variant={"link"}>Click to know</Button>
+            <Button variant={"link"} onClick={() => navigate("/product")}>
+              Click to know
+            </Button>
           </div>
         </div>
       </div>
