@@ -14,17 +14,16 @@ const ProductInformation = () => {
   useGSAP(() =>
     gsap.fromTo(
       talezRef.current,
-      { opacity: 0, y: 0, x: 0, scale: 1 },
+      { opacity: 0, y: 0, x: 0, scale: 0.5 },
       {
-        scale: 16, // try to make it with the screen size
+        scale: 8, // try to make it with the screen size
         opacity: 1,
         y: 0,
         x: 0,
         duration: 1,
         scrollTrigger: {
           trigger: talezRef.current,
-          start: "top 30%",
-          end: "bottom 10%",
+          start: "top 100%",
           scrub: 2,
         },
       }
@@ -79,9 +78,6 @@ const ProductInformation = () => {
           ) : null}
         </div>
         <div className="flex justify-center items-center h-screen bg-gradient-bg">
-          <ProductDetails />
-        </div>
-        <div className="flex justify-center items-center h-screen bg-background">
           <ProductDetails />
         </div>
         <div

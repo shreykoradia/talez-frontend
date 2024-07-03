@@ -63,3 +63,7 @@
   font-size: 3rem;
   transition: transform 0.2s ease-out;
 }
+
+.fade-in {
+  opacity: 0;
+}

@@ -1,15 +1,36 @@
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const ProductDetails = () => {
+  useGSAP(() => {
+    gsap.utils.toArray<HTMLElement>(".fade_in").forEach((ele) => {
+      gsap.from(ele, {
+        scrollTrigger: {
+          trigger: ele,
+          start: "top 70%",
+          scrub: 1,
+          toggleActions: "restart none none reverse",
+        },
+        y: 100,
+      });
+    });
+  });
+
   return (
     <>
-      <section className="w-full grid gap-8 place-content-center place-items-center">
-        <div className="text-lg text-justify w-1/2">
+      <section className="w-full h-full grid gap-8 place-content-start place-items-center">
+        <div className="text-xl">Story about What we do!</div>
+        <div className="text-lg text-justify w-1/2 fade_in">
           Talez is a SaaS platform designed for users and stakeholders to share
           ideas, gather collective feedback, and engage in thorough discussions
           to reach conclusive decisions. Unlike traditional scrum meetings,
           Talez fosters collaboration without the time constraints of formal
           meetings, allowing for in-depth conversations to unfold organically.
         </div>
-        <div className="text-lg text-justify w-1/2">
+        <div className="text-lg text-justify w-1/2 fade_in">
           <div className="font-semibold pb-2">
             Not an Alternative to Scrum Meetings, But...
           </div>
@@ -21,7 +42,7 @@ const ProductDetails = () => {
             gaining different perspectives on project-related matters.
           </div>
         </div>
-        <div className="text-lg text-justify w-1/2">
+        <div className="text-lg text-justify w-1/2 fade_in">
           <p className="font-semibold">Key Features :</p>
           <ul className="list-disc px-4">
             <li className="py-2">
