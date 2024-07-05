@@ -2,6 +2,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useRef, useState } from "react";
 import ProductDetails from "./ProductDetails";
+import ProductFooter from "./ProductFooter";
 
 gsap.registerPlugin(gsap);
 
@@ -48,8 +49,8 @@ const ProductInformation = () => {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      const offsetX = 8;
-      const offsetY = 8;
+      const offsetX = 10;
+      const offsetY = 10;
       gsap.to(cursorRef.current, {
         x: e.clientX + offsetX,
         y: e.clientY + offsetY,
@@ -77,8 +78,11 @@ const ProductInformation = () => {
             <div className="fixed left-0 bottom-0 p-4">Scroll Down</div>
           ) : null}
         </div>
-        <div className="flex justify-center items-center h-screen bg-gradient-bg">
+        <div className="flex justify-center items-center bg-gradient-bg">
           <ProductDetails />
+        </div>
+        <div className="flex justify-center items-center h-screen bg-background">
+          <ProductFooter />
         </div>
         <div
           ref={cursorRef}

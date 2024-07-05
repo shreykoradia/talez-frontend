@@ -11,10 +11,11 @@ const ProductDetails = () => {
         scrollTrigger: {
           trigger: ele,
           start: "top 70%",
-          scrub: 1,
-          toggleActions: "restart none none reverse",
+          scrub: false,
+          toggleActions: "play none none none",
         },
-        y: 100,
+        stagger: 0.2,
+        x: -2000,
       });
     });
   });
@@ -23,14 +24,14 @@ const ProductDetails = () => {
     <>
       <section className="w-full h-full grid gap-8 place-content-start place-items-center">
         <div className="text-xl">Story about What we do!</div>
-        <div className="text-lg text-justify w-1/2 fade_in">
+        <div className="text-lg text-balance w-1/2 fade_in">
           Talez is a SaaS platform designed for users and stakeholders to share
           ideas, gather collective feedback, and engage in thorough discussions
           to reach conclusive decisions. Unlike traditional scrum meetings,
           Talez fosters collaboration without the time constraints of formal
           meetings, allowing for in-depth conversations to unfold organically.
         </div>
-        <div className="text-lg text-justify w-1/2 fade_in">
+        <div className="text-lg text-balance w-1/2 fade_in">
           <div className="font-semibold pb-2">
             Not an Alternative to Scrum Meetings, But...
           </div>
@@ -42,7 +43,7 @@ const ProductDetails = () => {
             gaining different perspectives on project-related matters.
           </div>
         </div>
-        <div className="text-lg text-justify w-1/2 fade_in">
+        <div className="text-lg text-balance w-1/2 fade_in">
           <p className="font-semibold">Key Features :</p>
           <ul className="list-disc px-4">
             <li className="py-2">
