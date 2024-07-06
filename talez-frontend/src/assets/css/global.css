@@ -34,3 +34,36 @@
 .dashboard_workflow_container .react-flow__nodes {
   @apply translate-x-[10%] translate-y-[10%] minMaxMdXl:translate-x-[2%] minMaxMdXl:translate-y-[15%];
 }
+
+.section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.section1 {
+  background-color: #f8b400;
+}
+
+.section2 {
+  background-color: #4caf50;
+}
+
+.section3 {
+  background-color: #2196f3;
+}
+
+.section4 {
+  background-color: #9c27b0;
+}
+
+.title {
+  font-size: 3rem;
+  transition: transform 0.2s ease-out;
+}
+
+.fade-in {
+  opacity: 0;
+}

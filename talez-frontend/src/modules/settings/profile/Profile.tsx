@@ -12,6 +12,8 @@ import { updateProfileProps } from "../types";
 import { toast } from "@/shared/ui/ui/use-toast";
 import { useUser } from "@/shared/context/UserProvider";
 import { Loader } from "lucide-react";
+import { ErrorResponse } from "@/shared/types";
+import { getServerError } from "@/shared/helpers/helpers";
 
 const Profile = () => {
   const [statusCounter, setStatusCounter] = useState<number>(0);
@@ -27,11 +29,9 @@ const Profile = () => {
       });
       refetchUser();
     },
-    onError: () => {
+    onError: (err: ErrorResponse) => {
       toast({
-        title: "Something Went Wrong Huh!",
-        description:
-          "We are looking into it, can you update a profile after a while!",
+        title: getServerError(err)?.message,
       });
     },
   });

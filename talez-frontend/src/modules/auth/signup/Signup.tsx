@@ -9,18 +9,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/shared/ui/ui/use-toast";
 import Sitting from "@/assets/icons/sitting.svg?react";
 import { cn } from "@/shared/lib/utils";
+import { ErrorResponse } from "@/shared/types";
+import { getServerError } from "@/shared/helpers/helpers";
 
 interface signupFormProps {
   email: string;
   password: string;
-}
-
-interface AxiosErrorResponse {
-  response: {
-    data: {
-      message: string;
-    };
-  };
 }
 
 const Signup = () => {
@@ -31,10 +25,9 @@ const Signup = () => {
       resetForm();
       navigate("/signin");
     },
-    onError: (err: AxiosErrorResponse) => {
+    onError: (err: ErrorResponse) => {
       toast({
-        title: "Something Went Wrong!",
-        description: err.response?.data?.message,
+        title: getServerError(err)?.message,
       });
     },
   });

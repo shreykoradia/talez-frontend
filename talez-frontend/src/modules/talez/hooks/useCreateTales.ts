@@ -5,6 +5,8 @@ import { createTales } from "../api/createtales";
 import { toast } from "@/shared/ui/ui/use-toast";
 import { useGetTales } from "./useGetTales";
 import { useParams } from "react-router-dom";
+import { ErrorResponse } from "@/shared/types";
+import { getServerError } from "@/shared/helpers/helpers";
 
 const useCreateTales = () => {
   const queryParams = useParams();
@@ -28,11 +30,9 @@ const useCreateTales = () => {
     onSuccess: () => {
       refetchTalesFn();
     },
-    onError: () => {
+    onError: (err: ErrorResponse) => {
       toast({
-        title: "Something went wrong huh!",
-        description:
-          "Try adding feedback after a while, Talez is currently in development mode, Thanks!",
+        title: getServerError(err)?.message,
       });
     },
   });

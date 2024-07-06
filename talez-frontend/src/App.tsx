@@ -8,6 +8,8 @@ import Home from "./modules/home/Home";
 import withoutAuthentication from "./shared/helpers/withoutAuthentication";
 import { useEffect } from "react";
 import { isTokenExpired } from "./shared/helpers/helpers";
+import LandingPage from "./modules/landing";
+import ProductInformation from "./modules/landing/components/ProductInformation";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -31,7 +33,9 @@ const App = () => {
         <Routes>
           <Route index path="/*" element={withAuthentication(Home)} />
           <Route path="/*" element={withoutAuthentication(unAuthenticated)}>
-            <Route index path="signin" element={<Login />} />
+            <Route index path="/*" element={<LandingPage />} />
+            <Route path="product" element={<ProductInformation />} />
+            <Route path="signin" element={<Login />} />
             <Route path="signup" element={<Signup />} />
           </Route>
         </Routes>

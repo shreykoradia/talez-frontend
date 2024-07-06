@@ -16,12 +16,6 @@ const Home = () => {
 
   return (
     <>
-      {/* <Routes>
-            <Route path="/workflows" index element={<Workflows />} />;
-            <Route path="/:workflowId/tale" index element={<Talez />} />
-            <Route path="/tale/:taleId" element={<TalezView />} />
-            <Route path="/settings/*" element={<Settings />} />
-          </Routes> */}
       <div className="talez_application_container">
         <HeaderV2 />
         <Routes>

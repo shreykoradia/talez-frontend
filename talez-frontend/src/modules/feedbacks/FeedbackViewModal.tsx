@@ -17,6 +17,8 @@ import { downvote } from "./api/downvote";
 import { useGetReactionCount } from "./hooks/useGetReactionCount";
 import { useGetReactionType } from "./hooks/useGetReactionType";
 import clsx from "clsx";
+import { getServerError } from "@/shared/helpers/helpers";
+import { ErrorResponse } from "@/shared/types";
 
 interface feedbackViewModalProps {
   open: boolean;
@@ -69,6 +71,11 @@ const FeedbackViewModal = ({
         reactionTypeFn();
       reactionCountFn();
     },
+    onError: (err: ErrorResponse) => {
+      toast({
+        title: getServerError(err)?.message,
+      });
+    },
   });
 
   const { mutate: downvoteFn } = useMutation({
@@ -80,6 +87,11 @@ const FeedbackViewModal = ({
       }),
         reactionTypeFn();
       reactionCountFn();
+    },
+    onError: (err: ErrorResponse) => {
+      toast({
+        title: getServerError(err)?.message,
+      });
     },
   });
 

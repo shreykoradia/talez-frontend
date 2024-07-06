@@ -1,8 +1,9 @@
-import { inviteUserRequestProps } from "./../types/index";
+import { ErrorResponse, inviteUserRequestProps } from "./../types/index";
 import { useMutation } from "@tanstack/react-query";
 import useGetPeopleWithAccess from "./useGetPeopleWithAccess";
 import { inviteUser } from "../components/header/api/inviteUser";
 import { toast } from "../ui/ui/use-toast";
+import { getServerError } from "../helpers/helpers";
 
 const useInviteUser = (workflowId: string) => {
   const requestParams = {
@@ -20,12 +21,9 @@ const useInviteUser = (workflowId: string) => {
       });
       refetchPeopleWithAccessFn();
     },
-    onError: () => {
+    onError: (err: ErrorResponse) => {
       toast({
-        title:
-          "Users having an account on talez are only being allowed to invited",
-        description:
-          "Currently we don't allow any external user to be a part of any workflows, for invites a member should atleast have account on talez and be verified.",
+        title: getServerError(err)?.message,
       });
     },
   });
