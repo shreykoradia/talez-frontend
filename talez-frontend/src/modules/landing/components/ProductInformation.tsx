@@ -1,7 +1,6 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useRef, useState } from "react";
-import ProductDetails from "./ProductDetails";
 import ProductFooter from "./ProductFooter";
 
 gsap.registerPlugin(gsap);
@@ -78,9 +77,10 @@ const ProductInformation = () => {
             <div className="fixed left-0 bottom-0 p-4">Scroll Down</div>
           ) : null}
         </div>
-        <div className="flex justify-center items-center bg-gradient-bg">
+        {/* Refactor the Part  I dont find it interesting */}
+        {/* <div className="flex justify-center items-center bg-gradient-bg">
           <ProductDetails />
-        </div>
+        </div> */}
         <div className="flex justify-center items-center h-screen bg-background">
           <ProductFooter />
         </div>
