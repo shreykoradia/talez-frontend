@@ -5,9 +5,12 @@ import TalezAvatar from "@/assets/icons/talez.jpg";
 import { GanttChart, X } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
+import { useUser } from "@/shared/context/UserProvider";
+import { generateAvatarInitials } from "@/shared/helpers/helpers";
 
 const HeaderV2 = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user } = useUser();
 
   return (
     <>
@@ -27,7 +30,10 @@ const HeaderV2 = () => {
             Help
           </Link>
           <Avatar>
-            <AvatarImage src={TalezAvatar} className="rounded-full" />
+            <AvatarImage
+              src={user?.avatarUrl || generateAvatarInitials(user?.username)}
+              className="rounded-full text-divamecha"
+            />
           </Avatar>
         </div>
         <div

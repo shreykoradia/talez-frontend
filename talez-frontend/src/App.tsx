@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { isTokenExpired } from "./shared/helpers/helpers";
 import LandingPage from "./modules/landing";
 import ProductInformation from "./modules/landing/components/ProductInformation";
+import AuthRedirect from "./shared/components/auth-redirect/AuthRedirect";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -37,6 +38,7 @@ const App = () => {
             <Route path="product" element={<ProductInformation />} />
             <Route path="signin" element={<Login />} />
             <Route path="signup" element={<Signup />} />
+            <Route path="auth-redirect" element={<AuthRedirect />} />
           </Route>
         </Routes>
       </QueryClientProvider>
