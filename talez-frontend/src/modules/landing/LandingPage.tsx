@@ -1,10 +1,7 @@
 import styles from "@/assets/css/landingpage.module.css";
-import { Button } from "@/shared/ui/ui/button";
 import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
-  const navigate = useNavigate();
   const blobRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
