@@ -32,17 +32,18 @@ const LandingPage = () => {
         <div className="z-10 w-full absolute">
           <p className="text-divamecha text-xl font-bold p-2">Talez</p>
           <div className="grid gap-4 place-content-center place-items-center h-[calc(100vh-140px)] p-4">
-            <p className="text-lg">
+            <p className="text-lg font-semibold">
               Ever Heard about Talez...... Did it ring a bell?
             </p>
-            <p className="text-lg text-center text-balance">
-              Talez is now iterated to v1.2, where people can create workflow,
-              collaborate on each other's workflow by creating talez, adding
-              feedback , upvote or downvote feedback and curating a storyboard
-              reference for their products.
+            <p className="text-lg text-center text-wrap break-words w-1/2">
+              Talez will soon iterate to v1.2, Earlier user's could add account
+              create workflows and manage talez by sharing and brainstorming
+              applications with each other. Soon changelog's will be added here
+              to track new features before v1.2 is launched.
             </p>
             <div className="text-divamecha text-lg">
-              You can Find us on below platforms :) <br />
+              You can find us on below platforms, to discuss new features :){" "}
+              <br />
               <p className="flex justify-center items-center w-full gap-4 text-xl text-primary">
                 <a
                   className="hover:border-b border-primary"
