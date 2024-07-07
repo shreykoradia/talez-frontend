@@ -5,6 +5,8 @@ import useGetWorkflows from "./useGetWorkflows";
 import { workflowRequest } from "../types";
 import { createWorkflow } from "../api/createWorkflow";
 import { toast } from "@/shared/ui/ui/use-toast";
+import { getServerError } from "@/shared/helpers/helpers";
+import { ErrorResponse } from "@/shared/types";
 
 const useCreateWorkflows = () => {
   const { refetchWorkflowsFn } = useGetWorkflows();
@@ -13,11 +15,9 @@ const useCreateWorkflows = () => {
     onSuccess: () => {
       refetchWorkflowsFn();
     },
-    onError: () => {
+    onError: (err: ErrorResponse) => {
       toast({
-        title: "Something went wrong huh!",
-        description:
-          "You can add only limited number of workflows as Talez is currently in development mode, Thanks!",
+        title: getServerError(err)?.message,
       });
     },
   });

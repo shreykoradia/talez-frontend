@@ -1,7 +1,9 @@
-import { updateAccessRequestprops } from "./../types/index";
+import { ErrorResponse, updateAccessRequestprops } from "./../types/index";
 import { useMutation } from "@tanstack/react-query";
 import { updateAccess } from "../components/header/api/updateAccess";
 import useGetPeopleWithAccess from "./useGetPeopleWithAccess";
+import { toast } from "../ui/ui/use-toast";
+import { getServerError } from "../helpers/helpers";
 
 const useUpdateAccess = (workflowId: string) => {
   const requestParams = {
@@ -13,6 +15,11 @@ const useUpdateAccess = (workflowId: string) => {
       updateAccess(values, requestParams),
     onSuccess: () => {
       refetchPeopleWithAccessFn();
+    },
+    onError: (err: ErrorResponse) => {
+      toast({
+        title: getServerError(err)?.message,
+      });
     },
   });
 

@@ -9,18 +9,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/shared/ui/ui/use-toast";
 import Sitting from "@/assets/icons/sitting.svg?react";
 import { cn } from "@/shared/lib/utils";
+import { ErrorResponse } from "@/shared/types";
+import { getServerError } from "@/shared/helpers/helpers";
+import { Github } from "lucide-react";
 
 interface signupFormProps {
   email: string;
   password: string;
-}
-
-interface AxiosErrorResponse {
-  response: {
-    data: {
-      message: string;
-    };
-  };
 }
 
 const Signup = () => {
@@ -31,24 +26,27 @@ const Signup = () => {
       resetForm();
       navigate("/signin");
     },
-    onError: (err: AxiosErrorResponse) => {
+    onError: (err: ErrorResponse) => {
       toast({
-        title: "Something Went Wrong!",
-        description: err.response?.data?.message,
+        title: getServerError(err)?.message,
       });
     },
   });
   const { values, handleChange, handleSubmit, errors, touched, resetForm } =
     useSignupForm(singUpMutateFn);
+
+  const handleGithubSignin = () => {
+    window.location.href = `${import.meta.env.VITE_BACKEND_URL}auth/github`;
+  };
   return (
     <>
       <div className={styles.signup_parent_container}>
         <div className="grid w-[500px] gap-4 maxLg:w-full maxLg:px-8">
           <div className={styles.signup_title_container}>
-            <p className="text-4xl w-full font-bold text-primary">
+            <p className="text-4xl w-full font-bold">
               Create an account on <em>Talez</em> for awesomeness.
             </p>
-            <p className="text-md text-muted-foreground font-normal hover:text-black">
+            <p className="text-md text-muted">
               Streamline Workflows, Unleash Creativity
             </p>
           </div>
@@ -62,7 +60,7 @@ const Signup = () => {
                 placeholder="username"
                 type="username"
                 autoCapitalize="none"
-                autoComplete="username"
+                autoComplete="new-password"
                 autoCorrect="off"
                 value={values?.username}
                 onChange={handleChange}
@@ -81,7 +79,7 @@ const Signup = () => {
                 placeholder="name@example.com"
                 type="email"
                 autoCapitalize="none"
-                autoComplete="email"
+                autoComplete="new-password"
                 autoCorrect="off"
                 value={values?.email}
                 onChange={handleChange}
@@ -97,6 +95,7 @@ const Signup = () => {
                 placeholder="Enter Password"
                 type="password"
                 autoCorrect="off"
+                autoComplete="new-password"
                 value={values?.password}
                 onChange={handleChange}
                 disabled={false}
@@ -111,11 +110,23 @@ const Signup = () => {
               </Button>
             </div>
           </form>
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t border-muted" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-background px-2">Or continue with</span>
+            </div>
+          </div>
+          <Button variant={"default"} onClick={handleGithubSignin}>
+            <Github className="mr-2" size={16} />
+            Sign In with Github
+          </Button>
           <Link className={cn(buttonVariants({ variant: "outline" }))} to={"/"}>
             Missed something, want to go back?
           </Link>
           <Link
-            to={"/login"}
+            to={"/signin"}
             className={cn(buttonVariants({ variant: "link" }))}
           >
             Already brainstorming products? Login

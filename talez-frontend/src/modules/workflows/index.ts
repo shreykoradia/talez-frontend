@@ -1,3 +1,3 @@
-import Workflows from "./Workflows";
+import WorkflowCard from "./WorkflowCard";
 
-export default Workflows;
+export default WorkflowCard;

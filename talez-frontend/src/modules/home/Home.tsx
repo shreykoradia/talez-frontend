@@ -1,16 +1,11 @@
 import { Route, Routes } from "react-router";
-import Workflows from "../workflows";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/shared/ui/ui/resizable";
-import Sidebar from "@/shared/components/sidebar/Sidebar";
-import Talez from "../talez";
-import TalezView from "../talez/components/TalezView";
-import Settings from "../settings";
+
 import { useUser } from "@/shared/context/UserProvider";
 import VerifyModal from "@/shared/components/verify-modal/VerifyModal";
+import Dashboard from "../dashboard";
+import HeaderV2 from "@/shared/components/header/HeaderV2";
+import TalezV2 from "../talez/TalezV2";
+import TalezMobileView from "../talez/TalezMobileView";
 
 const Home = () => {
   const { user } = useUser();
@@ -21,23 +16,14 @@ const Home = () => {
 
   return (
     <>
-      <ResizablePanelGroup
-        direction="horizontal"
-        className="!h-[100vh] max-w-full rounded-lg border"
-      >
-        <ResizablePanel defaultSize={20} minSize={15} maxSize={25}>
-          <Sidebar />
-        </ResizablePanel>
-        <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={80}>
-          <Routes>
-            <Route path="/workflows" index element={<Workflows />} />;
-            <Route path="/:workflowId/tale" index element={<Talez />} />
-            <Route path="/tale/:taleId" element={<TalezView />} />
-            <Route path="/settings/*" element={<Settings />} />
-          </Routes>
-        </ResizablePanel>
-      </ResizablePanelGroup>
+      <div className="talez_application_container">
+        <HeaderV2 />
+        <Routes>
+          <Route index path="/dashboard" element={<Dashboard />} />
+          <Route path="/:workflowId/talez" index element={<TalezV2 />} />
+          <Route path="/:taleId/tale" element={<TalezMobileView />} />
+        </Routes>
+      </div>
     </>
   );
 };

@@ -17,23 +17,27 @@ import { downvote } from "./api/downvote";
 import { useGetReactionCount } from "./hooks/useGetReactionCount";
 import { useGetReactionType } from "./hooks/useGetReactionType";
 import clsx from "clsx";
+import { getServerError } from "@/shared/helpers/helpers";
+import { ErrorResponse } from "@/shared/types";
 
 interface feedbackViewModalProps {
   open: boolean;
   setOpen: React.Dispatch<SetStateAction<boolean>>;
   feedbackId: string | undefined;
+  taleId?: string;
 }
 
 const FeedbackViewModal = ({
   open,
   setOpen,
   feedbackId,
+  taleId,
 }: feedbackViewModalProps) => {
   const { data } = useGetFeedbackId({ feedbackId: feedbackId });
 
   const paramskey = useParams();
   const params = {
-    taleId: paramskey.taleId || 0,
+    taleId: paramskey.taleId || taleId || "",
   };
   const upvoteValues = {
     feedbackId: feedbackId,
@@ -67,6 +71,11 @@ const FeedbackViewModal = ({
         reactionTypeFn();
       reactionCountFn();
     },
+    onError: (err: ErrorResponse) => {
+      toast({
+        title: getServerError(err)?.message,
+      });
+    },
   });
 
   const { mutate: downvoteFn } = useMutation({
@@ -78,6 +87,11 @@ const FeedbackViewModal = ({
       }),
         reactionTypeFn();
       reactionCountFn();
+    },
+    onError: (err: ErrorResponse) => {
+      toast({
+        title: getServerError(err)?.message,
+      });
     },
   });
 

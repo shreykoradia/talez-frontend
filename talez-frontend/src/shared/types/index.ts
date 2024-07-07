@@ -1,3 +1,5 @@
+import { AxiosError } from "axios";
+
 /**
  * TimeStampedModelMixin map of fields from `TimeStampedModelMixin` django-model
  */
@@ -13,6 +15,16 @@ export type requestParams = {
   limit: number;
   offset: number;
 };
+
+/**
+ * Axios Error Custom Resposne Type
+ */
+export type AxiosErrorProps = {
+  message: string;
+  status: number;
+};
+
+export type ErrorResponse = AxiosError<AxiosErrorProps>;
 
 /**
  * Share Type Params Field
@@ -60,6 +72,7 @@ export interface User {
   _id: string;
   username: string;
   email: string;
+  avatarUrl: string;
   isVerified: boolean;
   __v: number;
   status: string;

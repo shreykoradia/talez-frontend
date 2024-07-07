@@ -1,14 +1,33 @@
-.talez_parent_container{
-    @apply flex flex-col gap-2 justify-start p-4 w-full h-full;
+.talez_parent_container {
+  @apply flex flex-col gap-2 justify-start p-4 w-full h-full;
 }
 
 .talez_detail_parent_container {
-    @apply flex flex-col gap-4 justify-between items-center p-4 max-h-full  h-[calc(100%_-_132px)] w-full;
+  @apply flex flex-col gap-4 justify-between items-center p-4 max-h-full  h-[calc(100%_-_132px)] w-full;
 }
 
-.talez_card_view{
-    @apply border-none outline-none border-transparent !shadow-transparent w-full;
+.talez_card_view {
+  @apply border-none outline-none border-transparent !shadow-transparent w-full;
 }
-.feedback_container{
-    @apply w-full flex items-center gap-4 border-2 border-dashed border-secondary p-4 rounded-2xl;
+.feedback_container {
+  @apply w-full flex items-center gap-4 border-2 border-dashed border-secondary p-4 rounded-2xl;
+}
+
+/* Talez V2 StyleSheet */
+.talez_main_container {
+  @apply maxMd:h-[calc(100vh-138px)]  md:h-[calc(100%-175px)] w-full;
+}
+.talez_parent_view_container {
+  @apply w-full grid grid-cols-2 place-content-start place-items-center h-full maxMd:grid-cols-1;
+}
+.talez_view_container {
+  @apply w-full h-full overflow-y-scroll maxMd:px-0 px-16 flex flex-col gap-4 maxMd:gap-0;
+}
+.talez_detail_view_container {
+  @apply w-1/2 px-2 fixed -right-full maxMd:hidden;
+  transition: right 0.6s ease-in-out;
+}
+
+.talez_detail_view_show {
+  @apply right-0 h-[calc(100%-11rem)];
 }

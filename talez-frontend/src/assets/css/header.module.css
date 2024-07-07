@@ -1,0 +1,18 @@
+.header_container {
+  @apply grid grid-cols-2 items-center px-8 py-4  border-b border-divamecha border-foreground z-10 maxMd:px-4;
+}
+.application_data_container {
+  @apply flex items-center gap-8 maxMd:gap-4;
+}
+.application_breadcrumbs {
+  @apply flex items-center space-x-1;
+}
+.application_user_container {
+  @apply maxMd:hidden md:flex justify-end items-center gap-4;
+}
+.application_user_mobile_container {
+  @apply maxMd:flex justify-end items-center md:hidden;
+}
+.nav_sidebar_container {
+  @apply bg-background text-foreground fixed top-[4.625rem] left-0 w-full transform transition-transform duration-300 ease-in-out translate-x-full h-[calc(100%-4.625rem)] z-[11] md:hidden;
+}
