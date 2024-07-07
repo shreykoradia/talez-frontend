@@ -143,7 +143,7 @@ const SharePopOver = () => {
                       <Avatar>
                         <AvatarImage src="/avatars/03.png" />
                         <AvatarFallback>
-                          {generateAvatarInitials(user?.shared_to?.email)}
+                          {generateAvatarInitials(user?.shared_to?.username)}
                         </AvatarFallback>
                       </Avatar>
                       <div>

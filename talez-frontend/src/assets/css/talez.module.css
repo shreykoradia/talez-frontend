@@ -24,10 +24,14 @@
   @apply w-full h-full overflow-y-scroll maxMd:px-0 px-16 flex flex-col gap-4 maxMd:gap-0;
 }
 .talez_detail_view_container {
-  @apply w-1/2 px-2 fixed -right-full maxMd:hidden;
+  @apply w-1/2 px-2 fixed -right-full h-[calc(100%-11rem)] maxMd:hidden;
   transition: right 0.6s ease-in-out;
 }
 
 .talez_detail_view_show {
   @apply right-0 h-[calc(100%-11rem)];
+}
+
+.talez_card_container:hover .open_talez_button {
+  @apply !block bg-background text-primary border border-input px-2 text-xs rounded-sm;
 }

@@ -1,5 +1,5 @@
 import styles from "@/assets/css/header.module.css";
-import { Avatar, AvatarImage } from "@/shared/ui/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/ui/avatar";
 import { Link } from "react-router-dom";
 import TalezAvatar from "@/assets/icons/talez.jpg";
 import { GanttChart, X } from "lucide-react";
@@ -19,6 +19,9 @@ const HeaderV2 = () => {
           <Link to={"/dashboard"}>
             <Avatar>
               <AvatarImage src={TalezAvatar} className="rounded-full" />
+              <AvatarFallback>
+                {generateAvatarInitials(user?.username)}
+              </AvatarFallback>
             </Avatar>
           </Link>
           <div className={styles.application_breadcrumbs}>

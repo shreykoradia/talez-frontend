@@ -25,6 +25,7 @@ import React from "react";
 interface talezDetailViewProp {
   taleDetail: talesResponseProps;
   selectedTale: string | null;
+  onClose: CallableFunction;
   handleModeChange?: (feedback: string) => void;
 }
 
@@ -32,6 +33,7 @@ const TalezDetailCard = ({
   taleDetail,
   handleModeChange,
   selectedTale,
+  onClose,
 }: talezDetailViewProp) => {
   const {
     data: feedbackData,
@@ -48,10 +50,17 @@ const TalezDetailCard = ({
     <>
       <Card className="cursor-pointer border-foreground maxMd:border-0 maxMd:border-b maxMd:rounded-none h-full maxMd:bg-transparent">
         <CardHeader>
-          <CardTitle>{taleDetail?.title}</CardTitle>
-          <CardDescription>
-            Published 🗨️ {dayjs(taleDetail?.created_at).fromNow()}
-          </CardDescription>
+          <div className="flex justify-between items-center">
+            <div>
+              <CardTitle>{taleDetail?.title}</CardTitle>
+              <CardDescription>
+                Published 🗨️ {dayjs(taleDetail?.created_at).fromNow()}
+              </CardDescription>
+            </div>
+            <Button variant={"ghost"} size={"sm"} onClick={() => onClose()}>
+              Close
+            </Button>
+          </div>
         </CardHeader>
         <CardContent className="h-[calc(100%-140px)] overflow-y-scroll no-scrollbar maxMd:px-2 maxMd:h-[calc(100%-195px)]">
           <div className="md:hidden flex justify-between items-center">

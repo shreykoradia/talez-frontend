@@ -6,6 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import { Settings } from "lucide-react";
 
 import styles from "@/assets/css/talez.module.css";
+import { LIMIT } from "@/shared/constant";
+import { Button } from "@/shared/ui/ui/button";
+import SharePopOver from "@/shared/components/header/SharePopOver";
 
 import CreateTalesModal from "./components/CreateTalesModal";
 import { useGetTales } from "./hooks/useGetTales";
@@ -15,9 +18,7 @@ import { useGetTaleById } from "./hooks/useGetTaleById";
 import TalezDetailCard from "./components/TalezDetailCard";
 
 import FeedbackViewModal from "../feedbacks/FeedbackViewModal";
-import { LIMIT } from "@/shared/constant";
-import { Button } from "@/shared/ui/ui/button";
-import SharePopOver from "@/shared/components/header/SharePopOver";
+import EmptyTalez from "./components/EmptyTalez";
 
 const TalezV2 = () => {
   const navigate = useNavigate();
@@ -25,6 +26,8 @@ const TalezV2 = () => {
   const workflowId = params.workflowId || "";
   const [offset, setOffset] = useState<number>(0);
   const [selectedTale, setSelectedTale] = useState<string | null>(null);
+  const [isDetailCardOpen, setIsDetailCardOpen] = useState<boolean>(false);
+
   const taleRef = useRef<HTMLDivElement>(null);
 
   const { data: talesData, refetchTalesFn } = useGetTales({
@@ -37,7 +40,16 @@ const TalezV2 = () => {
       navigate(`/${taleId}/tale`);
     }
     setSelectedTale(taleId);
+    setIsDetailCardOpen(!isDetailCardOpen);
   };
+
+  const handleCloseSelectedTale = () => {
+    if (selectedTale) {
+      setIsDetailCardOpen(!isDetailCardOpen);
+    }
+    return;
+  };
+
   const { data: taleDetail } = useGetTaleById({ taleId: selectedTale || "" });
 
   const [isFeedbackViewOpen, setIsFeedbackViewOpen] = useState<boolean>(false);
@@ -75,21 +87,7 @@ const TalezV2 = () => {
   }, [offset]);
 
   if (talesData?.tales.length === 0) {
-    return (
-      <>
-        <section className="flex flex-col gap-2 justify-center items-center h-[calc(100%-74px)] w-full">
-          <p className="text-balance text-center">
-            Oh boi, No talez to brainstorm or get feedbacks, share the Workflow
-            with your team or create a tale to brainstorm your product by
-            clicking button below.
-          </p>
-          <div className="flex gap-4 items-center">
-            <CreateTalesModal />
-            <SharePopOver />
-          </div>
-        </section>
-      </>
-    );
+    return <EmptyTalez />;
   }
   return (
     <>
@@ -116,6 +114,7 @@ const TalezV2 = () => {
                 tale={tale}
                 key={tale?._id}
                 handleCardClick={handleTalezCardClick}
+                isTaleOpen={isDetailCardOpen}
               />
             ))}
             <div className="flex gap-4 justify-evenly items-center">
@@ -145,13 +144,14 @@ const TalezV2 = () => {
           </div>
           <div
             className={clsx(styles.talez_detail_view_container, {
-              [styles.talez_detail_view_show]: selectedTale,
+              [styles.talez_detail_view_show]: isDetailCardOpen,
             })}
           >
             <TalezDetailCard
               taleDetail={taleDetail}
               selectedTale={selectedTale}
               handleModeChange={handleViewModeChange}
+              onClose={handleCloseSelectedTale}
             />
           </div>
         </div>
