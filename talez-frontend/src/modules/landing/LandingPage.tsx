@@ -33,7 +33,7 @@ const LandingPage = () => {
         <div className={styles.blob} ref={blobRef}></div>
         <div className={styles.blur}></div>
         <div className="z-10 w-full absolute">
-          <p className="text-divamecha text-4xl font-semibold">Talez</p>
+          <p className="text-divamecha text-xl font-bold p-2">Talez</p>
           <div className="grid gap-4 place-content-center place-items-center h-[calc(100vh-140px)] p-4">
             <p className="text-lg">
               Ever Heard about Talez...... Did it ring a bell?
@@ -46,18 +46,28 @@ const LandingPage = () => {
             </p>
             <div className="text-divamecha text-lg">
               You can Find us on below platforms :) <br />
-              <p className="flex justify-center items-center w-full gap-4 text-xl">
-                <a href="https://x.com/hello_talez">• Tw</a>
-                <a href="https://peerlist.io/shrey_">• Peerlist</a>
+              <p className="flex justify-center items-center w-full gap-4 text-xl text-primary">
+                <a
+                  className="hover:border-b border-primary"
+                  href="https://x.com/hello_talez"
+                >
+                  • Tw
+                </a>
+                <a
+                  className="hover:border-b border-primary"
+                  href="https://peerlist.io/shrey_"
+                >
+                  • Peerlist
+                </a>
               </p>
             </div>
           </div>
-          <div className="text-xl text-center p-4">
+          {/* <div className="text-xl text-center p-4">
             First time around and don't know what talez is all about?
             <Button variant={"link"} onClick={() => navigate("/product")}>
               Click to know
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
