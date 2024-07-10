@@ -25,8 +25,8 @@ import React from "react";
 interface talezDetailViewProp {
   taleDetail: talesResponseProps;
   selectedTale: string | null;
-  onClose: CallableFunction;
   handleModeChange?: (feedback: string) => void;
+  onClose?: CallableFunction;
 }
 
 const TalezDetailCard = ({
@@ -57,7 +57,11 @@ const TalezDetailCard = ({
                 Published 🗨️ {dayjs(taleDetail?.created_at).fromNow()}
               </CardDescription>
             </div>
-            <Button variant={"ghost"} size={"sm"} onClick={() => onClose()}>
+            <Button
+              variant={"ghost"}
+              size={"sm"}
+              onClick={() => onClose && onClose()}
+            >
               Close
             </Button>
           </div>
