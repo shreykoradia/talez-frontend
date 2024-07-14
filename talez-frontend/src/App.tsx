@@ -11,7 +11,6 @@ import { isTokenExpired } from "./shared/helpers/helpers";
 import LandingPage from "./modules/landing";
 import ProductInformation from "./modules/landing/components/ProductInformation";
 import AuthRedirect from "./shared/components/auth-redirect/AuthRedirect";
-import HelmetLoader from "./shared/components/loader/Loader";
 
 const App = () => {
   const queryClient = new QueryClient({
