@@ -34,9 +34,12 @@ const HeaderV2 = () => {
           </Link>
           <Avatar>
             <AvatarImage
-              src={user?.avatarUrl || generateAvatarInitials(user?.username)}
+              src={user?.avatarUrl}
               className="rounded-full text-divamecha"
             />
+            <AvatarFallback className="rounded-full bg-secondary">
+              {generateAvatarInitials(user?.username)}
+            </AvatarFallback>
           </Avatar>
         </div>
         <div
