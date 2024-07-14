@@ -33,11 +33,11 @@ export type ErrorResponse = AxiosError<AxiosErrorProps>;
 export interface peopleWithAccessResponse {
   _id: string;
   workflow: string;
-  shared_by: string;
+  sharedBy: string;
   role: string;
-  shared_at: string;
+  sharedAt: string;
   __v: number;
-  shared_to: SharedTo;
+  sharedTo: SharedTo;
 }
 export interface SharedTo {
   _id: string;
@@ -88,11 +88,11 @@ export interface sharedUserResponse {
 export interface SharedUsersEntity {
   _id: string;
   workflow: string;
-  shared_by: string;
+  sharedBy: string;
   role: string;
-  shared_at: string;
+  sharedAt: string;
   __v: number;
-  shared_to: SharedTo;
+  sharedTo: SharedTo;
 }
 export interface SharedTo {
   _id: string;
