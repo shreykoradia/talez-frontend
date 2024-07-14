@@ -19,6 +19,7 @@ import TalezDetailCard from "./components/TalezDetailCard";
 
 import FeedbackViewModal from "../feedbacks/FeedbackViewModal";
 import EmptyTalez from "./components/EmptyTalez";
+import Loader from "@/shared/components/loader/Loader";
 
 const TalezV2 = () => {
   const navigate = useNavigate();
@@ -30,7 +31,11 @@ const TalezV2 = () => {
 
   const taleRef = useRef<HTMLDivElement>(null);
 
-  const { data: talesData, refetchTalesFn } = useGetTales({
+  const {
+    data: talesData,
+    refetchTalesFn,
+    isLoadingTales,
+  } = useGetTales({
     workflowId,
     offset,
   });
@@ -89,6 +94,11 @@ const TalezV2 = () => {
   if (talesData?.tales.length === 0) {
     return <EmptyTalez />;
   }
+
+  if (isLoadingTales) {
+    return <Loader />;
+  }
+
   return (
     <>
       <section className="flex justify-between items-center px-2 py-4 w-full md:p-8">
