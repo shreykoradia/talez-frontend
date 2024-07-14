@@ -1,3 +1,6 @@
+import React from "react";
+import clsx from "clsx";
+
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -13,14 +16,12 @@ import CreateFeedbackModal from "@/modules/feedbacks/component/CreateFeedbackMod
 import FeedbackCard from "@/modules/feedbacks/FeedbackCard";
 import styles from "@/assets/css/talez.module.css";
 import { feedbackData } from "@/modules/feedbacks/types";
-
-import TalezDetailView from "./TalezDetailView";
-import { talesResponseProps } from "../types";
-import clsx from "clsx";
 import FeedbackOverview from "@/modules/feedbacks";
 import { Button } from "@/shared/ui/ui/button";
 import useGetFeedbacks from "@/modules/feedbacks/hooks/useGetFeedbacks";
-import React from "react";
+
+import TalezDetailView from "./TalezDetailView";
+import { talesResponseProps } from "../types";
 
 interface talezDetailViewProp {
   taleDetail: talesResponseProps;
@@ -46,6 +47,8 @@ const TalezDetailCard = ({
   });
   dayjs.extend(relativeTime);
 
+  console.log(dayjs(taleDetail?.createdAt));
+
   return (
     <>
       <Card className="cursor-pointer border-foreground maxMd:border-0 maxMd:border-b maxMd:rounded-none h-full maxMd:bg-transparent">
@@ -54,7 +57,7 @@ const TalezDetailCard = ({
             <div>
               <CardTitle>{taleDetail?.title}</CardTitle>
               <CardDescription>
-                Published 🗨️ {dayjs(taleDetail?.created_at).fromNow()}
+                Published 🗨️ {dayjs(taleDetail?.createdAt).fromNow()}
               </CardDescription>
             </div>
             <Button

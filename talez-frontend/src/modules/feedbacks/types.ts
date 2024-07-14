@@ -1,3 +1,4 @@
+import { TimeStampedModelMixin } from "@/shared/types";
 import { AxiosResponse } from "axios";
 
 export type infiniteFeedback = {
@@ -16,12 +17,11 @@ export type createFeedbackRequestParams = {
 export type feedbackData = {
   _id: string;
   feedback: string;
-  feedback_author_id: string;
-  feedback_author_name: string;
-  tale_id: string;
-  created_at: string;
+  feedbackAuthorId: string;
+  feedbackAuthorName: string;
+  taleId: string;
   __v: number;
-};
+} & TimeStampedModelMixin;
 
 export type feedbackResponseData = {
   totalPages: number;

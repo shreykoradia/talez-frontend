@@ -9,9 +9,9 @@ export type talesResponseProps = {
   _id: string;
   title: string;
   description: string;
-  author_id: string;
-  author_name: string;
-  workflow_id: string;
+  authorId: string;
+  authorName: string;
+  workflowId: string;
   __v: number;
 } & TimeStampedModelMixin;
 

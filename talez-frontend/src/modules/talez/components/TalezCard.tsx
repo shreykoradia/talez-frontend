@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 import {
   Card,
   CardContent,
@@ -7,7 +9,6 @@ import {
   CardTitle,
 } from "@/shared/ui/ui/card";
 
-import { talesResponseProps } from "../types";
 import {
   Tooltip,
   TooltipContent,
@@ -18,7 +19,8 @@ import { toast } from "@/shared/ui/ui/use-toast";
 import { BookmarkCheck } from "lucide-react";
 import { Button } from "@/shared/ui/ui/button";
 import styles from "@/assets/css/talez.module.css";
-import clsx from "clsx";
+
+import { talesResponseProps } from "../types";
 
 interface talezCardProps {
   tale: talesResponseProps;
@@ -42,7 +44,7 @@ const TalezCard = ({ tale, handleCardClick, isTaleOpen }: talezCardProps) => {
                   {tale?.title}
                 </CardTitle>
                 <CardDescription>
-                  Authored by {tale?.author_name}
+                  Authored by {tale?.authorName}
                 </CardDescription>
               </div>
               <button

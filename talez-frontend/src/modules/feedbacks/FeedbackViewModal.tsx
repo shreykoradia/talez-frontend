@@ -59,7 +59,7 @@ const FeedbackViewModal = ({
   const { data: reactionTypeData, refetch: reactionTypeFn } =
     useGetReactionType(feedbackParams);
 
-  const voteType = reactionTypeData?.vote_type?.vote_type;
+  const voteType = reactionTypeData?.vote_type?.voteType;
 
   const { mutate: upvoteFn } = useMutation({
     mutationFn: () => upvote(upvoteValues, params),
@@ -134,7 +134,7 @@ const FeedbackViewModal = ({
                   {reactionCountData?.response?.count_type}
                 </div>
                 <div className="text-xs text-primary">
-                  <p>Authored by {data?.feedback?.feedback_author_name}</p>
+                  <p>Authored by {data?.feedback?.feedbackAuthorName}</p>
                 </div>
               </div>
             </CardFooter>

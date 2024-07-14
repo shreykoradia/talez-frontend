@@ -26,7 +26,7 @@ const FeedbackCard = ({
         <CardHeader className={styles.feedback_card_header}>
           <CardTitle className="text-md">
             <div className="flex justify-between items-center">
-              <p>Feedback by {feedbackData?.feedback_author_name}</p>
+              <p>Feedback by {feedbackData?.feedbackAuthorName}</p>
               <button
                 className={clsx(styles.open_feedback_button, "hidden")}
                 onClick={() => onOpenViewMode(feedbackData?._id)}
@@ -36,7 +36,7 @@ const FeedbackCard = ({
             </div>
           </CardTitle>
           <CardDescription className="text-sm">
-            🗨️ {dayjs(feedbackData?.created_at).fromNow()}
+            🗨️ {dayjs(feedbackData?.createdAt).fromNow()}
           </CardDescription>
         </CardHeader>
         <CardContent className={styles.feedback_card_content}>
