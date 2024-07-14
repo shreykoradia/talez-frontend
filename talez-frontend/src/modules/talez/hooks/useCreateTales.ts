@@ -31,6 +31,7 @@ const useCreateTales = () => {
       refetchTalesFn();
     },
     onError: (err: ErrorResponse) => {
+      console.log(err);
       toast({
         title: getServerError(err)?.message,
       });
