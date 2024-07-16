@@ -1,3 +1,6 @@
+import React from "react";
+import clsx from "clsx";
+
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -13,25 +16,29 @@ import CreateFeedbackModal from "@/modules/feedbacks/component/CreateFeedbackMod
 import FeedbackCard from "@/modules/feedbacks/FeedbackCard";
 import styles from "@/assets/css/talez.module.css";
 import { feedbackData } from "@/modules/feedbacks/types";
-
-import TalezDetailView from "./TalezDetailView";
-import { talesResponseProps } from "../types";
-import clsx from "clsx";
 import FeedbackOverview from "@/modules/feedbacks";
 import { Button } from "@/shared/ui/ui/button";
 import useGetFeedbacks from "@/modules/feedbacks/hooks/useGetFeedbacks";
-import React from "react";
+import Loader from "@/shared/components/loader/Loader";
+import { Skeleton } from "@/shared/ui/ui/skeleton";
+
+import TalezDetailView from "./TalezDetailView";
+import { talesResponseProps } from "../types";
 
 interface talezDetailViewProp {
   taleDetail: talesResponseProps;
   selectedTale: string | null;
+  isLoading: boolean;
   handleModeChange?: (feedback: string) => void;
+  onClose?: CallableFunction;
 }
 
 const TalezDetailCard = ({
   taleDetail,
   handleModeChange,
   selectedTale,
+  onClose,
+  isLoading,
 }: talezDetailViewProp) => {
   const {
     data: feedbackData,
@@ -48,10 +55,28 @@ const TalezDetailCard = ({
     <>
       <Card className="cursor-pointer border-foreground maxMd:border-0 maxMd:border-b maxMd:rounded-none h-full maxMd:bg-transparent">
         <CardHeader>
-          <CardTitle>{taleDetail?.title}</CardTitle>
-          <CardDescription>
-            Published 🗨️ {dayjs(taleDetail?.created_at).fromNow()}
-          </CardDescription>
+          {isLoading ? (
+            <div className="grid gap-2">
+              <Skeleton className="h-4" />
+              <Skeleton className="h-2 w-1/2" />
+            </div>
+          ) : (
+            <div className="flex justify-between items-center">
+              <div>
+                <CardTitle>{taleDetail?.title}</CardTitle>
+                <CardDescription>
+                  Published 🗨️ {dayjs(taleDetail?.createdAt).fromNow()}
+                </CardDescription>
+              </div>
+              <Button
+                variant={"ghost"}
+                size={"sm"}
+                onClick={() => onClose && onClose()}
+              >
+                Close
+              </Button>
+            </div>
+          )}
         </CardHeader>
         <CardContent className="h-[calc(100%-140px)] overflow-y-scroll no-scrollbar maxMd:px-2 maxMd:h-[calc(100%-195px)]">
           <div className="md:hidden flex justify-between items-center">
@@ -65,13 +90,17 @@ const TalezDetailCard = ({
                 <TabsTrigger value="feedback">Feedbacks</TabsTrigger>
               </TabsList>
               <TabsContent value="description">
-                <TalezDetailView tale={taleDetail?.description} />
+                <TalezDetailView
+                  tale={taleDetail?.description}
+                  isLoading={isLoading}
+                />
               </TabsContent>
               <TabsContent value="feedback">
                 <div className="w-full flex justify-end pb-4">
                   <CreateFeedbackModal taleId={selectedTale || ""} />
                 </div>
                 <div className="flex flex-col gap-4 w-full h-full">
+                  {isFeedbackLoading || (isFetchingNextPage && <Loader />)}
                   {!isFetchingNextPage &&
                     !isFeedbackLoading &&
                     feedbackData?.map((data, index) => (
@@ -109,7 +138,10 @@ const TalezDetailCard = ({
             </Tabs>
           </div>
           <div className="md:hidden">
-            <TalezDetailView tale={taleDetail?.description} />
+            <TalezDetailView
+              tale={taleDetail?.description}
+              isLoading={isLoading}
+            />
           </div>
         </CardContent>
       </Card>

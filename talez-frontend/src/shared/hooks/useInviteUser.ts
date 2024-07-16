@@ -1,9 +1,8 @@
-import { ErrorResponse, inviteUserRequestProps } from "./../types/index";
 import { useMutation } from "@tanstack/react-query";
 import useGetPeopleWithAccess from "./useGetPeopleWithAccess";
 import { inviteUser } from "../components/header/api/inviteUser";
 import { toast } from "../ui/ui/use-toast";
-import { getServerError } from "../helpers/helpers";
+import { inviteUserRequestProps } from "./../types/index";
 
 const useInviteUser = (workflowId: string) => {
   const requestParams = {
@@ -21,15 +20,15 @@ const useInviteUser = (workflowId: string) => {
       });
       refetchPeopleWithAccessFn();
     },
-    onError: (err: ErrorResponse) => {
+    onError: () => {
       toast({
-        title: getServerError(err)?.message,
+        title: "Something Went Wrong!",
       });
     },
   });
 
   const { mutate: inviteUserFn, isPending: isInvitingUser } = query;
-  return { inviteUserFn, isInvitingUser };
+  return { inviteUserFn, isInvitingUser, ...query };
 };
 
 export default useInviteUser;

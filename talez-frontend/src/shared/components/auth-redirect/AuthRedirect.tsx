@@ -12,7 +12,7 @@ const AuthRedirect: React.FC = () => {
       setCookie("accessToken", token);
       navigate("/dashboard");
     } else {
-      navigate("/login");
+      navigate("/signin");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

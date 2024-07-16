@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ValidationError } from "yup";
 import { X as CloseIcon } from "lucide-react";
@@ -47,13 +47,13 @@ const SharePopOver = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   const { updateAccessFn } = useUpdateAccess(workflowId);
-  const { inviteUserFn } = useInviteUser(workflowId);
+  const { inviteUserFn, isInvitingUser, status } = useInviteUser(workflowId);
   const { removeAccessFn } = useRemoveAccess(workflowId);
 
   const workflowDetails = workflow?.workflows;
 
   const userRole = data?.shared_users?.filter(
-    (shared) => shared?.shared_to?._id === user?._id
+    (shared) => shared?.sharedTo?._id === user?._id
   );
 
   const isUserAuthor =
@@ -82,6 +82,16 @@ const SharePopOver = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (isInvitingUser === false && status === "success") {
+      setEmailValue("");
+    }
+    return () => {
+      setEmailValue("");
+      setEmailError("");
+    };
+  }, [isInvitingUser, status]);
 
   return (
     <>
@@ -143,15 +153,15 @@ const SharePopOver = () => {
                       <Avatar>
                         <AvatarImage src="/avatars/03.png" />
                         <AvatarFallback>
-                          {generateAvatarInitials(user?.shared_to?.email)}
+                          {generateAvatarInitials(user?.sharedTo?.username)}
                         </AvatarFallback>
                       </Avatar>
                       <div>
                         <p className="text-sm font-medium leading-none text-divamecha">
-                          {user?.shared_to?.username}
+                          {user?.sharedTo?.username}
                         </p>
                         <p className="text-sm text-muted">
-                          {user?.shared_to?.email}
+                          {user?.sharedTo?.email}
                         </p>
                       </div>
                     </div>
@@ -161,14 +171,14 @@ const SharePopOver = () => {
                       onValueChange={(value: AccessLevel) => {
                         if (value === AccessLevel.REMOVE_ACCESS) {
                           const values = {
-                            email: user?.shared_to?.email,
+                            email: user?.sharedTo?.email,
                           };
                           removeAccessFn(values);
                           return;
                         }
                         setSelectedAccessValue(value);
                         const values = {
-                          email: user?.shared_to?.email,
+                          email: user?.sharedTo?.email,
                           role: value,
                         };
                         updateAccessFn(values);
