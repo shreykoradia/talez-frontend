@@ -10,7 +10,6 @@ export const useGetFeedbackId = (feedbackParams: {
   });
 
   const data = query?.data?.data;
-  const { isLoading, isError, refetch } = query;
 
-  return { data, isLoading, isError, refetch };
+  return { ...query, data };
 };

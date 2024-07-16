@@ -55,7 +55,13 @@ const TalezV2 = () => {
     return;
   };
 
-  const { data: taleDetail } = useGetTaleById({ taleId: selectedTale || "" });
+  const {
+    data: taleDetail,
+    isLoadingTale,
+    isRefetchingTale,
+  } = useGetTaleById({
+    taleId: selectedTale || "",
+  });
 
   const [isFeedbackViewOpen, setIsFeedbackViewOpen] = useState<boolean>(false);
   const [feedbackId, setFeedbackId] = useState<string | undefined>();
@@ -162,6 +168,7 @@ const TalezV2 = () => {
               selectedTale={selectedTale}
               handleModeChange={handleViewModeChange}
               onClose={handleCloseSelectedTale}
+              isLoading={isLoadingTale || isRefetchingTale}
             />
           </div>
         </div>

@@ -19,6 +19,7 @@ import { useGetReactionType } from "./hooks/useGetReactionType";
 import clsx from "clsx";
 import { getServerError } from "@/shared/helpers/helpers";
 import { ErrorResponse } from "@/shared/types";
+import Loader from "@/shared/components/loader/Loader";
 
 interface feedbackViewModalProps {
   open: boolean;
@@ -33,7 +34,13 @@ const FeedbackViewModal = ({
   feedbackId,
   taleId,
 }: feedbackViewModalProps) => {
-  const { data } = useGetFeedbackId({ feedbackId: feedbackId });
+  const {
+    data,
+    isLoading: isFeedbackLoading,
+    isRefetching: isFeedbackFetching,
+  } = useGetFeedbackId({
+    feedbackId: feedbackId,
+  });
 
   const paramskey = useParams();
   const params = {
@@ -94,6 +101,10 @@ const FeedbackViewModal = ({
       });
     },
   });
+
+  if (isFeedbackFetching || isFeedbackLoading) {
+    return <Loader />;
+  }
 
   return (
     <>
