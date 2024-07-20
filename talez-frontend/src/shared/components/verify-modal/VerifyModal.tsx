@@ -33,7 +33,7 @@ const VerifyModal = () => {
               <p>Verify your Email Address</p>
               <Verified size={40} />
             </div>
-            <p className="text-muted-foreground text-center">
+            <p className="text-muted text-center">
               Please verify your email address to activate your account. This
               helps us keep our application secure. We respect your privacy and
               never share your data or send spam. If you didn't receive the

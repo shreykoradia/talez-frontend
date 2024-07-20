@@ -5,9 +5,19 @@ import TalezDetailCard from "./components/TalezDetailCard";
 const TalezMobileView = () => {
   const params = useParams();
   const taleId = params?.taleId || "";
-  const { data: taleDetail } = useGetTaleById({ taleId });
+  const {
+    data: taleDetail,
+    isLoadingTale,
+    isRefetchingTale,
+  } = useGetTaleById({ taleId });
 
-  return <TalezDetailCard taleDetail={taleDetail} selectedTale={taleId} />;
+  return (
+    <TalezDetailCard
+      taleDetail={taleDetail}
+      selectedTale={taleId}
+      isLoading={isLoadingTale || isRefetchingTale}
+    />
+  );
 };
 
 export default TalezMobileView;

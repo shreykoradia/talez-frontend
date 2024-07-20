@@ -19,6 +19,7 @@ import { useGetReactionType } from "./hooks/useGetReactionType";
 import clsx from "clsx";
 import { getServerError } from "@/shared/helpers/helpers";
 import { ErrorResponse } from "@/shared/types";
+import Loader from "@/shared/components/loader/Loader";
 
 interface feedbackViewModalProps {
   open: boolean;
@@ -33,7 +34,13 @@ const FeedbackViewModal = ({
   feedbackId,
   taleId,
 }: feedbackViewModalProps) => {
-  const { data } = useGetFeedbackId({ feedbackId: feedbackId });
+  const {
+    data,
+    isLoading: isFeedbackLoading,
+    isRefetching: isFeedbackFetching,
+  } = useGetFeedbackId({
+    feedbackId: feedbackId,
+  });
 
   const paramskey = useParams();
   const params = {
@@ -59,7 +66,7 @@ const FeedbackViewModal = ({
   const { data: reactionTypeData, refetch: reactionTypeFn } =
     useGetReactionType(feedbackParams);
 
-  const voteType = reactionTypeData?.vote_type?.vote_type;
+  const voteType = reactionTypeData?.vote_type?.voteType;
 
   const { mutate: upvoteFn } = useMutation({
     mutationFn: () => upvote(upvoteValues, params),
@@ -94,6 +101,10 @@ const FeedbackViewModal = ({
       });
     },
   });
+
+  if (isFeedbackFetching || isFeedbackLoading) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -134,7 +145,7 @@ const FeedbackViewModal = ({
                   {reactionCountData?.response?.count_type}
                 </div>
                 <div className="text-xs text-primary">
-                  <p>Authored by {data?.feedback?.feedback_author_name}</p>
+                  <p>Authored by {data?.feedback?.feedbackAuthorName}</p>
                 </div>
               </div>
             </CardFooter>

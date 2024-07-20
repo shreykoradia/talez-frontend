@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -6,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/ui/ui/card";
-import { Archive, Heart } from "lucide-react";
+import { ChevronsUpDown } from "lucide-react";
 import styles from "@/assets/css/workflow.module.css";
 import { Button } from "@/shared/ui/ui/button";
 import { workflowResponse } from "./types";
@@ -17,7 +18,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/shared/ui/ui/tooltip";
-import { toast } from "@/shared/ui/ui/use-toast";
 import clsx from "clsx";
 
 const WorkflowCard = ({
@@ -27,18 +27,25 @@ const WorkflowCard = ({
   workflow: workflowResponse;
   index: number;
 }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
+
   const onWorkflowCardClick = (id: string) => {
     navigate(`/${id}/talez`);
+  };
+
+  const toggleExpand = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsExpanded((prev) => !prev);
   };
 
   return (
     <Card
       className={clsx(
-        "maxMd:w-full maxMd:rounded-none maxMd:border-0 maxMd:!border-b maxMd:border-b-foreground cursor-pointer w-[21.875rem]",
-        { "maxMd:!border-t-0": index === 0 }
+        "maxMd:w-full maxMd:border-1 border-foreground maxMd:rounded-lg cursor-pointer w-[21.875rem]"
       )}
       onClick={() => onWorkflowCardClick(workflow?._id)}
+      key={index}
     >
       <CardHeader className="maxMd:px-0">
         <div className="flex justify-between items-center">
@@ -55,45 +62,17 @@ const WorkflowCard = ({
                   <TooltipTrigger asChild>
                     <Button
                       variant={"link"}
-                      className={styles.workflow_button_container}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toast({
-                          title: "Can't wait anymore for this feature to ship!",
-                          description:
-                            "Ah you might need to wait for the next iteration to add this to archives",
-                        });
-                      }}
+                      className={clsx(
+                        styles.workflow_button_container,
+                        "hidden maxMd:block"
+                      )}
+                      onClick={toggleExpand}
                     >
-                      <Archive size={16} />
+                      <ChevronsUpDown size={16} />
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent className="text-accent-foreground border border-accent">
-                    <p>Archives</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant={"link"}
-                      className={styles.workflow_button_container}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toast({
-                          title: "Can't wait anymore for this feature to ship!",
-                          description:
-                            "Ah you might need to wait for the next iteration to add this to favourites",
-                        });
-                      }}
-                    >
-                      <Heart size={16} />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent className="text-accent-foreground border border-accent">
-                    <p>Favourites</p>
+                    {isExpanded ? <p>Show Less</p> : <p>Show More</p>}
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -101,8 +80,19 @@ const WorkflowCard = ({
           </div>
         </div>
       </CardHeader>
-      <CardContent className="h-[9.375rem] maxMd:h-20 text-balance text-justify break-words rounded-lg overflow-y-auto no-scrollbar">
-        {workflow?.description}
+      <CardContent
+        className={clsx(
+          "break-words rounded-lg overflow-hidden transition-max-height duration-300 ease-in-out",
+          { "max-h-[5rem]": !isExpanded, "max-h-[20rem]": isExpanded }
+        )}
+      >
+        {isExpanded ? (
+          <p className="text-sm text-left">{workflow?.description}</p>
+        ) : (
+          <p className="text-ellipsis whitespace-nowrap overflow-hidden text-sm">
+            {workflow?.description}
+          </p>
+        )}
       </CardContent>
       <CardFooter className="maxMd:hidden px-0">
         <div className="flex justify-end w-full py-1 px-2">
@@ -112,45 +102,14 @@ const WorkflowCard = ({
                 <TooltipTrigger asChild>
                   <Button
                     variant={"link"}
-                    className={styles.workflow_button_container}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toast({
-                        title: "Can't wait anymore for this feature to ship!",
-                        description:
-                          "Ah you might need to wait for the next iteration to add this to archives",
-                      });
-                    }}
+                    className={clsx(styles.workflow_button_container)}
+                    onClick={toggleExpand}
                   >
-                    <Archive size={16} />
+                    <ChevronsUpDown size={16} />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent className="text-accent-foreground border border-accent">
-                  <p>Archives</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant={"link"}
-                    className={styles.workflow_button_container}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toast({
-                        title: "Can't wait anymore for this feature to ship!",
-                        description:
-                          "Ah you might need to wait for the next iteration to add this to favourites",
-                      });
-                    }}
-                  >
-                    <Heart size={16} />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent className="text-accent-foreground border border-accent">
-                  <p>Favourites</p>
+                  {isExpanded ? <p>Show Less</p> : <p>Show More</p>}
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>

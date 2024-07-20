@@ -95,9 +95,9 @@ const Dashboard = () => {
             <Background />
           </ReactFlow>
         </div>
-        <div className="flex flex-col py-2 w-full h-full overflow-y-scroll">
+        <div className="flex flex-col p-2 w-full h-full overflow-y-scroll">
           {workflowData?.workflows?.map((workflow, index) => (
-            <WorkflowCard index={index} workflow={workflow} key={index} />
+            <WorkflowCard workflow={workflow} key={index} index={index} />
           ))}
         </div>
       </div>
