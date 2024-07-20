@@ -20,7 +20,13 @@ import {
 } from "@/shared/ui/ui/tooltip";
 import clsx from "clsx";
 
-const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
+const WorkflowCard = ({
+  workflow,
+  index,
+}: {
+  workflow: workflowResponse;
+  index: number;
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
 
@@ -39,6 +45,7 @@ const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
         "maxMd:w-full maxMd:border-1 border-foreground maxMd:rounded-lg cursor-pointer w-[21.875rem]"
       )}
       onClick={() => onWorkflowCardClick(workflow?._id)}
+      key={index}
     >
       <CardHeader className="maxMd:px-0">
         <div className="flex justify-between items-center">
@@ -80,9 +87,9 @@ const WorkflowCard = ({ workflow }: { workflow: workflowResponse }) => {
         )}
       >
         {isExpanded ? (
-          <p className="md:text-sm">{workflow?.description}</p>
+          <p className="text-sm text-left">{workflow?.description}</p>
         ) : (
-          <p className="text-ellipsis whitespace-nowrap overflow-hidden md:text-sm">
+          <p className="text-ellipsis whitespace-nowrap overflow-hidden text-sm">
             {workflow?.description}
           </p>
         )}
