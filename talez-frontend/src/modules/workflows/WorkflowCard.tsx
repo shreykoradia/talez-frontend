@@ -82,7 +82,7 @@ const WorkflowCard = ({
       </CardHeader>
       <CardContent
         className={clsx(
-          "break-words rounded-lg overflow-hidden transition-max-height duration-300 ease-in-out",
+          "break-words rounded-lg overflow-hidden transition-max-height duration-300 ease-in-out maxMd:pl-4",
           { "max-h-[5rem]": !isExpanded, "max-h-[20rem]": isExpanded }
         )}
       >
