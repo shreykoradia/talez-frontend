@@ -1,3 +1,7 @@
+import { useState } from "react";
+import clsx from "clsx";
+import { Loader, PlusIcon } from "lucide-react";
+
 import { Button } from "@/shared/ui/ui/button";
 import {
   Dialog,
@@ -10,14 +14,11 @@ import {
 } from "@/shared/ui/ui/dialog";
 import { Input } from "@/shared/ui/ui/input";
 import { Label } from "@/shared/ui/ui/label";
-import { Loader, PlusIcon } from "lucide-react";
+import { Textarea } from "@/shared/ui/ui/textarea";
+
 import { workflowRequest } from "../types";
 import useCreateWorkflowForm from "../hooks/useCreateWorkflowForm";
 import useCreateWorkflows from "../hooks/useCreateWorkflows";
-import { useState } from "react";
-import useGetWorkflows from "../hooks/useGetWorkflows";
-import { Textarea } from "@/shared/ui/ui/textarea";
-import clsx from "clsx";
 
 const CreateWorkflowModal = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -25,12 +26,10 @@ const CreateWorkflowModal = () => {
   const [workflowTitleCounter, setWorkflowTitleCounter] = useState<number>(0);
 
   const { createWorkfLowMutateFn, isCreatingWorkflow } = useCreateWorkflows();
-  const { refetchWorkflowsFn } = useGetWorkflows();
   const { values, errors, touched, handleChange, handleSubmit } =
     useCreateWorkflowForm((values: workflowRequest) => {
       createWorkfLowMutateFn(values);
       setOpenModal(!openModal);
-      refetchWorkflowsFn();
       setWorkflowCharCounter(0);
       setWorkflowTitleCounter(0);
     });
