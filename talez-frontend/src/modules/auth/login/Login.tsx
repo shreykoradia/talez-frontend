@@ -15,7 +15,7 @@ import { login } from "../api/login";
 import { cn } from "@/shared/lib/utils";
 import { ErrorResponse } from "@/shared/types";
 import { getServerError } from "@/shared/helpers/helpers";
-import { Github } from "lucide-react";
+// import { Github } from "lucide-react";
 
 interface loginFormProps {
   email: string;
@@ -45,9 +45,9 @@ const Login = () => {
   const { values, handleChange, handleSubmit, errors, touched, resetForm } =
     useLoginForm((values: loginFormProps) => loginMutateFn(values));
 
-  const handleGithubSignin = () => {
-    window.location.href = `${import.meta.env.VITE_BACKEND_URL}auth/github`;
-  };
+  // const handleGithubSignin = () => {
+  //   window.location.href = `${import.meta.env.VITE_BACKEND_URL}auth/github`;
+  // };
 
   return (
     <>
