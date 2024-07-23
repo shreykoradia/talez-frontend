@@ -113,12 +113,12 @@ const Login = () => {
           <Link className={cn(buttonVariants({ variant: "outline" }))} to={"/"}>
             Missed something, want to go back?
           </Link>
-          <Link
+          {/* <Link
             to={"/signup"}
             className={cn(buttonVariants({ variant: "link" }))}
           >
             New to brainstorming products? Signup
-          </Link>
+          </Link> */}
         </div>
         <div className="maxLg:hidden">
           <Sitting height={500} width={500} />
