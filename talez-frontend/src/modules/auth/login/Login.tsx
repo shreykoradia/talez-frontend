@@ -106,10 +106,10 @@ const Login = () => {
               <span className="bg-background px-2">Or continue with</span>
             </div>
           </div>
-          <Button variant={"default"} onClick={handleGithubSignin}>
+          {/* <Button variant={"default"} onClick={handleGithubSignin}>
             <Github className="mr-2" size={16} />
             Sign In with Github
-          </Button>
+          </Button> */}
           <Link className={cn(buttonVariants({ variant: "outline" }))} to={"/"}>
             Missed something, want to go back?
           </Link>
