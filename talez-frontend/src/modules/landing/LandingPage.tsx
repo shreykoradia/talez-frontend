@@ -1,9 +1,11 @@
 import styles from "@/assets/css/landingpage.module.css";
+import { Button } from "@/shared/ui/ui/button";
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   const blobRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     const handlePointerMove = (event: MouseEvent) => {
       const { clientX, clientY } = event;
@@ -30,7 +32,10 @@ const LandingPage = () => {
         <div className={styles.blob} ref={blobRef}></div>
         <div className={styles.blur}></div>
         <div className="z-10 w-full absolute">
-          <p className="text-divamecha text-xl font-bold p-2">Talez</p>
+          <div className="flex justify_between items-center w-full p-4">
+          <p className="text-divamecha text-xl font-bold w-full">Talez</p>
+          <Button variant="outline" onClick={() => navigate("/signin")}>Sign In</Button>
+          </div>
           <div className="grid gap-4 place-content-center place-items-center h-[calc(100vh-140px)] p-4 w-full">
             <p className="text-lg font-semibold w-full">
               Ever Heard about Talez...... Did it ring a bell?
@@ -46,13 +51,13 @@ const LandingPage = () => {
               <br />
               <p className="flex justify-start items-center w-full gap-4 text-xl text-primary">
                 <a
-                  className="hover:border-b border-primary"
+                  className="hover:underline"
                   href="https://x.com/hello_talez"
                 >
                   • Tw
                 </a>
                 <a
-                  className="hover:border-b border-primary"
+                  className="hover:underline"
                   href="https://peerlist.io/shrey_"
                 >
                   • Peerlist
