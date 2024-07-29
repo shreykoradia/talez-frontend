@@ -43,14 +43,13 @@ const Attachments = ({ selectedTale }: AttachementProp) => {
           </DrawerHeader>
           <div className="flex items-center justify-start gap-4 flex-wrap p-4">
             {data?.data.links?.map((link, index) => (
-              <div
+              <a
+                href={link?.linkUrl}
                 className="border border-input px-3 py-2 text-sm text-input rounded-lg hover:bg-secondary hover:transition hover:delay-200"
                 key={index}
               >
-                <a href={link?.linkUrl} target="_blank">
-                  {link?.linkTitle}
-                </a>
-              </div>
+                <p>{link?.linkTitle}</p>
+              </a>
             ))}
           </div>
         </DrawerContent>
