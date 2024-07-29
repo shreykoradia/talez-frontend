@@ -24,6 +24,7 @@ import { Skeleton } from "@/shared/ui/ui/skeleton";
 
 import TalezDetailView from "./TalezDetailView";
 import { talesResponseProps } from "../types";
+import Attachments from "@/modules/attachments";
 
 interface talezDetailViewProp {
   taleDetail: talesResponseProps;
@@ -49,6 +50,7 @@ const TalezDetailCard = ({
   } = useGetFeedbacks({
     taleId: selectedTale || "",
   });
+
   dayjs.extend(relativeTime);
 
   return (
@@ -78,9 +80,10 @@ const TalezDetailCard = ({
             </div>
           )}
         </CardHeader>
-        <CardContent className="h-[calc(100%-140px)] overflow-y-scroll no-scrollbar maxMd:px-2 maxMd:h-[calc(100%-195px)]">
-          <div className="md:hidden flex justify-between items-center">
+        <CardContent className="h-[calc(100%-140px)] overflow-x-hidden overflow-y-scroll no-scrollbar maxMd:px-2 maxMd:h-[calc(100%-195px)]">
+          <div className="md:hidden flex flex-wrap gap-2 justify-start items-center">
             <CreateFeedbackModal taleId={selectedTale || ""} />
+            <Attachments selectedTale={selectedTale || ""} />
             <FeedbackOverview />
           </div>
           <div className={clsx(styles.tabs_talez_container, "maxMd:hidden")}>
@@ -90,10 +93,7 @@ const TalezDetailCard = ({
                 <TabsTrigger value="feedback">Feedbacks</TabsTrigger>
               </TabsList>
               <TabsContent value="description">
-                <TalezDetailView
-                  tale={taleDetail?.description}
-                  isLoading={isLoading}
-                />
+                <TalezDetailView tale={taleDetail} isLoading={isLoading} />
               </TabsContent>
               <TabsContent value="feedback">
                 <div className="w-full flex justify-end pb-4">
@@ -138,10 +138,7 @@ const TalezDetailCard = ({
             </Tabs>
           </div>
           <div className="md:hidden">
-            <TalezDetailView
-              tale={taleDetail?.description}
-              isLoading={isLoading}
-            />
+            <TalezDetailView tale={taleDetail} isLoading={isLoading} />
           </div>
         </CardContent>
       </Card>
