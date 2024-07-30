@@ -46,11 +46,11 @@ const FeedbackOverview = () => {
     <>
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
         <SheetTrigger asChild>
-          <Button variant={"link"}>
-            <MessageCircleCode strokeWidth={1.5} />
+          <Button variant={"outline"}>
+            <MessageCircleCode size={16} />
           </Button>
         </SheetTrigger>
-        <SheetContent>
+        <SheetContent className="border-l-muted">
           <SheetHeader>
             <SheetTitle className="text-divaMecha">Feedbacks</SheetTitle>
             <SheetDescription className="!mt-0 text-muted">
