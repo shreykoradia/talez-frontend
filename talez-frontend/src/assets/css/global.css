@@ -15,7 +15,7 @@
 }
 
 .talez_application_container {
-  @apply mx-auto max-w-[1800px] w-full overflow-hidden h-[100vh];
+  @apply mx-auto max-w-[1800px] w-full overflow-hidden h-[100vh] bg-gradient-bg;
 }
 
 /* React Flow Styles */
