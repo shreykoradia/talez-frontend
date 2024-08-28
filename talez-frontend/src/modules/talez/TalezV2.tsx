@@ -2,7 +2,7 @@ import clsx from "clsx";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Settings } from "lucide-react";
 
 import styles from "@/assets/css/talez.module.css";
@@ -33,8 +33,8 @@ const TalezV2 = () => {
 
   const {
     data: talesData,
-    refetchTalesFn,
     isLoadingTales,
+    isRefetching: isRefetchingTalesData,
   } = useGetTales({
     workflowId,
     offset,
@@ -90,19 +90,8 @@ const TalezV2 = () => {
 
   dayjs.extend(relativeTime);
 
-  useEffect(() => {
-    if (offset >= 0) {
-      refetchTalesFn();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset]);
-
   if (talesData?.tales.length === 0) {
     return <EmptyTalez />;
-  }
-
-  if (isLoadingTales) {
-    return <Loader />;
   }
 
   return (
@@ -125,14 +114,22 @@ const TalezV2 = () => {
             className={clsx(styles.talez_view_container, "no-scrollbar")}
             ref={taleRef}
           >
-            {talesData?.tales?.map((tale: talesResponseProps) => (
-              <TalezCard
-                tale={tale}
-                key={tale?._id}
-                handleCardClick={handleTalezCardClick}
-                isTaleOpen={isDetailCardOpen}
-              />
-            ))}
+            {isLoadingTales || isRefetchingTalesData ? (
+              <div className="h-screen flex justify-center items-center">
+                <Loader />
+              </div>
+            ) : (
+              <>
+                {talesData?.tales?.map((tale: talesResponseProps) => (
+                  <TalezCard
+                    tale={tale}
+                    key={tale?._id}
+                    handleCardClick={handleTalezCardClick}
+                    isTaleOpen={isDetailCardOpen}
+                  />
+                ))}
+              </>
+            )}
             <div className="flex gap-4 justify-evenly items-center">
               {offset > 0 ? (
                 <Button
@@ -143,7 +140,7 @@ const TalezV2 = () => {
                   Go to Previous
                 </Button>
               ) : null}
-              {talesData?.totalPages > 1 ? (
+              {!isRefetchingTalesData && talesData?.totalPages > 1 ? (
                 <Button
                   variant={"link"}
                   onClick={onFetchMore}
