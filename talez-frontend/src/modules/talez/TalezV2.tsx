@@ -1,8 +1,8 @@
+import { useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import clsx from "clsx";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { useNavigate, useParams } from "react-router-dom";
-import { useRef, useState } from "react";
 import { Settings } from "lucide-react";
 
 import styles from "@/assets/css/talez.module.css";
@@ -102,7 +102,7 @@ const TalezV2 = () => {
           <CreateTalesModal />
           <div className="flex gap-2 items-center md:gap-4">
             <SharePopOver />
-            <button>
+            <button onClick={() => navigate(`/${workflowId}/settings`)}>
               <Settings />
             </button>
           </div>
