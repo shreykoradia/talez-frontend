@@ -1,9 +1,10 @@
-import { Tabs, TabsList, TabsTrigger } from "@/shared/ui/ui/tabs";
-import { TabsContent } from "@radix-ui/react-tabs";
+import { AlertTriangle, Box, Settings } from "lucide-react";
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/ui/ui/tabs";
+
 import WorkflowIntegations from "./WorkflowIntegations";
 import WorkflowGeneral from "./WorkflowGeneral";
 import WorkflowDanger from "./WorkflowDanger";
-import { AlertTriangle, Box, Settings } from "lucide-react";
 
 const WorkflowSettingTabs = () => {
   return (
