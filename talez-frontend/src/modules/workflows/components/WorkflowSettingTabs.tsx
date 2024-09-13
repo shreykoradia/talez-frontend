@@ -11,7 +11,7 @@ const WorkflowSettingTabs = () => {
     <>
       <Tabs defaultValue="integrations">
         <div className="flex gap-4 maxMd:flex-col w-full pt-16">
-          <TabsList className="flex flex-col items-start gap-4 justify-start w-1/6 maxMd:flex-row maxMd:justify-evenly">
+          <TabsList className="flex flex-col items-start gap-4 justify-start w-1/6 maxMd:w-full maxMd:flex-row maxMd:overflow-x-auto maxMd:justify-evenly">
             <TabsTrigger value="general" className="tabs_container_button">
               <Settings size={16} className="mr-2" />
               General

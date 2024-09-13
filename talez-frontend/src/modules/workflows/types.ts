@@ -163,3 +163,18 @@ export interface Permissions {
   triage: boolean;
   pull: boolean;
 }
+
+export interface linkedRepository {
+  connectedRepo: {
+    _id: string;
+    workflowId: string;
+    repoId: string;
+    repoName: string;
+    repoCloneUrl: string;
+    repoGitUrl: string;
+    repoSSHUrl: string;
+    repoOpenIssueCount: number;
+    __v: number;
+    repoOwner: string;
+  };
+}
