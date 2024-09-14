@@ -2,14 +2,14 @@ import api from "@/shared/api/api";
 import { AxiosResponse } from "axios";
 import { linkedRepository } from "../types";
 
-type ResponseType = {
+export type UnlinkedResponseType = {
   connetedRepo: linkedRepository;
   message: string;
 };
 
 const unlinkedRepository = (
   data: string
-): Promise<AxiosResponse<ResponseType>> => {
+): Promise<AxiosResponse<UnlinkedResponseType>> => {
   return api.delete(`connect/github/linked/repo`, {
     params: { workflowId: data },
   });

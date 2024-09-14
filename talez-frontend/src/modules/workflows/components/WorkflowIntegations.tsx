@@ -11,7 +11,11 @@ import { useParams } from "react-router-dom";
 import { Label } from "@/shared/ui/ui/label";
 import { Input } from "@/shared/ui/ui/input";
 import Loader from "@/shared/components/loader/Loader";
-import unlinkedRepository from "../api/unlinkRepository";
+import unlinkedRepository, {
+  UnlinkedResponseType,
+} from "../api/unlinkRepository";
+import { toast } from "@/shared/ui/ui/use-toast";
+import { AxiosResponse } from "axios";
 
 const WorkflowIntegations = () => {
   const [openRepoModal, setOpenRepoModal] = React.useState<boolean>(false);
@@ -23,14 +27,17 @@ const WorkflowIntegations = () => {
   const { mutate: connectRepoFn, isPending: isConnectingRepo } = useMutation({
     mutationFn: (selectedRepo: ConnectReqProp) =>
       connectRepo({ data: selectedRepo }),
-    onSuccess: () => console.log("connected"),
-    onError: () => console.log("not connected"),
+    onSuccess: (res) =>
+      toast({ title: `${res?.data?.repoName} is connected successfully` }),
+    onError: () =>
+      toast({ title: "Something went wrong try connecting later." }),
   });
 
   const { mutate: unlinkRepoFn, isPending: isUnlinking } = useMutation({
     mutationFn: () => unlinkedRepository(workflowId || ""),
-    onSuccess: () => console.log("Unlinked SuccessFully"),
-    onError: () => console.log("Something went wrong huh!"),
+    onSuccess: (res) => toast({ title: res?.data?.message }),
+    onError: (err: AxiosResponse<UnlinkedResponseType>) =>
+      toast({ title: err.data.message }),
   });
 
   if (isLoadingLinkedRepo || isConnectingRepo) {
