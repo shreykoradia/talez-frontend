@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@/shared/ui/ui/button";
 import { Card, CardContent, CardFooter } from "@/shared/ui/ui/card";
-import { Github } from "lucide-react";
+import { Github, Trash } from "lucide-react";
 import RepoDialogModal from "./RepoDialogModal";
 import { ConnectReqProp } from "../types";
 import { useMutation } from "@tanstack/react-query";
@@ -37,12 +37,19 @@ const WorkflowIntegations = () => {
         <>
           <div className="grid gap-8 w-1/2 maxMd:w-full">
             <div className="grid gap-2">
-              <Label className="text-muted font-semibold">Workflow Title</Label>
-              <Input
-                type="text"
-                value={linkedData?.connectedRepo?.repoName}
-                readOnly
-              />
+              <Label className="text-muted font-semibold">
+                Repository Name
+              </Label>
+              <div className="flex gap-2 items-center w-full">
+                <Input
+                  type="text"
+                  value={linkedData?.connectedRepo?.repoName}
+                  readOnly
+                />
+                <Button variant={"destructive"}>
+                  <Trash size={16} />
+                </Button>
+              </div>
             </div>
             <div></div>
             <div>
