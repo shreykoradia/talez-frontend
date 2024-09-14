@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import { Label } from "@/shared/ui/ui/label";
 import { Input } from "@/shared/ui/ui/input";
 import Loader from "@/shared/components/loader/Loader";
+import unlinkedRepository from "../api/unlinkRepository";
 
 const WorkflowIntegations = () => {
   const [openRepoModal, setOpenRepoModal] = React.useState<boolean>(false);
@@ -24,6 +25,12 @@ const WorkflowIntegations = () => {
       connectRepo({ data: selectedRepo }),
     onSuccess: () => console.log("connected"),
     onError: () => console.log("not connected"),
+  });
+
+  const { mutate: unlinkRepoFn, isPending: isUnlinking } = useMutation({
+    mutationFn: () => unlinkedRepository(workflowId || ""),
+    onSuccess: () => console.log("Unlinked SuccessFully"),
+    onError: () => console.log("Something went wrong huh!"),
   });
 
   if (isLoadingLinkedRepo || isConnectingRepo) {
@@ -40,18 +47,12 @@ const WorkflowIntegations = () => {
               <Label className="text-muted font-semibold">
                 Repository Name
               </Label>
-              <div className="flex gap-2 items-center w-full">
-                <Input
-                  type="text"
-                  value={linkedData?.connectedRepo?.repoName}
-                  readOnly
-                />
-                <Button variant={"destructive"}>
-                  <Trash size={16} />
-                </Button>
-              </div>
+              <Input
+                type="text"
+                value={linkedData?.connectedRepo?.repoName}
+                readOnly
+              />
             </div>
-            <div></div>
             <div>
               <Label className="text-muted font-semibold">Clone URL</Label>
               <Input
@@ -59,6 +60,12 @@ const WorkflowIntegations = () => {
                 value={linkedData?.connectedRepo?.repoCloneUrl}
                 readOnly
               />
+            </div>
+            <div>
+              <Button variant={"destructive"} onClick={() => unlinkRepoFn()}>
+                {isUnlinking ? <Loader /> : null}
+                <Trash size={14} className="mr-2" /> Unlink Repository
+              </Button>
             </div>
           </div>
         </>
