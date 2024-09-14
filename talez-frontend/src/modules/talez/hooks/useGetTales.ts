@@ -4,15 +4,17 @@ import { talesProps } from "../types";
 
 export const useGetTales = (params: { offset: number; workflowId: string }) => {
   const query = useQuery({
-    queryKey: ["get-tales"],
+    queryKey: ["get-tales", params?.offset, params?.workflowId],
     queryFn: () => getTales(params),
+    enabled: !!params?.offset || !!params?.workflowId,
   });
   const data: talesProps = query?.data?.data?.tales;
-  const {
-    isLoading: isLoadingTales,
-    refetch: refetchTalesFn,
-    isRefetching: isRefetchingTales,
-  } = query;
+  const { isLoading: isLoadingTales, refetch: refetchTalesFn } = query;
 
-  return { data, isLoadingTales, refetchTalesFn, isRefetchingTales };
+  return {
+    ...query,
+    data,
+    isLoadingTales,
+    refetchTalesFn,
+  };
 };

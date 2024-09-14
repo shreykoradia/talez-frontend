@@ -6,6 +6,7 @@ import Dashboard from "../dashboard";
 import HeaderV2 from "@/shared/components/header/HeaderV2";
 import TalezV2 from "../talez/TalezV2";
 import TalezMobileView from "../talez/TalezMobileView";
+import WorkflowSettings from "../workflows/components/WorkflowSettings";
 
 const Home = () => {
   const { user } = useUser();
@@ -22,6 +23,7 @@ const Home = () => {
           <Route index path="/dashboard" element={<Dashboard />} />
           <Route path="/:workflowId/talez" index element={<TalezV2 />} />
           <Route path="/:taleId/tale" element={<TalezMobileView />} />
+          <Route path="/:workflowId/settings" element={<WorkflowSettings />} />
         </Routes>
       </div>
     </>

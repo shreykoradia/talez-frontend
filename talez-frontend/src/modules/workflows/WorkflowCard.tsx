@@ -3,7 +3,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/shared/ui/ui/card";
@@ -47,15 +46,15 @@ const WorkflowCard = ({
       onClick={() => onWorkflowCardClick(workflow?._id)}
       key={index}
     >
-      <CardHeader className="maxMd:px-0">
-        <div className="flex justify-between items-center">
+      <CardHeader className="maxMd:px-0 md:pr-0">
+        <div className="flex justify-between items-start">
           <div className="maxMd:px-4 w-full">
             <CardTitle className="font-medium">
               {workflow?.workFlowTitle}
             </CardTitle>
             <CardDescription>{`Authored by ${workflow?.authorName}`}</CardDescription>
           </div>
-          <div className="flex justify-end w-full py-1 px-2 md:hidden">
+          <div className="flex justify-end w-full py-1 px-2">
             <div className="flex justify-end items-center w-full">
               <TooltipProvider>
                 <Tooltip>
@@ -64,7 +63,7 @@ const WorkflowCard = ({
                       variant={"link"}
                       className={clsx(
                         styles.workflow_button_container,
-                        "hidden maxMd:block"
+                        "block"
                       )}
                       onClick={toggleExpand}
                     >
@@ -83,7 +82,7 @@ const WorkflowCard = ({
       <CardContent
         className={clsx(
           "break-words rounded-lg overflow-hidden transition-max-height duration-300 ease-in-out maxMd:pl-4",
-          { "max-h-[5rem]": !isExpanded, "max-h-[20rem]": isExpanded }
+          { "max-h-[5rem]": !isExpanded, "max-h-full": isExpanded }
         )}
       >
         {isExpanded ? (
@@ -94,28 +93,6 @@ const WorkflowCard = ({
           </p>
         )}
       </CardContent>
-      <CardFooter className="maxMd:hidden px-0">
-        <div className="flex justify-end w-full py-1 px-2">
-          <div className="flex justify-end items-center w-full">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant={"link"}
-                    className={clsx(styles.workflow_button_container)}
-                    onClick={toggleExpand}
-                  >
-                    <ChevronsUpDown size={16} />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent className="text-accent-foreground border border-accent">
-                  {isExpanded ? <p>Show Less</p> : <p>Show More</p>}
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </div>
-        </div>
-      </CardFooter>
     </Card>
   );
 };

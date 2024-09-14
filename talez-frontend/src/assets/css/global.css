@@ -99,3 +99,8 @@
     border-width: 10px;
   }
 }
+
+/*  Workflow Settings */
+.tabs_container_button {
+  @apply justify-start hover:text-white hover:bg-secondary hover:rounded-md data-[state=active]:border-none data-[state=active]:!rounded-md  data-[state=active]:!text-white;
+}
