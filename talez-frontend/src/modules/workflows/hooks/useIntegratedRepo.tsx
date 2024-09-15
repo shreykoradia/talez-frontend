@@ -15,7 +15,6 @@ const useIntegratedRepo = (workflowId: string) => {
     isRefetching,
   } = query;
   const data = query?.data?.data;
-  console.log(data);
   return { data, isLoading, isRefetching, isError, refetchWorkflowsFn };
 };
 

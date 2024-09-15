@@ -9,7 +9,7 @@ type getRepositoryProp = {
 export const getRepository = ({
   offset,
 }: getRepositoryProp): Promise<AxiosResponse<RepositoryResponseProp>> => {
-  return api.get<RepositoryResponseProp>("connect/github/repository", {
+  return api.get<RepositoryResponseProp>("connect/github/repositories", {
     params: { offset: offset },
   });
 };

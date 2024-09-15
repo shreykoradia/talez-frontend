@@ -96,7 +96,7 @@ const TalezDetailCard = ({
                 <TalezDetailView tale={taleDetail} isLoading={isLoading} />
               </TabsContent>
               <TabsContent value="feedback">
-                <div className="w-full flex justify-end pb-4">
+                <div className="w-full flex justify-end pt-4">
                   <CreateFeedbackModal taleId={selectedTale || ""} />
                 </div>
                 <div className="flex flex-col gap-4 w-full h-full">
