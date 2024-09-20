@@ -15,7 +15,7 @@ import { login } from "../api/login";
 import { cn } from "@/shared/lib/utils";
 import { ErrorResponse } from "@/shared/types";
 import { getServerError } from "@/shared/helpers/helpers";
-// import { Github } from "lucide-react";
+import { Github } from "lucide-react";
 
 interface loginFormProps {
   email: string;
@@ -45,9 +45,9 @@ const Login = () => {
   const { values, handleChange, handleSubmit, errors, touched, resetForm } =
     useLoginForm((values: loginFormProps) => loginMutateFn(values));
 
-  // const handleGithubSignin = () => {
-  //   window.location.href = `${import.meta.env.VITE_BACKEND_URL}auth/github`;
-  // };
+  const handleGithubSignin = () => {
+    window.location.href = `${import.meta.env.VITE_BACKEND_URL}auth/github`;
+  };
 
   return (
     <>
@@ -106,19 +106,19 @@ const Login = () => {
               <span className="bg-background px-2">Or continue with</span>
             </div>
           </div>
-          {/* <Button variant={"default"} onClick={handleGithubSignin}>
+          <Button variant={"default"} onClick={handleGithubSignin}>
             <Github className="mr-2" size={16} />
             Sign In with Github
-          </Button> */}
+          </Button>
           <Link className={cn(buttonVariants({ variant: "outline" }))} to={"/"}>
             Missed something, want to go back?
           </Link>
-          {/* <Link
+          <Link
             to={"/signup"}
             className={cn(buttonVariants({ variant: "link" }))}
           >
             New to brainstorming products? Signup
-          </Link> */}
+          </Link>
         </div>
         <div className="maxLg:hidden">
           <Sitting height={500} width={500} />

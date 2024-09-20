@@ -35,6 +35,7 @@ const RepoDialogModal: React.FC<RepoDialogProp> = ({
     isFetchingNextPage,
     isLoading,
     isError,
+    status,
   } = useInfiniteQuery({
     queryKey: ["repositories", params.workflowId],
     queryFn: ({ pageParam = 0 }) => getRepository({ offset: pageParam }),
@@ -80,6 +81,13 @@ const RepoDialogModal: React.FC<RepoDialogProp> = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRepo, onSelectRepository]);
+
+  useEffect(() => {
+    if (status === "success") {
+      onClose();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]);
 
   const renderRepositoryItem = (repo: repositoryData) => (
     <Button
@@ -148,7 +156,10 @@ const RepoDialogModal: React.FC<RepoDialogProp> = ({
         {renderContent()}
 
         <DialogFooter>
-          <Button onClick={handleSelectRepository} disabled={!selectedRepo}>
+          <Button
+            onClick={handleSelectRepository}
+            disabled={!selectedRepo || isLoading}
+          >
             Select Repository
           </Button>
         </DialogFooter>
