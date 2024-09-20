@@ -1,0 +1,106 @@
+.error_control {
+  @apply text-xs text-crimsonred;
+}
+
+.card_hover_primary {
+  @apply hover:bg-primary-foreground;
+}
+
+.upvoted {
+  @apply stroke-primary fill-primary;
+}
+
+.downvoted {
+  @apply stroke-primary fill-primary;
+}
+
+.talez_application_container {
+  @apply mx-auto max-w-[1800px] w-full overflow-hidden h-[100vh] bg-gradient-bg;
+}
+
+/* React Flow Styles */
+
+.dashboard_workflow_container .react-flow__node-default {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0px !important;
+  text-align: inherit !important;
+}
+
+.dashboard_workflow_container .react-flow__handle {
+  display: none !important;
+}
+
+.dashboard_workflow_container .react-flow__nodes {
+  @apply translate-x-[10%] translate-y-[10%] minMaxMdXl:translate-x-[2%] minMaxMdXl:translate-y-[15%];
+}
+
+.section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.section1 {
+  background-color: #f8b400;
+}
+
+.section2 {
+  background-color: #4caf50;
+}
+
+.section3 {
+  background-color: #2196f3;
+}
+
+.section4 {
+  background-color: #9c27b0;
+}
+
+.title {
+  font-size: 3rem;
+  transition: transform 0.2s ease-out;
+}
+
+.fade-in {
+  opacity: 0;
+}
+
+#loader {
+  width: 30px;
+  height: 30px;
+  border-style: solid;
+  border-top-color: hsl(var(--input));
+  border-right-color: hsl(var(--muted));
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotate 3s ease-in-out infinite;
+  transform: rotate(-200deg);
+}
+@keyframes rotate {
+  0% {
+    border-width: 10px;
+  }
+  25% {
+    border-width: 3px;
+  }
+  50% {
+    transform: rotate(115deg);
+    border-width: 10px;
+  }
+  75% {
+    border-width: 3px;
+  }
+  100% {
+    border-width: 10px;
+  }
+}
+
+/*  Workflow Settings */
+.tabs_container_button {
+  @apply justify-start hover:text-white hover:bg-secondary hover:rounded-md data-[state=active]:border-none data-[state=active]:!rounded-md  data-[state=active]:!text-white;
+}
