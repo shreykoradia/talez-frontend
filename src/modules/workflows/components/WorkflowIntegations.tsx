@@ -16,19 +16,29 @@ import unlinkedRepository, {
 } from "../api/unlinkRepository";
 import { toast } from "@/shared/ui/ui/use-toast";
 import { AxiosResponse } from "axios";
+import { useUser } from "@/shared/context/UserProvider";
 
 const WorkflowIntegations = () => {
   const [openRepoModal, setOpenRepoModal] = React.useState<boolean>(false);
   const { workflowId } = useParams();
+  const { user } = useUser();
 
-  const { isLoading: isLoadingLinkedRepo, data: linkedData } =
-    useIntegratedRepo(workflowId || "");
+  const {
+    isLoading: isLoadingLinkedRepo,
+    data: linkedData,
+    refetchWorkflowsFn: refetchLinkedRepoFn,
+  } = useIntegratedRepo(workflowId || "");
 
   const { mutate: connectRepoFn, isPending: isConnectingRepo } = useMutation({
     mutationFn: (selectedRepo: ConnectReqProp) =>
       connectRepo({ data: selectedRepo }),
-    onSuccess: (res) =>
-      toast({ title: `${res?.data?.repoName} is connected successfully` }),
+    onSuccess: (res) => {
+      toast({
+        title: `${res?.data?.repositoryDetails?.repoName} is linked successfully`,
+      }),
+        refetchLinkedRepoFn();
+      setOpenRepoModal(!openRepoModal);
+    },
     onError: () =>
       toast({ title: "Something went wrong try connecting later." }),
   });
@@ -77,25 +87,46 @@ const WorkflowIntegations = () => {
           </div>
         </>
       ) : (
-        <Card className="border-muted w-[300px] maxMd:w-full">
-          <CardContent className="p-8">
-            <div className="grid gap-2 place-content-center  place-items-center">
-              <div className="flex flex-col gap-2 items-center">
+        <>
+          {!user?.githubToken ? (
+            <div className="border border-muted text-sm w-1/2 text-primary p-4 mb-8 rounded-lg">
+              <div className="flex justify-start items-center gap-4">
                 <Github size={30} />
-                <p className="text-xl font-semibold">Github</p>
-              </div>
-              <div className="text-sm text-muted text-center">
-                Connect Github Repository to workflow and start writing your
-                tickets from scratch.
+                <p>
+                  To link your repository with the workflow, please authorize
+                  your GitHub account for seamless integration. For
+                  authorization,
+                  <button className="text-muted ml-2 hover:underline">
+                    click here to enable access
+                  </button>
+                </p>
               </div>
             </div>
-          </CardContent>
-          <CardFooter className="flex justify-center items-center">
-            <Button onClick={() => setOpenRepoModal(!openRepoModal)}>
-              Connect to Repository
-            </Button>
-          </CardFooter>
-        </Card>
+          ) : (
+            <Card className="border-muted w-[300px] maxMd:w-full">
+              <CardContent className="p-8">
+                <div className="grid gap-2 place-content-center  place-items-center">
+                  <div className="flex flex-col gap-2 items-center">
+                    <Github size={30} />
+                    <p className="text-xl font-semibold">Github</p>
+                  </div>
+                  <div className="text-sm text-muted text-center">
+                    Connect Github Repository to workflow and start writing your
+                    tickets from scratch.
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter className="flex justify-center items-center">
+                <Button
+                  onClick={() => setOpenRepoModal(!openRepoModal)}
+                  disabled={!user?.githubToken}
+                >
+                  Connect to Repository
+                </Button>
+              </CardFooter>
+            </Card>
+          )}
+        </>
       )}
 
       {openRepoModal ? (
