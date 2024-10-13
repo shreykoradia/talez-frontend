@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { Button } from "@/shared/ui/ui/button";
 import {
   Dialog,
@@ -14,6 +14,8 @@ import Loader from "@/shared/components/loader/Loader";
 import { getRepository } from "../api/getRepositories";
 import { LISTING_LIMIT } from "@/shared/constant";
 import { ConnectReqProp, repositoryData } from "../types";
+import { AxiosError } from "axios";
+import { toast } from "@/shared/ui/ui/use-toast";
 
 type RepoDialogProp = {
   onClose: () => void;
@@ -27,6 +29,8 @@ const RepoDialogModal: React.FC<RepoDialogProp> = ({
   const params = useParams();
   const [selectedRepo, setSelectedRepo] = useState<repositoryData | null>(null);
   const observerTarget = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, setSearhParams] = useSearchParams();
 
   const {
     data,
@@ -35,6 +39,7 @@ const RepoDialogModal: React.FC<RepoDialogProp> = ({
     isFetchingNextPage,
     isLoading,
     isError,
+    error,
   } = useInfiniteQuery({
     queryKey: ["repositories", params.workflowId],
     queryFn: ({ pageParam = 0 }) => getRepository({ offset: pageParam }),
@@ -44,8 +49,28 @@ const RepoDialogModal: React.FC<RepoDialogProp> = ({
     enabled: !!params?.workflowId,
   });
 
+  const errorDetail = (error as unknown as AxiosError)?.response
+    ?.data as unknown as {
+    message: string;
+    status: number;
+  };
+
   const repositories =
     data?.pages.flatMap((page) => page.data.repositories) ?? [];
+
+  useEffect(() => {
+    if (errorDetail?.status === 401) {
+      setSearhParams({ re_authorize: "true" });
+      toast({
+        title: `${errorDetail?.message}`,
+        description:
+          "To ensure the security of your account and maintain uninterrupted access to GitHub features, please re-authorize the application. This step is important to comply with the latest security standards and protect your workflows. Thank you for your cooperation!",
+      });
+
+      return;
+    }
+    return;
+  }, [errorDetail]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
