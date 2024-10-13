@@ -50,7 +50,7 @@ const WorkflowIntegations = () => {
   const { mutate: unlinkRepoFn, isPending: isUnlinking } = useMutation({
     mutationFn: () => unlinkedRepository(workflowId || ""),
     onSuccess: (res) => {
-      navigate(`/${workflowId}/settings`);
+      navigate(`/${workflowId}/talez`);
       toast({ title: res?.data?.message });
     },
     onError: (err: AxiosResponse<UnlinkedResponseType>) =>

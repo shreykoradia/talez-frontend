@@ -70,6 +70,7 @@ const RepoDialogModal: React.FC<RepoDialogProp> = ({
       return;
     }
     return;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errorDetail]);
 
   useEffect(() => {
