@@ -72,6 +72,9 @@ export interface User {
   _id: string;
   username: string;
   email: string;
+  githubId: string;
+  authType: "custom" | "github";
+  githubToken: string;
   avatarUrl: string;
   isVerified: boolean;
   __v: number;
