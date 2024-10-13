@@ -1,6 +1,6 @@
 import api from "@/shared/api/api";
 import { AxiosResponse } from "axios";
-import { ConnectRepositoryResponseProp, ConnectReqProp } from "../types";
+import { ConnectRepositoryRes, ConnectReqProp } from "../types";
 
 type ConnectReqPayloadProp = {
   data?: ConnectReqProp;
@@ -8,12 +8,8 @@ type ConnectReqPayloadProp = {
 
 export const connectRepo = ({
   data,
-}: ConnectReqPayloadProp): Promise<
-  AxiosResponse<ConnectRepositoryResponseProp>
-> => {
-  return api.post<ConnectRepositoryResponseProp>(
-    "connect/github/repository",
-    data,
-    { params: { workflowId: data?.workflowId } }
-  );
+}: ConnectReqPayloadProp): Promise<AxiosResponse<ConnectRepositoryRes>> => {
+  return api.post<ConnectRepositoryRes>("connect/github/repository", data, {
+    params: { workflowId: data?.workflowId },
+  });
 };
