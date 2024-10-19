@@ -14,7 +14,7 @@ const WorkflowDanger = () => {
     <>
       <h3 className="text-xl font-semibold mb-8">Delete Workflow</h3>
 
-      <div className="border border-destructive text-sm w-1/2 text-destructive p-4 mb-8 rounded-lg">
+      <div className="border border-destructive text-sm w-1/2 maxXl:w-full text-destructive p-4 mb-8 rounded-lg">
         <div className="flex justify-start items-center gap-4">
           <AlertTriangle size={32} />
           <p>
