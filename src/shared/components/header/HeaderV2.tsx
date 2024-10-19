@@ -7,6 +7,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import { useUser } from "@/shared/context/UserProvider";
 import { generateAvatarInitials } from "@/shared/helpers/helpers";
+import { UserNav } from "./UserNav";
 
 const HeaderV2 = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,18 +30,10 @@ const HeaderV2 = () => {
           </div>
         </div>
         <div className={styles.application_user_container}>
-          <Link to={"/help"} className="font-spaceGroteskBold">
+          {/* <Link to={"/help"} className="font-spaceGroteskBold">
             Help
-          </Link>
-          <Avatar>
-            <AvatarImage
-              src={user?.avatarUrl}
-              className="rounded-full text-divamecha"
-            />
-            <AvatarFallback className="rounded-full bg-secondary">
-              {generateAvatarInitials(user?.username)}
-            </AvatarFallback>
-          </Avatar>
+          </Link> */}
+          <UserNav />
         </div>
         <div
           className={styles.application_user_mobile_container}

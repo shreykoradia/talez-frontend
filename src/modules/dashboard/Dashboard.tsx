@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ReactFlow, { Background } from "reactflow";
-import { Settings } from "lucide-react";
 
 import styles from "@/assets/css/dashboard.module.css";
 
@@ -71,9 +70,9 @@ const Dashboard = () => {
         <p className="text-2xl maxMd:hidden">Workflows</p>
         <div className="flex items-center gap-4 z-10 maxMd:justify-between maxMd:w-full">
           <CreateWorkflowModal />
-          <button>
+          {/* <button>
             <Settings />
-          </button>
+          </button> */}
         </div>
       </section>
       <div className={styles.dashboard_parent_container}>
