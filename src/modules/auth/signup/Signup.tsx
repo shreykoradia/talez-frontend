@@ -120,9 +120,9 @@ const Signup = () => {
             <Github className="mr-2" size={16} />
             Sign In with Github
           </Button>
-          <Link className={cn(buttonVariants({ variant: "outline" }))} to={"/"}>
+          {/* <Link className={cn(buttonVariants({ variant: "outline" }))} to={"/"}>
             Missed something, want to go back?
-          </Link>
+          </Link> */}
           <Link
             to={"/signin"}
             className={cn(buttonVariants({ variant: "link" }))}
