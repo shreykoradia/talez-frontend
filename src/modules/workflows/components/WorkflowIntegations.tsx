@@ -63,28 +63,27 @@ const WorkflowIntegations = () => {
   return (
     <>
       <h3 className="text-xl font-semibold mb-8">Integrations</h3>
-      {!user?.githubToken ||
-        (isReauthorizeNeeded && (
-          <div className="border border-muted text-sm w-1/2 text-primary p-4 mb-8 rounded-lg">
-            <div className="flex justify-start items-center gap-4">
-              <Github size={30} />
-              <p>
-                Please authorize your GitHub account for seamless integration.
-                For authorization,
-                <button
-                  className="text-muted ml-2 hover:underline"
-                  onClick={() =>
-                    (window.location.href = `${
-                      import.meta.env.VITE_BACKEND_URL
-                    }auth/github`)
-                  }
-                >
-                  click here to enable access
-                </button>
-              </p>
-            </div>
+      {(!user?.githubToken || isReauthorizeNeeded) && (
+        <div className="border border-muted text-sm w-1/2 text-primary p-4 mb-8 rounded-lg">
+          <div className="flex justify-start items-center gap-4">
+            <Github size={30} />
+            <p>
+              Please authorize your GitHub account for seamless integration. For
+              authorization,
+              <button
+                className="text-muted ml-2 hover:underline"
+                onClick={() =>
+                  (window.location.href = `${
+                    import.meta.env.VITE_BACKEND_URL
+                  }auth/github`)
+                }
+              >
+                click here to enable access
+              </button>
+            </p>
           </div>
-        ))}
+        </div>
+      )}
       {linkedData?.connectedRepo ? (
         <>
           <div className="grid gap-8 w-1/2 maxMd:w-full">

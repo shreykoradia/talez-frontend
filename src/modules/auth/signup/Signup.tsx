@@ -1,39 +1,37 @@
 import { Button, buttonVariants } from "@/shared/ui/ui/button";
-import { Input } from "@/shared/ui/ui/input";
 import styles from "@/assets/css/auth.module.css";
-import { Label } from "@/shared/ui/ui/label";
-import { useSignupForm } from "../hooks/useSignupForm";
-import { useMutation } from "@tanstack/react-query";
-import { signup } from "../api/signup";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "@/shared/ui/ui/use-toast";
+// import { useSignupForm } from "../hooks/useSignupForm";
+// import { useMutation } from "@tanstack/react-query";
+// import { signup } from "../api/signup";
+import { Link } from "react-router-dom";
+// import { toast } from "@/shared/ui/ui/use-toast";
 import Sitting from "@/assets/icons/sitting.svg?react";
 import { cn } from "@/shared/lib/utils";
-import { ErrorResponse } from "@/shared/types";
-import { getServerError } from "@/shared/helpers/helpers";
+// import { ErrorResponse } from "@/shared/types";
+// import { getServerError } from "@/shared/helpers/helpers";
 import { Github } from "lucide-react";
 
-interface signupFormProps {
-  email: string;
-  password: string;
-}
+// interface signupFormProps {
+//   email: string;
+//   password: string;
+// }
 
 const Signup = () => {
-  const navigate = useNavigate();
-  const { mutate: singUpMutateFn } = useMutation({
-    mutationFn: (values: signupFormProps) => signup(values),
-    onSuccess: () => {
-      resetForm();
-      navigate("/signin");
-    },
-    onError: (err: ErrorResponse) => {
-      toast({
-        title: getServerError(err)?.message,
-      });
-    },
-  });
-  const { values, handleChange, handleSubmit, errors, touched, resetForm } =
-    useSignupForm(singUpMutateFn);
+  // const navigate = useNavigate();
+  // const { mutate: singUpMutateFn } = useMutation({
+  //   mutationFn: (values: signupFormProps) => signup(values),
+  //   onSuccess: () => {
+  //     resetForm();
+  //     navigate("/signin");
+  //   },
+  //   onError: (err: ErrorResponse) => {
+  //     toast({
+  //       title: getServerError(err)?.message,
+  //     });
+  //   },
+  // });
+  // const { values, handleChange, handleSubmit, errors, touched, resetForm } =
+  //   useSignupForm(singUpMutateFn);
 
   const handleGithubSignin = () => {
     window.location.href = `${import.meta.env.VITE_BACKEND_URL}auth/github`;
@@ -50,7 +48,7 @@ const Signup = () => {
               Streamline Workflows, Unleash Creativity
             </p>
           </div>
-          <form onSubmit={handleSubmit}>
+          {/* <form onSubmit={handleSubmit}>
             <div className={styles.signup_form_container}>
               <Label className="sr-only" htmlFor="username">
                 username
@@ -117,7 +115,7 @@ const Signup = () => {
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2">Or continue with</span>
             </div>
-          </div>
+          </div> */}
           <Button variant={"default"} onClick={handleGithubSignin}>
             <Github className="mr-2" size={16} />
             Sign In with Github
