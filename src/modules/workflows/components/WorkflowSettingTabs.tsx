@@ -25,7 +25,7 @@ const WorkflowSettingTabs = () => {
               Danger
             </TabsTrigger>
           </TabsList>
-          <div className="w-full">
+          <div className="w-full px-8">
             <TabsContent value="integrations" className="w-full">
               <WorkflowIntegations />
             </TabsContent>
