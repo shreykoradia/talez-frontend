@@ -1,16 +1,26 @@
 import styles from "@/assets/css/header.module.css";
 import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/ui/avatar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TalezAvatar from "@/assets/icons/talez.jpg";
 import { GanttChart, X } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
 import { useUser } from "@/shared/context/UserProvider";
-import { generateAvatarInitials } from "@/shared/helpers/helpers";
+import { generateAvatarInitials, logOut } from "@/shared/helpers/helpers";
+import { UserNav } from "./UserNav";
 
 const HeaderV2 = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user } = useUser();
+  const navigate = useNavigate();
+
+  const navLinkLabel = (navlink: string) => {
+    const link: { [key: string]: string } = {
+      dashboard: "Dashboard",
+      logout: "Logout",
+    };
+    return link[navlink];
+  };
 
   return (
     <>
@@ -29,18 +39,10 @@ const HeaderV2 = () => {
           </div>
         </div>
         <div className={styles.application_user_container}>
-          <Link to={"/help"} className="font-spaceGroteskBold">
+          {/* <Link to={"/help"} className="font-spaceGroteskBold">
             Help
-          </Link>
-          <Avatar>
-            <AvatarImage
-              src={user?.avatarUrl}
-              className="rounded-full text-divamecha"
-            />
-            <AvatarFallback className="rounded-full bg-secondary">
-              {generateAvatarInitials(user?.username)}
-            </AvatarFallback>
-          </Avatar>
+          </Link> */}
+          <UserNav />
         </div>
         <div
           className={styles.application_user_mobile_container}
@@ -62,16 +64,22 @@ const HeaderV2 = () => {
         })}
       >
         <ul className="grid gap-4 place-content-center items-center py-8">
-          {["Dashboard", "Help", "Account", "Logout"].flatMap(
-            (navLink, key) => (
-              <li
-                key={key}
-                className="text-4xl font-spaceGroteskBold text-divamecha hover:text-accent"
-              >
-                {navLink}
-              </li>
-            )
-          )}
+          {["logout"].flatMap((navLink, key) => (
+            <button
+              key={key}
+              className="text-4xl font-spaceGroteskBold text-divamecha hover:text-accent"
+              onClick={() => {
+                if (navLink === "logout") {
+                  logOut();
+                  window.location.reload();
+                } else {
+                  navigate(`/${navLink}`);
+                }
+              }}
+            >
+              {navLinkLabel(navLink)}
+            </button>
+          ))}
         </ul>
       </nav>
     </>

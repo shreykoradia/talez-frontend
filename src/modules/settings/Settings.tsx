@@ -11,7 +11,7 @@ const sidebarNavItems = [
   {
     title: "Profile",
     href: "/settings",
-    isDisabled: false,
+    isDisabled: true,
   },
   {
     title: "Account",

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 
 import { useUser } from "@/shared/context/UserProvider";
 import VerifyModal from "@/shared/components/verify-modal/VerifyModal";
@@ -20,6 +20,7 @@ const Home = () => {
       <div className="talez_application_container">
         <HeaderV2 />
         <Routes>
+          <Route path="/" element={<Navigate to="/dashboard" />} />
           <Route index path="/dashboard" element={<Dashboard />} />
           <Route path="/:workflowId/talez" index element={<TalezV2 />} />
           <Route path="/:taleId/tale" element={<TalezMobileView />} />
