@@ -17,6 +17,7 @@ import unlinkedRepository, {
 import { toast } from "@/shared/ui/ui/use-toast";
 import { AxiosResponse } from "axios";
 import { useUser } from "@/shared/context/UserProvider";
+import { checkToken } from "@/shared/helpers/helpers";
 
 const WorkflowIntegations = () => {
   const [openRepoModal, setOpenRepoModal] = React.useState<boolean>(false);
@@ -26,6 +27,8 @@ const WorkflowIntegations = () => {
   const [searchParams] = useSearchParams();
 
   const isReauthorizeNeeded = searchParams.get("re_authorize");
+
+  const token = checkToken();
 
   const {
     isLoading: isLoadingLinkedRepo,
@@ -75,7 +78,7 @@ const WorkflowIntegations = () => {
                 onClick={() =>
                   (window.location.href = `${
                     import.meta.env.VITE_BACKEND_URL
-                  }auth/github`)
+                  }auth/github?token=${token}`)
                 }
               >
                 click here to enable access
