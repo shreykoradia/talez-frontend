@@ -59,7 +59,12 @@ const Attachments = ({ selectedTale }: AttachementProp) => {
           <div className="flex items-center justify-start gap-2 flex-wrap p-4">
             {data?.data.links?.map((link, index) => (
               <div className="flex gap-2 items-center border border-input px-3 py-2 text-sm text-input rounded-lg hover:bg-secondary hover:transition hover:delay-200 ">
-                <a href={`/${link?.linkUrl}`} target="_blank" key={index}>
+                <a
+                  href={link?.linkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  key={index}
+                >
                   <p>{link?.linkTitle}</p>
                 </a>
                 <button
