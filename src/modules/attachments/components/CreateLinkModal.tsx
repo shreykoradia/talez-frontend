@@ -96,8 +96,7 @@ const CreateLinkModal = ({ taleId }: CreateLinkModalProp) => {
                   disabled={!values.linkUrl || !values.linkTitle}
                   onClick={() => addLinkFn()}
                 >
-                  Add Link
-                  {isAddingLink ? <Loader size={16} /> : " Add Link"}
+                  {isAddingLink ? <Loader size={16} /> : "Add Link"}
                 </Button>
               </DialogFooter>
             </div>
