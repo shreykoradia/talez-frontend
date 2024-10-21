@@ -17,6 +17,7 @@ import unlinkedRepository, {
 import { toast } from "@/shared/ui/ui/use-toast";
 import { AxiosResponse } from "axios";
 import { useUser } from "@/shared/context/UserProvider";
+import { checkToken } from "@/shared/helpers/helpers";
 
 const WorkflowIntegations = () => {
   const [openRepoModal, setOpenRepoModal] = React.useState<boolean>(false);
@@ -26,6 +27,8 @@ const WorkflowIntegations = () => {
   const [searchParams] = useSearchParams();
 
   const isReauthorizeNeeded = searchParams.get("re_authorize");
+
+  const token = checkToken();
 
   const {
     isLoading: isLoadingLinkedRepo,
@@ -64,10 +67,12 @@ const WorkflowIntegations = () => {
     <>
       <h3 className="text-xl font-semibold mb-8">Integrations</h3>
       {(!user?.githubToken || isReauthorizeNeeded) && (
-        <div className="border border-muted text-sm w-1/2 text-primary p-4 mb-8 rounded-lg">
-          <div className="flex justify-start items-center gap-4">
-            <Github size={30} />
-            <p>
+        <div className="border border-muted text-sm w-1/2 maxXl:w-full text-primary p-4 mb-8 rounded-lg">
+          <div className="flex justify-start maxXl:flex-wrap items-center gap-4">
+            <div className="mx-auto">
+              <Github size={30} />
+            </div>
+            <p className="text-center">
               Please authorize your GitHub account for seamless integration. For
               authorization,
               <button
@@ -75,7 +80,7 @@ const WorkflowIntegations = () => {
                 onClick={() =>
                   (window.location.href = `${
                     import.meta.env.VITE_BACKEND_URL
-                  }auth/github`)
+                  }auth/github?token=${token}`)
                 }
               >
                 click here to enable access
@@ -114,7 +119,7 @@ const WorkflowIntegations = () => {
           </div>
         </>
       ) : (
-        <Card className="border-muted w-[300px] maxMd:w-full">
+        <Card className="border-muted w-1/2 maxXl:w-full">
           <CardContent className="p-8">
             <div className="grid gap-2 place-content-center  place-items-center">
               <div className="flex flex-col gap-2 items-center">
