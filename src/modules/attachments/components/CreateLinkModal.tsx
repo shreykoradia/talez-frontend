@@ -61,7 +61,7 @@ const CreateLinkModal = ({ taleId }: CreateLinkModalProp) => {
                 <Label htmlFor="linkTitle">Link Title*</Label>
                 <div className="relative">
                   <Input
-                    type="text"
+                    type="url"
                     id="linkTitle"
                     value={values?.linkTitle}
                     placeholder="Add a Link title with 150 characters max😊"
@@ -78,7 +78,7 @@ const CreateLinkModal = ({ taleId }: CreateLinkModalProp) => {
                 <Label htmlFor="linkUrl">Url*</Label>
                 <div className="relative">
                   <Input
-                    type="url"
+                    type="text"
                     id="linkUrl"
                     value={values?.linkUrl}
                     onChange={handleChange}

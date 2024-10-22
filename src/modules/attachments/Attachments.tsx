@@ -60,7 +60,11 @@ const Attachments = ({ selectedTale }: AttachementProp) => {
             {data?.data.links?.map((link, index) => (
               <div className="flex gap-2 items-center border border-input px-3 py-2 text-sm text-input rounded-lg hover:bg-secondary hover:transition hover:delay-200 ">
                 <a
-                  href={link?.linkUrl}
+                  href={
+                    link?.linkUrl?.startsWith("http")
+                      ? link?.linkUrl
+                      : `https://${link?.linkUrl}`
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   key={index}
