@@ -110,7 +110,10 @@ const Login = () => {
             <Github className="mr-2" size={16} />
             Sign In with Github
           </Button>
-          <Link className={cn(buttonVariants({ variant: "outline" }))} to={"/"}>
+          <Link
+            className={cn(buttonVariants({ variant: "outline" }))}
+            to={"https://www.talez.xyz"}
+          >
             Missed something, want to go back?
           </Link>
           <Link
