@@ -61,12 +61,17 @@ export interface peopleWithAccessProps {
   workflowId: string | number;
 }
 
-export interface updateAccessRequestprops {
-  email: string;
+export interface inviteUserRequestProps {
+  identifier: string;
   role: string;
 }
 
-export type inviteUserRequestProps = updateAccessRequestprops;
+// export type inviteUserRequestProps = updateAccessRequestprops;
+
+export interface updateAccessRequestprops {
+  shared_user_id: string;
+  role: string;
+}
 
 export interface User {
   _id: string;
