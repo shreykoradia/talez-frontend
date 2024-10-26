@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ValidationError } from "yup";
 import { X as CloseIcon } from "lucide-react";
 
 import { accessOptions } from "@/shared/helpers/constant";
 import { generateAvatarInitials } from "@/shared/helpers/helpers";
-import { emailValidationSchema } from "@/shared/helpers/validationSchema/emailValidationSchema";
 import useGetPeopleWithAccess from "@/shared/hooks/useGetPeopleWithAccess";
 import useInviteUser from "@/shared/hooks/useInviteUser";
 import useRemoveAccess from "@/shared/hooks/useRemoveAccess";
@@ -39,10 +37,7 @@ const SharePopOver = () => {
   const [selectedAccessValue, setSelectedAccessValue] = useState<AccessLevel>(
     AccessLevel.CAN_VIEW
   );
-  const [emailValue, setEmailValue] = useState<string>("");
-  const [emailError, setEmailError] = useState<ValidationError | string | null>(
-    null
-  );
+  const [identifier, setIdentifier] = useState<string>("");
 
   const [open, setOpen] = useState<boolean>(false);
 
@@ -67,29 +62,19 @@ const SharePopOver = () => {
   const checkRole = isFullAccessRole || isUserAuthor;
 
   const handleInviteClick = async () => {
-    try {
-      await emailValidationSchema.validate(emailValue);
-      if (!emailError) {
-        const values = {
-          email: emailValue,
-          role: AccessLevel.CAN_VIEW,
-        };
-        inviteUserFn(values);
-      }
-    } catch (err) {
-      if (err) {
-        setEmailError("Invalid email format");
-      }
-    }
+    const values = {
+      identifier, // Can be either email or username
+      role: AccessLevel.CAN_VIEW,
+    };
+    await inviteUserFn(values);
   };
 
   useEffect(() => {
     if (isInvitingUser === false && status === "success") {
-      setEmailValue("");
+      setIdentifier("");
     }
     return () => {
-      setEmailValue("");
-      setEmailError("");
+      setIdentifier("");
     };
   }, [isInvitingUser, status]);
 
@@ -113,18 +98,15 @@ const SharePopOver = () => {
               </button>
             </div>
             <div className="text-muted text-xs font-normal">
-              Anyone having access can view , edit or add feedback on Talez.
+              Anyone having access can view, edit, or add feedback on Talez.
             </div>
           </div>
           <div className="share_container flex gap-2 mt-4 items-center">
             <Input
-              type={"email"}
-              value={emailValue || ""}
-              placeholder="Enter user's email you wish to invite"
-              onChange={(e) => {
-                setEmailValue(e.target.value);
-                setEmailError(null);
-              }}
+              type={"text"}
+              value={identifier || ""}
+              placeholder="Enter user's email or username to invite"
+              onChange={(e) => setIdentifier(e.target.value)}
               disabled={!checkRole}
             />
             <Button
@@ -171,14 +153,14 @@ const SharePopOver = () => {
                       onValueChange={(value: AccessLevel) => {
                         if (value === AccessLevel.REMOVE_ACCESS) {
                           const values = {
-                            email: user?.sharedTo?.email,
+                            shared_user_id: user?.sharedTo?._id,
                           };
                           removeAccessFn(values);
                           return;
                         }
                         setSelectedAccessValue(value);
                         const values = {
-                          email: user?.sharedTo?.email,
+                          shared_user_id: user?.sharedTo?._id,
                           role: value,
                         };
                         updateAccessFn(values);

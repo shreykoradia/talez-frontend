@@ -11,7 +11,7 @@ const useRemoveAccess = (workflowId: string) => {
   };
   const { refetchPeopleWithAccessFn } = useGetPeopleWithAccess(workflowId);
   const query = useMutation({
-    mutationFn: (values: { email: string }) =>
+    mutationFn: (values: { shared_user_id: string }) =>
       removeAccess(values, requestParams),
     onSuccess: () => {
       refetchPeopleWithAccessFn();
