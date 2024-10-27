@@ -10,29 +10,33 @@ import {
 } from "@/shared/ui/ui/dialog";
 import { Input } from "@/shared/ui/ui/input";
 import { Label } from "@/shared/ui/ui/label";
-import { Loader, Plus } from "lucide-react";
 import useCreateTalesForm from "../hooks/useCreateTalesForm";
-import useCreateTales from "../hooks/useCreateTales";
-import { useParams } from "react-router-dom";
 import { Textarea } from "@/shared/ui/ui/textarea";
 import { useState } from "react";
 import clsx from "clsx";
+import { CreateTalesRequestProps, talesResponseProps } from "../types";
+import Loader from "@/shared/components/loader/Loader";
+import { Edit3Icon, Plus } from "lucide-react";
 
-const CreateTalesModal = () => {
+interface CreateTalesModalProp {
+  mutateFn: (values: CreateTalesRequestProps) => void;
+  isTalePending: boolean;
+  isEdit: boolean;
+  selectedTale?: talesResponseProps;
+}
+
+const CreateTalesModal = ({
+  mutateFn,
+  isTalePending,
+  isEdit,
+  selectedTale,
+}: CreateTalesModalProp) => {
   const [taleTitleCounter, setTaleTitleCounter] = useState<number>(0);
   const [taleDescCounter, setTaleDescCounter] = useState<number>(0);
   const [openModal, setOpenModal] = useState(false);
 
-  const queryParams = useParams();
-
-  const params = {
-    workflowId: queryParams?.workflowId || 0,
-  };
-
-  const { createTalesFn, isCreatingTales } = useCreateTales();
-
   const { values, errors, touched, handleChange, resetForm } =
-    useCreateTalesForm();
+    useCreateTalesForm(selectedTale);
 
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     handleChange(e);
@@ -44,8 +48,11 @@ const CreateTalesModal = () => {
     setTaleTitleCounter(e.target.value.length);
   };
 
-  const onSubmitButtonClick = () => {
-    createTalesFn({ values, params });
+  const onSubmitButtonClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    mutateFn(values);
     resetForm();
     setTaleTitleCounter(0);
     setTaleDescCounter(0);
@@ -56,14 +63,23 @@ const CreateTalesModal = () => {
     <>
       <Dialog open={openModal} onOpenChange={setOpenModal}>
         <DialogTrigger asChild>
-          <Button variant={"outline"}>
-            <Plus size={16} className="mr-2" />
-            Create Talez
+          <Button variant={isEdit ? "ghost" : "outline"}>
+            {!isEdit ? (
+              <div className="flex gap-1 items-center">
+                <Plus size={16} />
+                <p>Create Tale</p>
+              </div>
+            ) : (
+              <div className="flex gap-1 items-center">
+                <Edit3Icon size={16} />
+                <p>Edit Tale</p>
+              </div>
+            )}
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Create Tale</DialogTitle>
+            <DialogTitle>{isEdit ? "Edit Tale" : "Create Tale"}</DialogTitle>
             <DialogDescription>
               Every product has a Tale, Write your's!
             </DialogDescription>
@@ -71,7 +87,7 @@ const CreateTalesModal = () => {
           <form>
             <div className="grid gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="title">Tale Title*</Label>
+                <Label htmlFor="title">Title*</Label>
                 <div className="relative">
                   <Input
                     type="text"
@@ -126,11 +142,19 @@ const CreateTalesModal = () => {
               <DialogFooter>
                 <Button
                   disabled={
-                    isCreatingTales || !values.title || !values.description
+                    isTalePending || !values.title || !values.description
                   }
-                  onClick={onSubmitButtonClick}
+                  onClick={(
+                    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                  ) => onSubmitButtonClick(e)}
                 >
-                  {isCreatingTales ? <Loader /> : "Create Tale"}
+                  {isTalePending ? (
+                    <Loader />
+                  ) : isEdit ? (
+                    "Edit Tale"
+                  ) : (
+                    "Create Tale"
+                  )}
                 </Button>
               </DialogFooter>
             </div>

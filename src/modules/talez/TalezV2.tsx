@@ -20,6 +20,7 @@ import TalezDetailCard from "./components/TalezDetailCard";
 import FeedbackViewModal from "../feedbacks/FeedbackViewModal";
 import EmptyTalez from "./components/EmptyTalez";
 import Loader from "@/shared/components/loader/Loader";
+import useCreateTales from "./hooks/useCreateTales";
 
 const TalezV2 = () => {
   const navigate = useNavigate();
@@ -31,6 +32,10 @@ const TalezV2 = () => {
 
   const taleRef = useRef<HTMLDivElement>(null);
 
+  const createParams = {
+    workflowId: workflowId,
+  };
+
   const {
     data: talesData,
     isLoadingTales,
@@ -40,9 +45,11 @@ const TalezV2 = () => {
     offset,
   });
 
+  const { createTalesFn, isCreatingTales } = useCreateTales();
+
   const handleTalezCardClick = (taleId: string) => {
     if (window.innerWidth <= 768) {
-      navigate(`/${taleId}/tale`);
+      navigate(`/${taleId}/tale?workflowId=${workflowId}`);
     }
     setSelectedTale(taleId);
     setIsDetailCardOpen(!isDetailCardOpen);
@@ -99,7 +106,13 @@ const TalezV2 = () => {
       <section className="flex justify-between items-center px-2 py-4 w-full md:p-8">
         <p className="text-2xl maxMd:hidden">Talez</p>
         <div className="flex items-center gap-4 z-10 maxMd:justify-between maxMd:w-full">
-          <CreateTalesModal />
+          <CreateTalesModal
+            mutateFn={(values) =>
+              createTalesFn({ values, params: createParams })
+            }
+            isTalePending={isCreatingTales}
+            isEdit={false}
+          />
           <div className="flex gap-2 items-center md:gap-4">
             <SharePopOver />
             <button onClick={() => navigate(`/${workflowId}/settings`)}>
@@ -166,6 +179,7 @@ const TalezV2 = () => {
               handleModeChange={handleViewModeChange}
               onClose={handleCloseSelectedTale}
               isLoading={isLoadingTale || isRefetchingTale}
+              queryKeyParams={{ ...createParams, offset }}
             />
           </div>
         </div>

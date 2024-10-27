@@ -18,7 +18,6 @@ const useCreateIssueHooks = (id: string) => {
       };
 
       if (error?.status === 401) {
-        console.log(err);
         navigate(`/${params.workflowId}/settings?re_authorize=true`);
         toast({
           title: `${error?.message}`,
