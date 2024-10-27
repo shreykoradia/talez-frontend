@@ -49,7 +49,7 @@ const TalezV2 = () => {
 
   const handleTalezCardClick = (taleId: string) => {
     if (window.innerWidth <= 768) {
-      navigate(`/${taleId}/tale`);
+      navigate(`/${taleId}/tale?workflowId=${workflowId}`);
     }
     setSelectedTale(taleId);
     setIsDetailCardOpen(!isDetailCardOpen);

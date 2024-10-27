@@ -83,14 +83,14 @@ const TalezDetailCard = ({
               <Skeleton className="h-2 w-1/2" />
             </div>
           ) : (
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center maxMd:flex-wrap">
               <div>
                 <CardTitle>{tale?.title}</CardTitle>
                 <CardDescription>
                   Published 🗨️ {dayjs(tale?.createdAt).fromNow()}
                 </CardDescription>
               </div>
-              <div className="flex items-center">
+              <div className="flex justify-end items-center maxMd:w-full">
                 <CreateTalesModal
                   mutateFn={(values) =>
                     editTaleMutateFn({
