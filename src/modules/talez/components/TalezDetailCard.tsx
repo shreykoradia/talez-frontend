@@ -32,7 +32,7 @@ interface talezDetailViewProp {
   taleDetail: talesResponseProps;
   selectedTale: string | null;
   isLoading: boolean;
-  queryKeyParams: { workflowId: string; offset: number };
+  queryKeyParams?: { workflowId: string; offset: number };
   handleModeChange?: (feedback: string) => void;
   onClose?: CallableFunction;
 }
