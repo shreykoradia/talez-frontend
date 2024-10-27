@@ -22,19 +22,21 @@ interface CreateTalesModalProp {
   mutateFn: (values: CreateTalesRequestProps) => void;
   isTalePending: boolean;
   isEdit: boolean;
+  selectedTale?: string;
 }
 
 const CreateTalesModal = ({
   mutateFn,
   isTalePending,
   isEdit,
+  selectedTale,
 }: CreateTalesModalProp) => {
   const [taleTitleCounter, setTaleTitleCounter] = useState<number>(0);
   const [taleDescCounter, setTaleDescCounter] = useState<number>(0);
   const [openModal, setOpenModal] = useState(false);
 
   const { values, errors, touched, handleChange, resetForm } =
-    useCreateTalesForm();
+    useCreateTalesForm(selectedTale);
 
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     handleChange(e);
@@ -82,7 +84,7 @@ const CreateTalesModal = ({
           <form>
             <div className="grid gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="title">Tale Title*</Label>
+                <Label htmlFor="title">Title*</Label>
                 <div className="relative">
                   <Input
                     type="text"

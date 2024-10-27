@@ -100,6 +100,7 @@ const TalezDetailCard = ({
                   }
                   isTalePending={isTaleEditPending}
                   isEdit={true}
+                  selectedTale={selectedTale || ""}
                 />
                 <Button
                   variant={"ghost"}
