@@ -63,7 +63,7 @@ const TalezDetailCard = ({
   };
 
   const { editTaleMutateFn, isTaleEditPending } = useEditTale({
-    queryKeyParams,
+    queryKeyParams: queryKeyParams || { workflowId: "", offset: 0 },
     handleUpdatedTale,
   });
 
