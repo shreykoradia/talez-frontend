@@ -5,7 +5,7 @@ import { AxiosError } from "axios";
  */
 export type TimeStampedModelMixin = {
   createdAt: string;
-  updatedTAt: string;
+  updatedAt: string;
 };
 
 /**
