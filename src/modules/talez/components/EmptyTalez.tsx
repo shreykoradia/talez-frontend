@@ -11,7 +11,11 @@ const EmptyTalez = () => {
           button below.
         </p>
         <div className="flex gap-4 items-center">
-          <CreateTalesModal />
+          <CreateTalesModal
+            mutateFn={() => {}}
+            isTalePending={false}
+            isEdit={false}
+          />
           <SharePopOver />
         </div>
       </section>

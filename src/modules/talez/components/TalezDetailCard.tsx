@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 
 import dayjs from "dayjs";
@@ -25,11 +25,14 @@ import { Skeleton } from "@/shared/ui/ui/skeleton";
 import TalezDetailView from "./TalezDetailView";
 import { talesResponseProps } from "../types";
 import Attachments from "@/modules/attachments";
+import CreateTalesModal from "./CreateTalesModal";
+import useEditTale from "../hooks/useEditTale";
 
 interface talezDetailViewProp {
   taleDetail: talesResponseProps;
   selectedTale: string | null;
   isLoading: boolean;
+  queryKeyParams?: { workflowId: string; offset: number };
   handleModeChange?: (feedback: string) => void;
   onClose?: CallableFunction;
 }
@@ -40,7 +43,11 @@ const TalezDetailCard = ({
   selectedTale,
   onClose,
   isLoading,
+  queryKeyParams,
 }: talezDetailViewProp) => {
+  const [tale, setTale] = useState<talesResponseProps>(
+    {} as talesResponseProps
+  );
   const {
     data: feedbackData,
     hasNextPage,
@@ -50,6 +57,19 @@ const TalezDetailCard = ({
   } = useGetFeedbacks({
     taleId: selectedTale || "",
   });
+
+  const handleUpdatedTale = (updatedTale: talesResponseProps) => {
+    setTale(updatedTale);
+  };
+
+  const { editTaleMutateFn, isTaleEditPending } = useEditTale({
+    queryKeyParams: queryKeyParams || { workflowId: "", offset: 0 },
+    handleUpdatedTale,
+  });
+
+  useEffect(() => {
+    setTale(taleDetail);
+  }, [taleDetail]);
 
   dayjs.extend(relativeTime);
 
@@ -63,20 +83,33 @@ const TalezDetailCard = ({
               <Skeleton className="h-2 w-1/2" />
             </div>
           ) : (
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center maxMd:flex-wrap">
               <div>
-                <CardTitle>{taleDetail?.title}</CardTitle>
+                <CardTitle>{tale?.title}</CardTitle>
                 <CardDescription>
-                  Published 🗨️ {dayjs(taleDetail?.createdAt).fromNow()}
+                  Published 🗨️ {dayjs(tale?.createdAt).fromNow()}
                 </CardDescription>
               </div>
-              <Button
-                variant={"ghost"}
-                size={"sm"}
-                onClick={() => onClose && onClose()}
-              >
-                Close
-              </Button>
+              <div className="flex justify-end items-center maxMd:w-full">
+                <CreateTalesModal
+                  mutateFn={(values) =>
+                    editTaleMutateFn({
+                      values,
+                      params: { taleId: selectedTale || "" },
+                    })
+                  }
+                  isTalePending={isTaleEditPending}
+                  isEdit={true}
+                  selectedTale={tale}
+                />
+                <Button
+                  variant={"ghost"}
+                  size={"sm"}
+                  onClick={() => onClose && onClose()}
+                >
+                  Close
+                </Button>
+              </div>
             </div>
           )}
         </CardHeader>
@@ -93,7 +126,7 @@ const TalezDetailCard = ({
                 <TabsTrigger value="feedback">Feedbacks</TabsTrigger>
               </TabsList>
               <TabsContent value="description">
-                <TalezDetailView tale={taleDetail} isLoading={isLoading} />
+                <TalezDetailView tale={tale} isLoading={isLoading} />
               </TabsContent>
               <TabsContent value="feedback">
                 <div className="w-full flex justify-end pt-4">
@@ -138,7 +171,7 @@ const TalezDetailCard = ({
             </Tabs>
           </div>
           <div className="md:hidden">
-            <TalezDetailView tale={taleDetail} isLoading={isLoading} />
+            <TalezDetailView tale={tale} isLoading={isLoading} />
           </div>
         </CardContent>
       </Card>
