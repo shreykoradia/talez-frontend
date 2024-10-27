@@ -40,7 +40,7 @@ const TalezCard = ({ tale, handleCardClick, isTaleOpen }: talezCardProps) => {
               <button
                 className={clsx(
                   { [styles.open_talez_button]: !isTaleOpen },
-                  "hidden"
+                  "hidden text-primary text-xs maxMd:block maxMd:border maxMd:rounded-sm maxMd:px-2 maxMd:border-input maxMd:bg-background"
                 )}
                 onClick={(e) => {
                   e.stopPropagation();

@@ -14,7 +14,7 @@ import useCreateTalesForm from "../hooks/useCreateTalesForm";
 import { Textarea } from "@/shared/ui/ui/textarea";
 import { useState } from "react";
 import clsx from "clsx";
-import { CreateTalesRequestProps } from "../types";
+import { CreateTalesRequestProps, talesResponseProps } from "../types";
 import Loader from "@/shared/components/loader/Loader";
 import { Edit3Icon, Plus } from "lucide-react";
 
@@ -22,7 +22,7 @@ interface CreateTalesModalProp {
   mutateFn: (values: CreateTalesRequestProps) => void;
   isTalePending: boolean;
   isEdit: boolean;
-  selectedTale?: string;
+  selectedTale?: talesResponseProps;
 }
 
 const CreateTalesModal = ({
@@ -48,7 +48,10 @@ const CreateTalesModal = ({
     setTaleTitleCounter(e.target.value.length);
   };
 
-  const onSubmitButtonClick = () => {
+  const onSubmitButtonClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
     mutateFn(values);
     resetForm();
     setTaleTitleCounter(0);
@@ -141,7 +144,9 @@ const CreateTalesModal = ({
                   disabled={
                     isTalePending || !values.title || !values.description
                   }
-                  onClick={onSubmitButtonClick}
+                  onClick={(
+                    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                  ) => onSubmitButtonClick(e)}
                 >
                   {isTalePending ? (
                     <Loader />
