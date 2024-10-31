@@ -10,6 +10,9 @@ import clsx from "clsx";
 import { feedbackData } from "./types";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { useState } from "react";
+import CreateFeedbackModal from "./component/CreateFeedbackModal";
+import useEditFeedback from "./hooks/useEditFeedback";
 
 const FeedbackCard = ({
   feedbackData,
@@ -18,6 +21,11 @@ const FeedbackCard = ({
   feedbackData: feedbackData;
   onOpenViewMode: CallableFunction;
 }) => {
+  const [openEditModal, setOpenEditModal] = useState<boolean>(false);
+  const { mutate: editFn, isPending: isEditingFeedback } = useEditFeedback({
+    taleId: feedbackData?.taleId,
+  });
+
   dayjs.extend(relativeTime);
 
   return (
@@ -27,12 +35,20 @@ const FeedbackCard = ({
           <CardTitle className="text-md">
             <div className="flex justify-between items-center">
               <p>Feedback by {feedbackData?.feedbackAuthorName}</p>
-              <button
-                className={clsx(styles.open_feedback_button, "hidden")}
-                onClick={() => onOpenViewMode(feedbackData?._id)}
-              >
-                open
-              </button>
+              <div className="flex gap-2 items-center">
+                <button
+                  className={clsx(styles.open_feedback_button, "hidden")}
+                  onClick={() => setOpenEditModal(!openEditModal)}
+                >
+                  edit
+                </button>
+                <button
+                  className={clsx(styles.open_feedback_button, "hidden")}
+                  onClick={() => onOpenViewMode(feedbackData?._id)}
+                >
+                  open
+                </button>
+              </div>
             </div>
           </CardTitle>
           <CardDescription className="text-sm">
@@ -43,6 +59,18 @@ const FeedbackCard = ({
           {feedbackData?.feedback}
         </CardContent>
       </Card>
+      {openEditModal ? (
+        <CreateFeedbackModal
+          isCreatingFeedback={isEditingFeedback}
+          createFeedbackFn={(values) =>
+            editFn({ values, params: { feedbackId: feedbackData?._id } })
+          }
+          isEdit={true}
+          openModal={openEditModal}
+          onCloseModal={() => setOpenEditModal(!openEditModal)}
+          feedback={feedbackData}
+        />
+      ) : null}
     </>
   );
 };

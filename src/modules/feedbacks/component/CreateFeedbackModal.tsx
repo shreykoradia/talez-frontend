@@ -1,10 +1,5 @@
 import React, { useState } from "react";
 import { useFeedbackForm } from "../hooks/useFeedbackForm";
-import useGetFeedbacks from "../hooks/useGetFeedbacks";
-import { useMutation } from "@tanstack/react-query";
-import { createFeedbackProps } from "../types";
-import { createFeedback } from "../api/createFeedback";
-import { toast } from "@/shared/ui/ui/use-toast";
 import {
   Dialog,
   DialogContent,
@@ -19,44 +14,28 @@ import { Loader, Plus } from "lucide-react";
 import { Label } from "@/shared/ui/ui/label";
 import { Textarea } from "@/shared/ui/ui/textarea";
 import clsx from "clsx";
+import { createFeedbackProps, feedbackData } from "../types";
 
-const CreateFeedbackModal = ({ taleId }: { taleId: string }) => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
+const CreateFeedbackModal = ({
+  createFeedbackFn,
+  isCreatingFeedback,
+  openModal,
+  onCloseModal,
+  isEdit,
+  feedback,
+}: {
+  createFeedbackFn: (values: createFeedbackProps) => void;
+  isCreatingFeedback: boolean;
+  openModal: boolean;
+  onCloseModal: () => void;
+  isEdit: boolean;
+  feedback?: feedbackData;
+}) => {
   const [counterFeedback, setCounterFeedback] = useState<number>(0);
 
-  const params = {
-    taleId: taleId,
-  };
-
-  const { values, handleChange, errors, touched, resetForm } =
-    useFeedbackForm();
-  const { refetch: refetchFeedbacksFn } = useGetFeedbacks(params);
-
-  const { isPending: isCreatingFeedback, mutate: createFeedbackFn } =
-    useMutation({
-      mutationFn: ({
-        values,
-        params,
-      }: {
-        values: createFeedbackProps;
-        params: { taleId: string | number };
-      }) => createFeedback(values, params),
-      onSuccess: () => {
-        toast({
-          title: "Feedback added successfully",
-          description:
-            "Check out feedbacks by other, upvote or downvote and make your product better",
-        });
-        refetchFeedbacksFn();
-      },
-      onError: () => {
-        toast({
-          title: "Something went wrong huh!",
-          description:
-            "Try adding feedback after a while, Talez is currently in development mode, Thanks!",
-        });
-      },
-    });
+  const { values, handleChange, errors, touched, resetForm } = useFeedbackForm(
+    feedback || ({} as feedbackData)
+  );
 
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     handleChange(e);
@@ -64,23 +43,23 @@ const CreateFeedbackModal = ({ taleId }: { taleId: string }) => {
   };
 
   const handleFeedbackButton = () => {
-    createFeedbackFn({ values, params });
+    createFeedbackFn(values);
     resetForm();
     setCounterFeedback(0);
-    setOpenModal(false);
+    onCloseModal();
   };
   return (
     <>
-      <Dialog open={openModal} onOpenChange={setOpenModal}>
+      <Dialog open={openModal} onOpenChange={() => onCloseModal()}>
         <DialogTrigger asChild>
           <Button variant={"outline"}>
             <Plus size={16} className="mr-2" />
-            Add Feedback
+            {isEdit ? "Edit" : "Add"} Feedback
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Create Feedback</DialogTitle>
+            <DialogTitle>{isEdit ? "Edit" : "Create"} Feedback</DialogTitle>
             <DialogDescription>
               Every feedback matter's like your's to us!
             </DialogDescription>
@@ -119,7 +98,11 @@ const CreateFeedbackModal = ({ taleId }: { taleId: string }) => {
                   disabled={isCreatingFeedback || !values.feedback}
                   onClick={handleFeedbackButton}
                 >
-                  {isCreatingFeedback ? <Loader /> : "Create Feedback"}
+                  {isCreatingFeedback ? (
+                    <Loader />
+                  ) : (
+                    `${isEdit ? "Edit" : "Add"} Feedback`
+                  )}
                 </Button>
               </DialogFooter>
             </div>
