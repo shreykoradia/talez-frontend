@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/ui/ui/tabs";
 import CreateFeedbackModal from "@/modules/feedbacks/component/CreateFeedbackModal";
 import FeedbackCard from "@/modules/feedbacks/FeedbackCard";
 import styles from "@/assets/css/talez.module.css";
-import { feedbackData } from "@/modules/feedbacks/types";
+import { createFeedbackProps, feedbackData } from "@/modules/feedbacks/types";
 import FeedbackOverview from "@/modules/feedbacks";
 import { Button } from "@/shared/ui/ui/button";
 import useGetFeedbacks from "@/modules/feedbacks/hooks/useGetFeedbacks";
@@ -27,6 +27,7 @@ import { talesResponseProps } from "../types";
 import Attachments from "@/modules/attachments";
 import CreateTalesModal from "./CreateTalesModal";
 import useEditTale from "../hooks/useEditTale";
+import useCreateFeedback from "@/modules/feedbacks/hooks/useCreateFeedback";
 
 interface talezDetailViewProp {
   taleDetail: talesResponseProps;
@@ -48,6 +49,8 @@ const TalezDetailCard = ({
   const [tale, setTale] = useState<talesResponseProps>(
     {} as talesResponseProps
   );
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] =
+    useState<boolean>(false);
   const {
     data: feedbackData,
     hasNextPage,
@@ -66,6 +69,9 @@ const TalezDetailCard = ({
     queryKeyParams: queryKeyParams || { workflowId: "", offset: 0 },
     handleUpdatedTale,
   });
+
+  const { isPending: isFeedbackPending, mutate: createFeedbackFn } =
+    useCreateFeedback({ taleId: selectedTale || "" });
 
   useEffect(() => {
     setTale(taleDetail);
@@ -115,7 +121,18 @@ const TalezDetailCard = ({
         </CardHeader>
         <CardContent className="h-[calc(100%-140px)] overflow-x-hidden overflow-y-scroll no-scrollbar maxMd:px-2 maxMd:h-[calc(100%-195px)]">
           <div className="md:hidden flex flex-wrap gap-2 justify-start items-center">
-            <CreateFeedbackModal taleId={selectedTale || ""} />
+            <CreateFeedbackModal
+              createFeedbackFn={(values: createFeedbackProps) =>
+                createFeedbackFn({
+                  values,
+                  params: { taleId: selectedTale || "" },
+                })
+              }
+              isCreatingFeedback={isFeedbackPending}
+              openModal={isFeedbackModalOpen}
+              onCloseModal={() => setIsFeedbackModalOpen(!isFeedbackModalOpen)}
+              isEdit={false}
+            />
             <Attachments selectedTale={selectedTale || ""} />
             <FeedbackOverview />
           </div>
@@ -130,7 +147,20 @@ const TalezDetailCard = ({
               </TabsContent>
               <TabsContent value="feedback">
                 <div className="w-full flex justify-end pt-4">
-                  <CreateFeedbackModal taleId={selectedTale || ""} />
+                  <CreateFeedbackModal
+                    createFeedbackFn={(values: createFeedbackProps) =>
+                      createFeedbackFn({
+                        values,
+                        params: { taleId: selectedTale || "" },
+                      })
+                    }
+                    isCreatingFeedback={isFeedbackPending}
+                    openModal={isFeedbackModalOpen}
+                    onCloseModal={() =>
+                      setIsFeedbackModalOpen(!isFeedbackModalOpen)
+                    }
+                    isEdit={false}
+                  />
                 </div>
                 <div className="flex flex-col gap-4 w-full h-full">
                   {isFeedbackLoading || (isFetchingNextPage && <Loader />)}
