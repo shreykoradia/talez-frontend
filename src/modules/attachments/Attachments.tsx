@@ -21,6 +21,16 @@ interface AttachementProp {
 const Attachments = ({ selectedTale }: AttachementProp) => {
   const { data, refetch: getLinksRefetchFn } = useGetLinks(selectedTale || "");
 
+  console.log({ data: data?.data.links });
+
+  function extractDomain(url: string) {
+    // Remove protocol (http, https) and 'www.' if present
+    const domain = url.replace(/^(https?:\/\/)?(www\.)?/, "");
+
+    // Extract the domain and top-level domain (e.g., example.com)
+    return domain.split("/")[0];
+  }
+
   const { mutate: deleteLinkFn, isPending: isDeletingLink } = useMutation({
     mutationFn: (linkId: string) =>
       deleteLink({ linkId: linkId, taleId: selectedTale }),
@@ -68,7 +78,15 @@ const Attachments = ({ selectedTale }: AttachementProp) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   key={index}
+                  className="flex items-center gap-2"
                 >
+                  <img
+                    src={`https://img.logo.dev/${extractDomain(
+                      link.linkUrl
+                    )}?token=${
+                      import.meta.env.VITE_LOGO_API_KEY
+                    }&size=25& &format=png`}
+                  />
                   <p>{link?.linkTitle}</p>
                 </a>
                 <button
