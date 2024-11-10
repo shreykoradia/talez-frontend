@@ -107,9 +107,9 @@ const TalezV2 = () => {
         <p className="text-2xl maxMd:hidden">Talez</p>
         <div className="flex items-center gap-4 z-10 maxMd:justify-between maxMd:w-full">
           <CreateTalesModal
-            mutateFn={(values) =>
-              createTalesFn({ values, params: createParams })
-            }
+            mutateFn={(values) => {
+              createTalesFn({ values, params: createParams });
+            }}
             isTalePending={isCreatingTales}
             isEdit={false}
           />

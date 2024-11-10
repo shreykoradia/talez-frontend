@@ -1,7 +1,16 @@
 import SharePopOver from "@/shared/components/header/SharePopOver";
 import CreateTalesModal from "./CreateTalesModal";
+import useCreateTales from "../hooks/useCreateTales";
+import { useParams } from "react-router-dom";
 
 const EmptyTalez = () => {
+  const params = useParams();
+  const { createTalesFn, isCreatingTales } = useCreateTales();
+  const workflowId = params.workflowId || "";
+  const createParams = {
+    workflowId: workflowId,
+  };
+
   return (
     <>
       <section className="flex flex-col gap-2 justify-center items-center h-[calc(100%-74px)] w-full">
@@ -12,8 +21,10 @@ const EmptyTalez = () => {
         </p>
         <div className="flex gap-4 items-center">
           <CreateTalesModal
-            mutateFn={() => {}}
-            isTalePending={false}
+            mutateFn={(values) => {
+              createTalesFn({ values, params: createParams });
+            }}
+            isTalePending={isCreatingTales}
             isEdit={false}
           />
           <SharePopOver />
