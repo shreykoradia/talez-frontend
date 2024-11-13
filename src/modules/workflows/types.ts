@@ -9,6 +9,10 @@ export type workflowResponse = {
   workFlowTitle: string;
 } & TimeStampedModelMixin;
 
+export type workflowArchivePayload = {
+  workflowId: string;
+};
+
 export type workflowRequest = {
   workFlowTitle: string;
   description: string;

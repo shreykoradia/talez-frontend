@@ -31,7 +31,6 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route index path="/*" element={withAuthentication(Home)} />
-
           <Route path="/*" element={withoutAuthentication(unAuthenticated)}>
             <Route path="signin" element={<Login />} />
             <Route path="signup" element={<Signup />} />
