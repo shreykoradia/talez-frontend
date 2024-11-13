@@ -1,15 +1,22 @@
 import { Button } from "@/shared/ui/ui/button";
-import { toast } from "@/shared/ui/ui/use-toast";
+import { useMutation } from "@tanstack/react-query";
 import { AlertTriangle } from "lucide-react";
+import { deleteWorkflow } from "../api/deleteWorkflow";
+import { useNavigate, useParams } from "react-router-dom";
+import { workflowArchivePayload } from "../types";
 
 const WorkflowDanger = () => {
-  const handleDeleteFn = () => {
-    toast({
-      title: `Can't Wait to ship this feature`,
-      description:
-        "We are working hard to not allow you to delete this workflow, but deleting would be added soon For Real!",
-    });
-  };
+  const params = useParams();
+  const navigate = useNavigate();
+  const workflowId = params.workflowId || "";
+  const { mutate: deleteFn } = useMutation({
+    mutationFn: (data: workflowArchivePayload) => deleteWorkflow(data),
+    onSuccess: () => {
+      navigate("/dashboard");
+    },
+    onError: () => {},
+  });
+
   return (
     <>
       <h3 className="text-xl font-semibold mb-8">Delete Workflow</h3>
@@ -26,7 +33,11 @@ const WorkflowDanger = () => {
       <Button
         type="button"
         variant={"destructive"}
-        onClick={() => handleDeleteFn()}
+        onClick={() => {
+          console.log("first");
+          deleteFn({ workflowId });
+          console.log("second");
+        }}
       >
         Delete Workflow
       </Button>
